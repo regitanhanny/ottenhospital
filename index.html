@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#F7F5EE">
+<title>Otten Hospital</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23005B5C'/%3E%3Cpath d='M16 8v16M8 16h16' stroke='white' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400..700&family=Plus+Jakarta+Sans:wght@400..800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+:root{--bg:#F7F5EE;--card:#fff;--ink:#16292A;--mut:#5F6F6E;--line:#DDD9CB;--teal:#005B5C;--teal2:#008080;--teal3:#E3EFEE;--sand:#EFEBDD;--amb:#8A6A1F;--amb2:#F5EDD3;--red:#9B3A32;--red2:#F5E4E1;--ok:#2F6B4F;--ok2:#E0EEE5;--r:8px;--f1:'Fraunces','Iowan Old Style',Georgia,serif;--f2:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif}
+html{-webkit-text-size-adjust:100%}
+body{font-family:var(--f2);color:var(--ink);background:var(--bg);min-height:100vh;font-size:14.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+body.noscroll{overflow:hidden}
+h1,h2,h3,h4{font-family:var(--f1);font-weight:600;line-height:1.2;letter-spacing:-.005em}
+h2.ttl{font-size:27px;margin:16px 0 2px;font-style:italic}
+h3{font-size:18px;margin-bottom:8px}
+h3.sec{margin:26px 0 6px;font-size:19px;font-style:italic;color:var(--teal)}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--teal2);outline-offset:2px}
+.mut{color:var(--mut)}.sm{font-size:13px}.tiny{font-size:12px;color:var(--mut)}
+.center{text-align:center}
+.ic{width:18px;height:18px;flex:none;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:9px 18px;border-radius:var(--r);font-weight:700;background:var(--teal);color:#fff;border:1px solid var(--teal);font-size:14px;text-align:center;transition:background .15s}
+.btn:hover{background:#004647}
+.btn.pink{background:var(--teal)}.btn.mint{background:var(--teal2);border-color:var(--teal2)}.btn.mint:hover{background:#006b6b}
+.btn.but{background:#fff;color:var(--teal);border-color:var(--teal)}.btn.but:hover{background:var(--teal3)}
+.btn.ghost{background:#fff;color:var(--ink);border-color:var(--line)}.btn.ghost:hover{background:var(--sand)}
+.btn.red{background:var(--red);border-color:var(--red)}
+.btn.sm{padding:5px 12px;font-size:12.5px}
+.btn.block{width:100%;margin-top:6px}
+.btn[disabled]{opacity:.4;pointer-events:none}
+/* cards */
+.card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:16px;margin:12px 0}
+.card.pink,.card.lav{background:var(--teal3)}.card.mint{background:var(--ok2)}.card.but{background:var(--amb2)}.card.red{background:var(--red2)}
+.card.clickable{cursor:pointer}.card.clickable:hover{border-color:var(--teal2)}
+.card h3{display:flex;align-items:center;gap:6px}
+/* form */
+.form{display:block}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px;min-width:0}
+.field>label{font-weight:700;font-size:13px}
+.field label small{font-weight:500;color:var(--mut);margin-left:6px}
+input,select,textarea{width:100%;padding:9px 12px;border:1px solid #C5C1B1;border-radius:6px;background:#fff}
+input[type=range]{padding:0;accent-color:var(--teal);border:0;height:28px}
+input[type=checkbox],input[type=radio]{width:auto}
+textarea{resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.hint{font-size:12px;color:var(--mut);margin-top:-6px;margin-bottom:10px;min-height:16px}
+.seg{display:flex;gap:8px}
+.seg label{flex:1}
+.seg input{display:none}
+.seg span{display:block;text-align:center;padding:9px;border:1px solid #C5C1B1;border-radius:6px;background:#fff;font-weight:600;cursor:pointer}
+.seg input:checked+span{background:var(--teal3);border-color:var(--teal);color:var(--teal)}
+.chk{display:flex;gap:10px;align-items:center;padding:9px 12px;border:1px solid var(--line);border-radius:6px;margin-bottom:7px;background:#fff;cursor:pointer;font-weight:500}
+.chk input{width:18px;height:18px;accent-color:var(--teal);flex:none}
+.chk:has(input:checked){border-color:var(--teal2);background:var(--teal3)}
+.ksec{padding:0;overflow:hidden}
+.ksec>summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:8px;padding:13px 16px;font-family:var(--f1);font-weight:600;font-size:17px;line-height:1.2}
+.ksec>summary::-webkit-details-marker{display:none}
+.ksec>summary::after{content:'+';margin-left:auto;font-family:var(--f2);font-weight:400;font-size:22px;color:var(--mut);line-height:1}
+.ksec[open]>summary::after{content:'\2212'}
+.ksec>summary small{font-family:var(--f2);font-weight:500;font-size:12px;color:var(--mut)}
+.ksec .kb{padding:12px 16px 6px;border-top:1px solid var(--line)}
+.kbar{display:flex;gap:8px;flex-wrap:wrap;margin:2px 0 4px}
+.kgrp{border:1px solid var(--line);border-radius:6px;padding:10px 12px 2px;margin-bottom:10px;background:#FCFBF7}
+.kgrp>b{display:block;font-size:13px;margin-bottom:8px;color:var(--teal)}
+.kgrp .field{margin-bottom:10px}
+.kgrp .field>label{font-size:12px;color:var(--mut);font-weight:600}
+.pq{display:grid;grid-template-columns:30px 1fr;gap:0 10px;align-items:start}
+.pq>i{font-style:italic;font-family:var(--f1);font-weight:700;font-size:20px;color:var(--teal2);padding-top:22px;text-align:center}
+fieldset{border:1px solid var(--line);border-radius:6px;padding:12px 12px 2px;margin-bottom:12px;min-width:0}
+legend{font-family:var(--f1);font-weight:600;padding:0 8px;color:var(--teal)}
+/* badge / pill */
+.badge{display:inline-block;padding:2px 9px;border-radius:4px;font-size:12px;font-weight:700;border:1px solid transparent;white-space:nowrap}
+.badge.lav{background:var(--teal3);color:var(--teal)}.badge.butter{background:var(--amb2);color:var(--amb)}.badge.mint{background:#CFE5E3;color:var(--teal)}.badge.ok{background:var(--ok2);color:var(--ok)}.badge.pink{background:var(--sand);color:var(--mut)}.badge.red{background:var(--red);color:#fff}
+.pill{display:inline-block;padding:5px 11px;border-radius:5px;font-weight:600;font-size:13px}
+.pill.lav{background:var(--teal3);color:var(--teal)}.pill.mint{background:var(--ok2);color:var(--ok)}.pill.but{background:var(--amb2);color:var(--amb)}.pill.red{background:var(--red2);color:var(--red)}
+.logo-m{width:30px;height:30px;flex:none}
+/* landing + login */
+.landing,.loginw{max-width:520px;margin:0 auto;padding:56px 18px 40px}
+.logo{font-family:var(--f1);font-style:italic;font-weight:600;font-size:clamp(32px,8.5vw,46px);line-height:1.05;color:var(--teal)}
+.logo em{display:block;font-family:var(--f2);font-style:normal;font-weight:600;font-size:13px;color:var(--mut);margin-top:6px}
+.loginw .rule{width:44px;height:2px;background:var(--teal2);margin:14px 0 18px}
+.loginw h2{font-size:21px;margin-top:6px}
+.tabsw{display:flex;gap:8px;margin-bottom:14px}
+.tabsw button{flex:1;padding:8px;border-radius:6px;border:1px solid var(--line);background:#fff;font-weight:700}
+.tabsw button.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.chip{padding:5px 12px;border-radius:999px;border:1px solid var(--line);background:#fff;font-weight:600;font-size:13px}
+.chip.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+/* shell */
+.shell{display:flex;min-height:100vh}
+.side{display:none}
+.main{flex:1;min-width:0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 16px;position:sticky;top:0;z-index:5;background:rgba(247,245,238,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding-top:calc(10px + env(safe-area-inset-top))}
+.brand-mini{display:flex;align-items:center;gap:9px;font-family:var(--f1);font-style:italic;font-weight:600;font-size:21px;color:var(--teal);min-width:0;flex:1}
+.brand-mini .bn{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.brand-mini .bn b{font-family:var(--f2);font-style:normal;font-weight:500;font-size:.6em;color:var(--mut)}
+.topr{display:flex;align-items:center;gap:8px;flex:none}
+.content{padding:4px 16px 110px;max-width:1040px;margin:0 auto}
+.tabbar{position:fixed;left:0;right:0;bottom:0;display:flex;background:#fff;border-top:1px solid var(--line);padding:6px 6px calc(6px + env(safe-area-inset-bottom));z-index:10;gap:4px}
+.tabbar button{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;font-size:11px;font-weight:600;color:var(--mut);padding:5px 0;border-radius:6px}
+.tabbar button.on{color:var(--teal);background:var(--teal3)}
+@media(min-width:860px){
+ .side{display:flex;flex-direction:column;width:244px;padding:22px 14px;border-right:1px solid var(--line);background:#fff;position:sticky;top:0;height:100vh}
+ .logo-s{display:flex;align-items:center;gap:9px;font-family:var(--f1);font-style:italic;font-weight:600;font-size:23px;color:var(--teal);margin-bottom:4px}
+ .sidenav{display:flex;flex-direction:column;gap:4px;flex:1;margin-top:18px}
+ .navb{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:6px;font-weight:600;text-align:left;color:var(--mut)}
+ .navb:hover{background:var(--sand)}
+ .navb.on{background:var(--teal3);color:var(--teal);box-shadow:inset 3px 0 0 var(--teal)}
+ .who{display:flex;flex-direction:column;gap:6px;padding:12px;border-radius:6px;background:var(--sand)}
+ .tabbar,.top .btn{display:none}
+ .content{padding:8px 28px 40px}
+}
+.devfoot{text-align:center;font-size:11.5px;color:var(--ink);opacity:.38;padding:18px 12px 8px}
+.content .devfoot{padding-top:34px}
+.hello{margin-top:8px}
+.hello h2{font-size:27px;font-style:italic}
+.empty{text-align:center;padding:22px 16px}
+.empty h3{justify-content:center}
+/* dashboard */
+.dgroup{margin-top:22px}
+.dgroup>h3{font-size:19px;font-style:italic;color:var(--teal);margin-bottom:2px}
+.dgroup>.tiny{margin-bottom:10px}
+.mgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:760px){.mgrid{grid-template-columns:repeat(4,1fr)}.mgrid.c3{grid-template-columns:repeat(3,1fr)}}
+.mcard{display:flex;flex-direction:column;gap:3px;text-align:left;background:#fff;border:1px solid var(--line);border-top:3px solid var(--teal2);border-radius:var(--r);padding:12px 13px;min-height:112px;transition:border-color .15s,background .15s}
+.mcard:hover{background:#FCFBF7;border-color:var(--teal2)}
+.mcard.warn{border-top-color:var(--amb)}.mcard.bad{border-top-color:var(--red)}
+.mcard .ml{font-size:12.5px;font-weight:600;color:var(--mut);line-height:1.3}
+.mcard .mv{font-family:var(--f1);font-size:32px;font-weight:600;line-height:1.05;color:var(--teal)}
+.mcard .mv small{font-family:var(--f2);font-size:12px;font-weight:600;color:var(--mut);margin-left:4px}
+.mcard .ms{font-size:11.5px;color:var(--mut);margin-top:auto}
+.period{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:8px 0 2px}
+.note{background:var(--teal3);border-left:3px solid var(--teal2);border-radius:4px;padding:9px 12px;font-size:12.5px;margin:10px 0}
+.trend{width:100%;height:auto;display:block;margin:6px 0}
+.trend text{font-family:var(--f2);font-size:10px;fill:var(--mut)}
+.frm{font-size:12.5px;color:var(--mut);margin:6px 0}
+/* visit card */
+.visit{display:flex;gap:12px}
+.vic{font-weight:700;font-size:15px;color:var(--teal);width:44px;height:44px;flex:none;display:grid;place-items:center;background:var(--teal3);border-radius:6px}
+.vbody{flex:1;min-width:0}
+.vtop{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.acts{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.poli-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:8px}
+.poli{display:flex;flex-direction:column;align-items:center;gap:2px;padding:9px 4px;border:1px solid var(--line);border-radius:6px;background:#fff;font-weight:600;font-size:12.5px}
+.poli span{font-size:15px;font-weight:700;color:var(--teal)}
+.poli.on{background:var(--teal3);border-color:var(--teal)}
+.ticket{text-align:center;background:var(--sand);border:1px dashed #B9B49F;border-radius:6px;padding:16px;margin:12px 0}
+.ticket .no{font-family:var(--f1);font-size:46px;font-weight:600;letter-spacing:2px;color:var(--teal)}
+/* detail */
+.pat-head{display:flex;gap:12px;align-items:flex-start}
+.av{font-family:var(--f1);font-style:italic;font-weight:600;font-size:22px;width:48px;height:48px;border-radius:6px;background:var(--teal3);color:var(--teal);display:grid;place-items:center;flex:none}
+.alergi{background:var(--red2);border-left:3px solid var(--red);border-radius:4px;padding:8px 12px;font-weight:700;color:var(--red);margin-top:10px}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:6px 2px 12px;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{white-space:nowrap;padding:7px 13px;border-radius:6px;border:1px solid var(--line);background:#fff;font-weight:600;font-size:13px}
+.tabs button.on{background:var(--teal);color:#fff;border-color:var(--teal)}
+.scroll-x{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:13px;min-width:380px}
+.tbl th{font-weight:700;font-size:12px;color:var(--mut);padding:7px 5px;text-align:center;border-bottom:1px solid var(--line)}
+.tbl td{padding:7px 5px;text-align:center;border-top:1px solid var(--line);font-weight:500}
+.tbl td.w{background:var(--red2);color:var(--red);font-weight:700}
+.tbl td:first-child,.tbl th:first-child{text-align:left}
+.tbl.l td,.tbl.l th{text-align:left}
+.sparks{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.stats{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:12px 0}
+.stat{border:1px solid var(--line);border-radius:var(--r);padding:12px;background:#fff}
+.stat b{font-family:var(--f1);font-size:28px;display:block;line-height:1;color:var(--teal)}
+.stat span{font-size:12px;font-weight:600;color:var(--mut)}
+.spark{width:100%;height:auto;display:block}
+.calc{display:flex;gap:8px;flex-wrap:wrap;margin:-4px 0 12px}
+.face{font-size:34px;text-align:center}
+.pain{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:4px 0 8px}
+@media(min-width:560px){.pain{grid-template-columns:repeat(11,1fr)}}
+.pain label{cursor:pointer}
+.pain input{display:none}
+.pain span{display:flex;flex-direction:column;align-items:center;gap:1px;padding:6px 0;border:1px solid var(--line);border-radius:6px;background:#fff;font-size:11px;font-weight:700;color:var(--mut)}
+.pain span i{font-style:normal;font-size:22px;line-height:1.1}
+.pain input:checked+span{background:var(--teal3);border-color:var(--teal);color:var(--teal)}
+.pes{border-left:3px solid var(--teal2);padding:4px 0 4px 12px;margin:12px 0}
+.pes b{font-family:var(--f1)}
+.pes ul{margin:4px 0 0 18px}
+.rec{border:1px solid var(--line);border-radius:6px;background:#FCFBF7;padding:10px 12px;margin:8px 0}
+.rec b{color:var(--teal)}
+.rec ul{margin:4px 0 0 18px}
+.kv{display:grid;grid-template-columns:130px 1fr;gap:6px 10px;font-size:13.5px}
+.kv dt{color:var(--mut);font-weight:600}.kv dd{margin:0;font-weight:600;word-break:break-word}
+.soap p{margin:3px 0}
+.soap b{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:4px;background:var(--teal);color:#fff;font-size:12px;margin-right:6px}
+.mar{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line)}
+.mar:first-of-type{border-top:0}
+.bar{height:12px;background:var(--teal3);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--teal2)}
+.sbar p{margin:0 0 8px}
+.sbar b{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:4px;background:var(--teal);color:#fff;margin-right:8px;font-family:var(--f1)}
+/* beds + patients */
+.beds{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:700px){.beds{grid-template-columns:repeat(4,1fr)}}
+.bed{display:flex;flex-direction:column;gap:2px;text-align:left;border:1px dashed #B9B49F;border-radius:var(--r);padding:11px;min-height:108px;background:#fff}
+.bed.occ{border:1px solid var(--teal2);background:var(--teal3)}
+.bed.alert{background:var(--red2);border-color:var(--red)}
+.bed .bn{font-weight:700;font-size:12px;color:var(--mut)}
+.bed .pn{font-weight:700;line-height:1.2}
+.plist .row{display:flex;gap:12px;align-items:center;padding:10px 0;border-top:1px solid var(--line);width:100%;text-align:left}
+.plist .row:first-child{border-top:0}
+.plist .row .rmain{min-width:0;flex:1}
+.plist .row .chev{font-size:20px;color:var(--mut);flex:none}
+.search{margin:10px 0}
+.casegrp{border:1px solid var(--line);border-radius:var(--r);background:#fff;margin:10px 0;overflow:hidden}
+.casegrp>header{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:10px 14px;background:var(--sand);font-weight:700}
+/* modal + toast */
+#modal{position:fixed;inset:0;z-index:50;display:none}
+#modal.on{display:block}
+.ov{position:absolute;inset:0;background:rgba(22,41,42,.5)}
+.sheet{position:absolute;left:0;right:0;bottom:0;max-height:92vh;overflow:auto;background:var(--bg);border-top:3px solid var(--teal);border-radius:12px 12px 0 0;padding:18px 16px calc(26px + env(safe-area-inset-bottom))}
+.sheet .x{position:absolute;right:12px;top:12px}
+.sheet h3{padding-right:70px;font-size:21px}
+@media(min-width:700px){.sheet{left:50%;right:auto;bottom:auto;top:50%;transform:translate(-50%,-50%);width:600px;border-radius:10px;max-height:88vh}}
+pre.json{background:var(--ink);color:#DCE3E2;padding:14px;border-radius:6px;overflow:auto;font-size:12px;line-height:1.5;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;margin:10px 0;max-height:52vh}
+#toast{position:fixed;left:50%;bottom:96px;transform:translate(-50%,16px);opacity:0;background:var(--ink);color:#fff;padding:9px 16px;border-radius:6px;font-weight:600;z-index:99;transition:.25s;pointer-events:none;max-width:90vw;text-align:center;font-size:13.5px}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88em;background:var(--sand);padding:1px 6px;border-radius:4px}
+.sync{font-size:11.5px;font-weight:600;padding:4px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--mut);white-space:nowrap}
+.sync::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--ok);margin-right:6px}
+.sync.off::before{background:var(--red)}.sync.sav::before{background:var(--amb)}
+@media(max-width:560px){.sync{font-size:0;padding:5px 7px}.sync::before{margin-right:0}.top{padding-left:12px;padding-right:12px}}
+.by{font-weight:500;font-size:12px;color:var(--mut)}
+.evals{margin-top:6px}.evl{margin-top:6px}
+.evform{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.evform select{width:auto;flex:none;padding:7px 10px}
+.evform input{flex:1;min-width:150px;padding:7px 12px}
+.dh{font-size:12.5px;font-weight:700;color:var(--teal);margin:14px 0 6px;padding-bottom:3px;border-bottom:1px solid var(--line)}
+.dsec{border:1px solid var(--line);border-radius:6px;margin:8px 0;background:#fff}
+.dsec>summary{cursor:pointer;padding:10px 12px;font-weight:700;font-size:14px;list-style:none;display:flex;justify-content:space-between;gap:8px}
+.dsec>summary::-webkit-details-marker{display:none}
+.dsec>summary::after{content:"+";color:var(--mut);font-weight:600}
+.dsec[open]>summary::after{content:"\2013"}
+.dbody{padding:0 12px 12px}
+.enc{border:1px solid var(--line);border-radius:var(--r);margin:12px 0;background:var(--card)}
+.enc>summary{cursor:pointer;padding:12px 14px;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.enc>summary::-webkit-details-marker{display:none}
+.ebody{padding:0 12px 12px}
+.by-line{margin-top:4px}
+.sheet .kv{grid-template-columns:120px 1fr}
+@media(min-width:860px){.sheet.wide{width:780px}}
+@media(max-width:420px){.sheet .kv{grid-template-columns:96px 1fr}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+ <symbol id="dixa" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="#005B5C"/><path d="M16 8v16M8 16h16" stroke="#fff" stroke-width="4" stroke-linecap="round"/></symbol>
+</svg>
+<div id="app"></div>
+<div id="modal"></div>
+<div id="toast" role="status" aria-live="polite"></div>
+<script type="module">
+/* =========================================================
+   MEDIXA HOSPITAL — versi perawat, tersambung Firebase
+   Authentication (email + password) + Firestore (real-time,
+   tersinkron antar perangkat). Hosting: GitHub Pages.
+   Petunjuk pasang lengkap: README.md
+   ========================================================= */
+
+/* ---------- 1) KONFIGURASI FIREBASE ----------
+   Salin dari Firebase Console → Project settings → Your apps → Web app.
+   apiKey Firebase bukan rahasia; yang menjaga data adalah firestore.rules. */
+const firebaseConfig = {
+  apiKey: "AIzaSyCMfoMSQGJBIqQSAz-XspMkDbQK-qUuK3M",
+  authDomain: "otten-hospital.firebaseapp.com",
+  projectId: "otten-hospital",
+  storageBucket: "otten-hospital.firebasestorage.app",
+  messagingSenderId: "361298265545",
+  appId: "1:361298265545:web:79d7a41f953222a7201418",
+  measurementId: "G-X8P9LG52X3"
+};
+const FIREBASE_VERSION='10.14.1';   // SDK dimuat langsung dari CDN gstatic, tanpa npm / bundler
+const FOOT='<div class="devfoot">Developed by Siti Regita Nurulhanny. 2026</div>';
+const MASK_NIK_IN_LIST=true;        // false = NIK tampil penuh di daftar pasien
+const CONFIGURED=!/^ISI_/.test(firebaseConfig.apiKey);
+
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pad=n=>String(n).padStart(2,'0');
+const isoDate=(d=new Date())=>`${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const hhmm=(d=new Date())=>`${pad(d.getHours())}:${pad(d.getMinutes())}`;
+const stamp=()=>`${isoDate()}T${hhmm()}`;
+const addDays=n=>{const d=new Date();d.setDate(d.getDate()+n);return isoDate(d)};
+const T=(d,h)=>addDays(d)+'T'+h;
+const parseD=s=>{const [y,m,d]=s.slice(0,10).split('-').map(Number);return new Date(y,m-1,d)};
+const fmtD=s=>s?parseD(s).toLocaleDateString('id-ID',{day:'numeric',month:'short',year:'numeric'}):'-';
+const fmtDT=t=>t?`${fmtD(t)}, ${t.slice(11,16)}`:'-';
+const age=dob=>{const b=parseD(dob),n=new Date();let a=n.getFullYear()-b.getFullYear();if(n<new Date(n.getFullYear(),b.getMonth(),b.getDate()))a--;return a};
+const daysBetween=(a,b)=>{const x=parseD(a),y=parseD(b);return Math.round((Date.UTC(y.getFullYear(),y.getMonth(),y.getDate())-Date.UTC(x.getFullYear(),x.getMonth(),x.getDate()))/864e5)};
+const uid=()=>Math.random().toString(36).slice(2,9);
+const maskNik=n=>n.slice(0,4)+'••••••••'+n.slice(-4);
+
+
+/* ---------- master data ---------- */
+const POLI=[
+ {id:'umum',nama:'Poli Umum',icon:'',kode:'U',dokter:['dr. Andini Putri','dr. Raka Mahendra']},
+ {id:'dalam',nama:'Penyakit Dalam',icon:'',kode:'D',dokter:['dr. Rina Kusuma, Sp.PD','dr. Hadi Wijaya, Sp.PD']},
+ {id:'anak',nama:'Anak',icon:'',kode:'A',dokter:['dr. Nadia Safitri, Sp.A','dr. Fikri Ramadhan, Sp.A']},
+ {id:'kandungan',nama:'Kandungan',icon:'',kode:'K',dokter:['dr. Maya Anggraini, Sp.OG','dr. Laras Wulandari, Sp.OG']},
+ {id:'bedah',nama:'Bedah',icon:'',kode:'B',dokter:['dr. Bima Aditya, Sp.B','dr. Tomi Prasetyo, Sp.B']},
+ {id:'mata',nama:'Mata',icon:'',kode:'M',dokter:['dr. Sekar Ayu, Sp.M']},
+ {id:'gigi',nama:'Gigi',icon:'',kode:'G',dokter:['drg. Lia Permata']}
+];
+const ALLDOC=[...new Set(POLI.flatMap(p=>p.dokter))];
+const BEDS=['M-01','M-02','M-03','M-04','W-01','W-02','W-03','W-04','A-01','A-02','A-03','A-04'].map(id=>({id,room:{M:'Melati',W:'Mawar',A:'Anggrek'}[id[0]]}));
+const ROOMS=[['Melati','Kelas 2'],['Mawar','Kelas 1'],['Anggrek','Kelas 3']];
+POLI.forEach(p=>p.icon=p.kode);
+const SLOTS=['08:00','08:30','09:00','09:30','10:00','10:30','11:00','11:30','13:00','13:30','14:00','14:30'];
+const MARITAL={S:'Belum Kawin',M:'Kawin',D:'Cerai Hidup',W:'Cerai Mati'};
+
+/* ---------- Pustaka SDKI -> SLKI -> SIKI ----------
+   Setiap diagnosis memuat luaran utama (SLKI) beserta kriteria hasil, dan intervensi utama (SIKI).
+   Pustaka ini adalah rekomendasi awal dan bukan salinan lengkap buku PPNI: kode dan redaksi
+   wajib diverifikasi ke SDKI (2016), SLKI (2019), SIKI (2018). Diagnosis di luar daftar dapat
+   diinput manual melalui pilihan "Diagnosis lain (input manual)". */
+const SDKI_REF='https://perawat.org/?s=';
+const SDKI=[
+ {k:'D.0001',n:'Bersihan Jalan Napas Tidak Efektif',kw:'sesak batuk sputum dahak ronkhi wheezing sekret',slki:['L.01001','Bersihan Jalan Napas'],kh:['Batuk efektif meningkat','Produksi sputum menurun','Mengi menurun','Dispnea menurun','Frekuensi napas membaik','Pola napas membaik'],siki:[['I.01011','Manajemen Jalan Napas'],['I.01006','Latihan Batuk Efektif'],['I.01014','Pemantauan Respirasi']]},
+ {k:'D.0003',n:'Gangguan Pertukaran Gas',kw:'spo2 hipoksia sianosis sesak ventilasi',slki:['L.01003','Pertukaran Gas'],kh:['Tingkat kesadaran meningkat','Dispnea menurun','Bunyi napas tambahan menurun','Saturasi oksigen membaik','Pola napas membaik','Sianosis menurun'],siki:[['I.01014','Pemantauan Respirasi'],['I.01026','Terapi Oksigen'],['I.01011','Manajemen Jalan Napas']]},
+ {k:'D.0005',n:'Pola Napas Tidak Efektif',kw:'sesak napas cepat takipnea otot bantu napas rr',slki:['L.01004','Pola Napas'],kh:['Dispnea menurun','Penggunaan otot bantu napas menurun','Pemanjangan fase ekspirasi menurun','Frekuensi napas membaik','Kedalaman napas membaik'],siki:[['I.01011','Manajemen Jalan Napas'],['I.01014','Pemantauan Respirasi'],['I.01026','Terapi Oksigen']]},
+ {k:'D.0008',n:'Penurunan Curah Jantung',kw:'jantung palpitasi edema nadi gagal jantung dispnea',slki:['L.02008','Curah Jantung'],kh:['Kekuatan nadi perifer meningkat','Palpitasi menurun','Takikardia menurun','Edema menurun','Dispnea menurun','Tekanan darah membaik'],siki:[['I.02075','Perawatan Jantung'],['I.02060','Pemantauan Tanda Vital']]},
+ {k:'D.0009',n:'Perfusi Perifer Tidak Efektif',kw:'akral dingin pucat crt nadi lemah sirkulasi',slki:['L.02011','Perfusi Perifer'],kh:['Denyut nadi perifer meningkat','Warna kulit pucat menurun','Pengisian kapiler membaik','Akral membaik','Turgor kulit membaik','Tekanan darah membaik'],siki:[['I.02079','Perawatan Sirkulasi'],['I.02060','Pemantauan Tanda Vital']]},
+ {k:'D.0019',n:'Defisit Nutrisi',kw:'nafsu makan berat badan imt kurus mual porsi',slki:['L.03030','Status Nutrisi'],kh:['Porsi makan yang dihabiskan meningkat','Berat badan membaik','Indeks massa tubuh membaik','Nafsu makan membaik','Frekuensi makan membaik'],siki:[['I.03119','Manajemen Nutrisi'],['I.12383','Edukasi Kesehatan']]},
+ {k:'D.0022',n:'Hipervolemia',kw:'edema balance cairan berat badan naik asites',slki:['L.03020','Keseimbangan Cairan'],kh:['Haluaran urin meningkat','Edema menurun','Tekanan darah membaik','Berat badan membaik'],siki:[['I.03114','Manajemen Hipervolemia'],['I.03121','Pemantauan Cairan']]},
+ {k:'D.0023',n:'Hipovolemia',kw:'dehidrasi muntah diare turgor mukosa kering urin sedikit',slki:['L.03028','Status Cairan'],kh:['Kekuatan nadi meningkat','Turgor kulit meningkat','Output urin meningkat','Frekuensi nadi membaik','Tekanan darah membaik','Membran mukosa membaik'],siki:[['I.03116','Manajemen Hipovolemia'],['I.03121','Pemantauan Cairan']]},
+ {k:'D.0027',n:'Ketidakstabilan Kadar Glukosa Darah',kw:'diabetes dm gula darah hiperglikemia hipoglikemia',slki:['L.03022','Kestabilan Kadar Glukosa Darah'],kh:['Kadar glukosa dalam darah membaik','Mengantuk menurun','Pusing menurun','Lelah atau lesu menurun'],siki:[['I.03115','Manajemen Hiperglikemia'],['I.12383','Edukasi Kesehatan']]},
+ {k:'D.0054',n:'Gangguan Mobilitas Fisik',kw:'lemah kekuatan otot rom imobilisasi tirah baring stroke fraktur',slki:['L.05042','Mobilitas Fisik'],kh:['Pergerakan ekstremitas meningkat','Kekuatan otot meningkat','Rentang gerak (ROM) meningkat','Nyeri menurun','Kecemasan menurun','Kaku sendi menurun'],siki:[['I.05173','Dukungan Mobilisasi'],['I.06171','Dukungan Ambulasi']]},
+ {k:'D.0055',n:'Gangguan Pola Tidur',kw:'sulit tidur insomnia terjaga',slki:['L.05045','Pola Tidur'],kh:['Keluhan sulit tidur menurun','Keluhan sering terjaga menurun','Keluhan tidak puas tidur menurun','Keluhan istirahat tidak cukup menurun'],siki:[['I.05174','Dukungan Tidur']]},
+ {k:'D.0056',n:'Intoleransi Aktivitas',kw:'lelah lemas aktivitas dispnea saat aktivitas',slki:['L.05047','Toleransi Aktivitas'],kh:['Frekuensi nadi meningkat','Saturasi oksigen meningkat','Kemudahan melakukan aktivitas sehari-hari meningkat','Keluhan lelah menurun','Dispnea saat aktivitas menurun'],siki:[['I.05178','Manajemen Energi'],['I.05173','Dukungan Mobilisasi']]},
+ {k:'D.0077',n:'Nyeri Akut',kw:'nyeri skala meringis luka operasi post op sakit',slki:['L.08066','Tingkat Nyeri'],kh:['Keluhan nyeri menurun','Meringis menurun','Sikap protektif menurun','Gelisah menurun','Kesulitan tidur menurun','Frekuensi nadi membaik','Tekanan darah membaik'],siki:[['I.08238','Manajemen Nyeri'],['I.08243','Pemberian Analgesik'],['I.09326','Terapi Relaksasi']]},
+ {k:'D.0078',n:'Nyeri Kronis',kw:'nyeri lama berulang kronis',slki:['L.08066','Tingkat Nyeri'],kh:['Keluhan nyeri menurun','Meringis menurun','Gelisah menurun','Kesulitan tidur menurun','Frekuensi nadi membaik'],siki:[['I.08238','Manajemen Nyeri'],['I.08243','Pemberian Analgesik'],['I.09326','Terapi Relaksasi']]},
+ {k:'D.0080',n:'Ansietas',kw:'cemas khawatir gelisah tegang takut',slki:['L.09093','Tingkat Ansietas'],kh:['Verbalisasi kebingungan menurun','Verbalisasi khawatir akibat kondisi yang dihadapi menurun','Perilaku gelisah menurun','Perilaku tegang menurun','Frekuensi napas membaik','Frekuensi nadi membaik','Tekanan darah membaik'],siki:[['I.09314','Reduksi Ansietas'],['I.09326','Terapi Relaksasi']]},
+ {k:'D.0109',n:'Defisit Perawatan Diri',kw:'barthel mandi berpakaian makan toileting dibantu ketergantungan',slki:['L.11103','Perawatan Diri'],kh:['Kemampuan mandi meningkat','Kemampuan mengenakan pakaian meningkat','Kemampuan makan meningkat','Kemampuan ke toilet (BAB/BAK) meningkat','Verbalisasi keinginan melakukan perawatan diri meningkat'],siki:[['I.11348','Dukungan Perawatan Diri'],['I.05173','Dukungan Mobilisasi']]},
+ {k:'D.0111',n:'Defisit Pengetahuan',kw:'edukasi pengetahuan tidak tahu penyakit diet obat',slki:['L.12111','Tingkat Pengetahuan'],kh:['Perilaku sesuai anjuran meningkat','Verbalisasi minat dalam belajar meningkat','Kemampuan menjelaskan pengetahuan tentang suatu topik meningkat','Perilaku sesuai dengan pengetahuan meningkat','Pertanyaan tentang masalah yang dihadapi menurun'],siki:[['I.12383','Edukasi Kesehatan']]},
+ {k:'D.0129',n:'Gangguan Integritas Kulit/Jaringan',kw:'luka dekubitus lecet kemerahan kulit rusak',slki:['L.14125','Integritas Kulit dan Jaringan'],kh:['Elastisitas meningkat','Hidrasi meningkat','Perfusi jaringan meningkat','Kerusakan jaringan menurun','Kerusakan lapisan kulit menurun','Nyeri menurun','Kemerahan menurun'],siki:[['I.14564','Perawatan Luka'],['I.11353','Perawatan Integritas Kulit']]},
+ {k:'D.0130',n:'Hipertermia',kw:'demam suhu panas febris',slki:['L.14134','Termoregulasi'],kh:['Menggigil menurun','Kulit merah menurun','Kejang menurun','Takikardia menurun','Takipnea menurun','Suhu tubuh membaik','Suhu kulit membaik'],siki:[['I.15506','Manajemen Hipertermia'],['I.14578','Regulasi Temperatur'],['I.02060','Pemantauan Tanda Vital']]},
+ {k:'D.0136',n:'Risiko Cedera',risk:true,kw:'restrain agitasi gelisah keselamatan cedera',slki:['L.14136','Tingkat Cedera'],kh:['Kejadian cedera menurun','Luka atau lecet menurun','Ketegangan otot menurun','Agitasi menurun'],siki:[['I.14537','Pencegahan Cedera'],['I.14513','Manajemen Keselamatan Lingkungan']]},
+ {k:'D.0139',n:'Risiko Gangguan Integritas Kulit/Jaringan',risk:true,kw:'braden dekubitus tirah baring tekan reposisi',slki:['L.14125','Integritas Kulit dan Jaringan'],kh:['Kerusakan jaringan menurun','Kerusakan lapisan kulit menurun','Kemerahan menurun','Hidrasi meningkat'],siki:[['I.11353','Perawatan Integritas Kulit'],['I.05173','Dukungan Mobilisasi'],['I.14564','Perawatan Luka']]},
+ {k:'D.0142',n:'Risiko Infeksi',risk:true,kw:'infus phlebitis luka operasi invasif leukosit',slki:['L.14137','Tingkat Infeksi'],kh:['Kebersihan tangan meningkat','Kebersihan badan meningkat','Demam menurun','Kemerahan menurun','Nyeri menurun','Bengkak menurun','Kadar sel darah putih membaik'],siki:[['I.14539','Pencegahan Infeksi'],['I.14564','Perawatan Luka']]},
+ {k:'D.0143',n:'Risiko Jatuh',risk:true,kw:'morse jatuh lansia gaya jalan',slki:['L.14138','Tingkat Jatuh'],kh:['Jatuh dari tempat tidur menurun','Jatuh saat berdiri menurun','Jatuh saat duduk menurun','Jatuh saat berjalan menurun','Jatuh saat dipindahkan menurun'],siki:[['I.14540','Pencegahan Jatuh'],['I.14513','Manajemen Keselamatan Lingkungan']]}
+];
+const sdkiBy=k=>SDKI.find(x=>x.k===k);
+/* rekomendasi diagnosis dari data pengkajian dan TTV (bersifat saran, keputusan tetap pada perawat) */
+function recDx(e){
+ const k=e.pengkajian||{},mu=e.mutu||{},t=lastTTV(e),r=[],has=new Set(e.askep.map(a=>a.sdki.k));
+ const add=(kode,why)=>{if(!has.has(kode)&&!r.some(x=>x.k===kode))r.push({k:kode,why})};
+ if(k.nyeri!=null&&k.nyeri!==''&&+k.nyeri>=1)add('D.0077',`Skala nyeri ${k.nyeri}/10`);
+ if(k.morse){const ms=morseTotal(k.morse);if(ms>=25)add('D.0143',`Skor Morse ${ms}`)}
+ const brs=fullSum(BRADEN,k.braden);if(brs!=null&&brs<=18)add('D.0139',`Skor Braden ${brs}`);
+ const bts=fullSum(BARTHEL,k.barthel);if(bts!=null&&bts<100)add('D.0109',`Skor Barthel ${bts}/100`);
+ const cm=(k.psiko||{}).cemas;if(cm&&cm!=='Tidak cemas')add('D.0080',`Tingkat kecemasan: ${cm.toLowerCase()}`);
+ if(mu.pengetahuanPre!=null&&mu.pengetahuanPre!==''&&+mu.pengetahuanPre<70)add('D.0111',`Skor pengetahuan awal ${mu.pengetahuanPre}`);
+ const bm=bmiInfo(k.bb,k.tb);if(bm&&+bm.v<18.5)add('D.0019',`IMT ${bm.v} (kurus)`);
+ if(t){
+  if(t.spo2<95)add('D.0003',`SpO\u2082 ${t.spo2}%`);
+  if(t.rr>20||t.rr<12)add('D.0005',`RR ${t.rr}x/menit`);
+  if(t.suhu>37.5)add('D.0130',`Suhu ${t.suhu}\u00B0C`);
+ }
+ if(+mu.phlebitis>=1)add('D.0142',`Skor phlebitis ${mu.phlebitis}`);
+ if(mu.restrainTerpasang)add('D.0136','Restrain terpasang');
+ return r.map(x=>({...x,d:sdkiBy(x.k)})).filter(x=>x.d);
+}
+
+const MORSE=[
+ ['jatuh','Riwayat jatuh (3 bulan terakhir)',[['Tidak',0],['Ya',25]]],
+ ['sekunder','Diagnosis sekunder (lebih dari 1)',[['Tidak',0],['Ya',15]]],
+ ['alat','Alat bantu jalan',[['Tidak ada / bed rest / dibantu perawat',0],['Kruk / tongkat / walker',15],['Berpegangan pada furnitur',30]]],
+ ['infus','Terpasang infus / heparin lock',[['Tidak',0],['Ya',20]]],
+ ['gaya','Cara berjalan',[['Normal / bed rest / imobilisasi',0],['Lemah',10],['Terganggu',20]]],
+ ['mental','Status mental',[['Sadar akan kemampuan diri',0],['Lupa keterbatasan diri',15]]]
+];
+const GCS={
+ e:['Mata (E)',[[4,'Spontan'],[3,'Terhadap suara'],[2,'Terhadap nyeri'],[1,'Tidak ada']]],
+ m:['Motorik (M)',[[6,'Mengikuti perintah'],[5,'Melokalisir nyeri'],[4,'Menarik diri'],[3,'Fleksi abnormal'],[2,'Ekstensi abnormal'],[1,'Tidak ada']]],
+ v:['Verbal (V)',[[5,'Orientasi baik'],[4,'Bingung'],[3,'Kata tidak tepat'],[2,'Suara tak jelas'],[1,'Tidak ada']]]
+};
+const KAJI_PQ=[['p','Provokatif / paliatif','Pemberat dan peringan'],['q','Quality (sifat nyeri)','Ditusuk, ditekan, panas'],['t','Time','Onset, durasi, frekuensi']];
+const KAJI_RIWAYAT=[['rpd','Riwayat penyakit dahulu','Hipertensi, DM, asma, TB, dll.'],['rawat','Riwayat rawat inap / operasi','Kapan, di mana, karena apa'],['rpk','Riwayat penyakit keluarga','Penyakit keturunan / menular di keluarga'],['obat','Obat yang rutin dikonsumsi','Nama, dosis, sejak kapan'],['kebiasaan','Kebiasaan','Merokok, alkohol, kopi, olahraga']];
+const KAJI_FISIK=[
+ ['kepala','Kepala & rambut','Normosefali, rambut bersih, tidak mudah rontok, tidak ada benjolan dan nyeri tekan'],
+ ['mata','Mata','Konjungtiva tidak anemis, sklera anikterik, pupil isokor 3 mm, refleks cahaya (+/+)'],
+ ['telinga','Telinga','Simetris, bersih, tidak ada serumen berlebih, pendengaran baik'],
+ ['hidung','Hidung','Simetris, tidak ada sekret / polip, tidak ada napas cuping hidung'],
+ ['mulut','Mulut & tenggorokan','Mukosa lembab, gigi bersih, tidak ada stomatitis, tonsil tidak membesar'],
+ ['leher','Leher','Tidak ada pembesaran KGB / tiroid, JVP tidak meningkat, tidak ada kaku kuduk'],
+ ['paru','Dada & paru','Simetris, tidak ada retraksi, suara napas vesikuler, tidak ada ronki / wheezing'],
+ ['jantung','Jantung','Iktus kordis tidak tampak, BJ I-II reguler, tidak ada murmur / gallop'],
+ ['abdomen','Abdomen','Datar, bising usus 12x/menit, supel, tidak ada nyeri tekan, hepar / lien tidak teraba'],
+ ['genitalia','Genitalia & anus','Tidak ada lesi / kelainan, tidak ada hemoroid'],
+ ['ekstremitas','Ekstremitas','Akral hangat, CRT kurang dari 2 detik, tidak ada edema, kekuatan otot 5/5'],
+ ['kulit','Kulit & integumen','Warna sawo matang, turgor baik, tidak ada lesi, ikterik, atau sianosis'],
+ ['neuro','Neurologis','Refleks fisiologis (+), tidak ada kelumpuhan, tidak ada tanda rangsang meningeal']
+];
+const KAJI_ADL=[
+ ['nutrisi','Nutrisi (makan)','Frekuensi, porsi, nafsu makan, diet, mual / muntah'],
+ ['cairan','Cairan (minum)','Jumlah per hari, jenis, pembatasan'],
+ ['bab','Eliminasi BAB','Frekuensi, konsistensi, warna, keluhan'],
+ ['bak','Eliminasi BAK','Frekuensi, warna, jumlah, keluhan'],
+ ['tidur','Istirahat & tidur','Jam tidur, kualitas, gangguan'],
+ ['hygiene','Personal hygiene','Mandi, sikat gigi, keramas; mandiri / dibantu'],
+ ['aktivitas','Aktivitas & mobilisasi','Kegiatan harian, olahraga, keterbatasan gerak']
+];
+const BARTHEL=[
+ ['makan','Makan',[[0,'Tidak mampu'],[5,'Perlu bantuan'],[10,'Mandiri']]],
+ ['mandi','Mandi',[[0,'Tergantung orang lain'],[5,'Mandiri']]],
+ ['rawat','Perawatan diri (wajah, rambut, gigi)',[[0,'Perlu bantuan'],[5,'Mandiri']]],
+ ['pakaian','Berpakaian',[[0,'Tergantung'],[5,'Sebagian dibantu'],[10,'Mandiri']]],
+ ['bab','Pengendalian BAB',[[0,'Inkontinensia'],[5,'Kadang tak terkendali'],[10,'Terkendali']]],
+ ['bak','Pengendalian BAK',[[0,'Inkontinensia / kateter'],[5,'Kadang tak terkendali'],[10,'Terkendali']]],
+ ['toilet','Penggunaan toilet',[[0,'Tergantung'],[5,'Perlu sebagian bantuan'],[10,'Mandiri']]],
+ ['transfer','Berpindah (kursi ↔ tempat tidur)',[[0,'Tidak mampu'],[5,'Bantuan besar (2 orang)'],[10,'Bantuan kecil (1 orang)'],[15,'Mandiri']]],
+ ['mobil','Mobilitas (berjalan)',[[0,'Tidak mampu'],[5,'Kursi roda mandiri'],[10,'Berjalan dengan bantuan'],[15,'Mandiri']]],
+ ['tangga','Naik turun tangga',[[0,'Tidak mampu'],[5,'Perlu bantuan'],[10,'Mandiri']]]
+];
+const BRADEN=[
+ ['sensori','Persepsi sensori',[[1,'Keterbatasan penuh'],[2,'Sangat terbatas'],[3,'Sedikit terbatas'],[4,'Tidak ada gangguan']]],
+ ['lembab','Kelembaban kulit',[[1,'Selalu lembab'],[2,'Sangat lembab'],[3,'Kadang lembab'],[4,'Jarang lembab']]],
+ ['aktiv','Aktivitas',[[1,'Total di tempat tidur'],[2,'Dapat duduk'],[3,'Kadang berjalan'],[4,'Sering berjalan']]],
+ ['mobil','Mobilitas',[[1,'Tidak mampu bergerak'],[2,'Sangat terbatas'],[3,'Sedikit terbatas'],[4,'Tanpa keterbatasan']]],
+ ['nutrisi','Nutrisi',[[1,'Sangat buruk'],[2,'Mungkin tidak adekuat'],[3,'Adekuat'],[4,'Sangat baik']]],
+ ['gesek','Gesekan & geseran',[[1,'Bermasalah'],[2,'Potensial bermasalah'],[3,'Tidak ada masalah']]]
+];
+const KESADARAN=['Compos mentis','Apatis','Somnolen','Sopor','Soporokoma','Koma'];
+const KEADAAN_UMUM=['Baik','Tampak sakit ringan','Tampak sakit sedang','Tampak sakit berat'];
+const PSIKO_SEL=[
+ ['emosi','Status emosional',['Tenang / stabil','Cemas','Takut','Marah','Sedih','Murung / depresi','Labil']],
+ ['cemas','Tingkat kecemasan (awal)',['Tidak cemas','Ringan','Sedang','Berat','Panik']],
+ ['koping','Mekanisme koping',['Adaptif','Maladaptif','Belum dapat dinilai']],
+ ['keluarga','Dukungan keluarga',['Baik','Cukup','Kurang','Tidak ada']]
+];
+const PSIKO_TXT=[
+ ['citra','Konsep diri / citra tubuh','Persepsi pasien tentang kondisi tubuhnya'],
+ ['sosial','Interaksi sosial, pekerjaan & lingkungan','Tinggal dengan siapa, pekerjaan, hubungan dengan orang sekitar'],
+ ['spiritual','Spiritual','Agama, kebiasaan ibadah, hambatan beribadah saat sakit'],
+ ['edukasi','Pengetahuan & kebutuhan edukasi','Pemahaman pasien tentang penyakit, hal yang ingin diketahui']
+];
+const FACES=['\u{1F60A}','\u{1F642}','\u{1F642}','\u{1F610}','\u{1F610}','\u{1F61F}','\u{1F61F}','\u{1F623}','\u{1F623}','\u{1F62D}','\u{1F62D}'];
+const DISCH=['Edukasi obat pulang','Edukasi diet','Edukasi tanda bahaya','Jadwal kontrol dijelaskan','Resume medis & surat kontrol diserahkan','Infus / akses medis dilepas'];
+const RANGE={sis:[90,140],dia:[60,90],nadi:[60,100],rr:[12,20],suhu:[36,37.5],spo2:[95,101]};
+const isWarn=(k,v)=>v!==''&&v!=null&&(v<RANGE[k][0]||v>RANGE[k][1]);
+const ttvWarn=t=>!!t&&Object.keys(RANGE).some(k=>isWarn(k,t[k]));
+
+/* ---------- seed data ---------- */
+function E(o){return Object.assign({mutu:{},kasus:null,outcome:null,pengkajian:null,ttv:[],askep:[],cppt:[],mar:[],io:[],bed:null,admitAt:null,dischargeAt:null,discharge:{}},o)}
+function seedData(){
+ const patients=[
+  {id:'p1',mrn:'000001',nik:'3273015203850001',nama:'Siti Aminah',jk:'P',tempat:'Bandung',lahir:'1985-03-12',marital:'M',hp:'081234567801',alamat:'Jl. Melati No. 12',rtrw:'03/05',kel:'Cihapit',kec:'Bandung Wetan',kota:'Kota Bandung',prov:'Jawa Barat',pos:'40114',kerja:'Guru',penjamin:'BPJS',kontak:{nama:'Rahmat',hub:'Suami',hp:'081234567802'}},
+  {id:'p2',mrn:'000002',nik:'3273012107720002',nama:'Budi Santoso',jk:'L',tempat:'Cimahi',lahir:'1972-07-21',marital:'M',hp:'081234567803',alamat:'Jl. Kenanga No. 7',rtrw:'01/02',kel:'Citeureup',kec:'Cimahi Utara',kota:'Kota Cimahi',prov:'Jawa Barat',pos:'40512',kerja:'Wiraswasta',penjamin:'BPJS',kontak:{nama:'Wati',hub:'Istri',hp:'081234567804'}},
+  {id:'p3',mrn:'000003',nik:'3273014511980003',nama:'Dewi Lestari',jk:'P',tempat:'Bandung',lahir:'1998-11-05',marital:'M',hp:'081234567805',alamat:'Jl. Anggrek No. 3',rtrw:'05/01',kel:'Dago',kec:'Coblong',kota:'Kota Bandung',prov:'Jawa Barat',pos:'40135',kerja:'Karyawan swasta',penjamin:'Umum',kontak:{nama:'Anton',hub:'Suami',hp:'081234567806'}},
+  {id:'p4',mrn:'000004',nik:'3273013001010004',nama:'Agus Pratama',jk:'L',tempat:'Bandung',lahir:'2001-01-30',marital:'S',hp:'081234567807',alamat:'Jl. Mawar No. 21',rtrw:'02/04',kel:'Sukajadi',kec:'Sukajadi',kota:'Kota Bandung',prov:'Jawa Barat',pos:'40162',kerja:'Mahasiswa',penjamin:'BPJS',kontak:{nama:'Ibu Tuti',hub:'Ibu',hp:'081234567808'}}
+ ];
+ const by=ME.nama;
+ const encounters=[
+  E({id:'e1',patientId:'p1',cls:'AMB',poli:'dalam',dokter:'dr. Rina Kusuma, Sp.PD',tanggal:addDays(0),jam:'09:00',keluhan:'Pusing dan tengkuk pegal sejak 3 hari',status:'arrived',antrean:'D-001'}),
+  E({id:'e2',patientId:'p3',cls:'AMB',poli:'kandungan',dokter:'dr. Maya Anggraini, Sp.OG',tanggal:addDays(0),jam:'10:30',keluhan:'Kontrol rutin kehamilan',status:'planned',antrean:'K-001'}),
+  E({id:'e5',patientId:'p1',cls:'AMB',poli:'umum',dokter:'dr. Andini Putri',tanggal:addDays(-14),jam:'09:30',keluhan:'Batuk pilek 4 hari',status:'finished',antrean:'U-002',
+   pengkajian:{t:T(-14,'09:40'),by,bb:58,tb:160,alergi:'',nyeri:1,lokasiNyeri:'Tenggorokan',gcs:{e:4,m:6,v:5},morse:{jatuh:0,sekunder:0,alat:0,infus:0,gaya:0,mental:0},catatan:''},
+   ttv:[{t:T(-14,'09:40'),sis:120,dia:80,nadi:82,rr:18,suhu:37.2,spo2:98,by}]}),
+  E({id:'e3',patientId:'p2',cls:'IMP',poli:'dalam',dokter:'dr. Rina Kusuma, Sp.PD',tanggal:addDays(-2),jam:'08:00',keluhan:'Sesak napas dan demam 3 hari, batuk berdahak',status:'in-progress',bed:'M-02',admitAt:T(-2,'08:00'),
+   pengkajian:{t:T(-2,'08:30'),by,bb:62,tb:165,alergi:'Udang (ruam)',nyeri:2,lokasiNyeri:'Dada saat batuk',gcs:{e:4,m:6,v:5},morse:{jatuh:0,sekunder:15,alat:0,infus:20,gaya:0,mental:0},catatan:'Pasien tampak lemah, terpasang O₂ nasal kanul 3 lpm.'},
+   ttv:[{t:T(-2,'08:30'),sis:150,dia:95,nadi:104,rr:26,suhu:38.6,spo2:92,by},{t:T(-1,'08:00'),sis:140,dia:90,nadi:98,rr:24,suhu:38.1,spo2:94,by},{t:T(-1,'20:00'),sis:135,dia:88,nadi:95,rr:23,suhu:37.9,spo2:95,by},{t:T(0,'06:00'),sis:130,dia:85,nadi:92,rr:22,suhu:37.8,spo2:95,by}],
+   askep:[{id:'a1',sdki:{k:'D.0005',n:'Pola Napas Tidak Efektif'},risk:false,etiologi:'hambatan upaya napas',gejala:'dispnea, RR 26x/menit, SpO₂ 92%',slki:{k:'L.01004',n:'Pola Napas'},target:'Setelah dilakukan intervensi keperawatan 3x24 jam, pola napas membaik (RR 16–20x/menit, SpO₂ ≥95%)',siki:[{k:'I.01011',n:'Manajemen Jalan Napas'},{k:'I.01014',n:'Pemantauan Respirasi'},{k:'I.01026',n:'Terapi Oksigen'}],t:T(-2,'09:00'),by}],
+   cppt:[{id:'c1',t:T(-1,'14:00'),by,s:'Pasien mengatakan sesak mulai berkurang',o:'RR 24x/menit, SpO₂ 94% dengan O₂ 3 lpm, suhu 38.1°C',a:'Pola napas tidak efektif teratasi sebagian',p:'Lanjutkan intervensi, pantau TTV tiap 4 jam'},{id:'c2',t:T(0,'06:30'),by,s:'Pasien mengatakan masih batuk tapi lebih lega',o:'RR 22x/menit, SpO₂ 95%, suhu 37.8°C, dahak kental putih',a:'Pola napas membaik, masih ada demam ringan',p:'Lanjutkan terapi O₂ dan antibiotik, anjurkan minum hangat'}],
+   mar:[{id:'m1',obat:'Ceftriaxone',dosis:'1 g',rute:'IV',jam:'06:00',given:true,givenAt:T(0,'06:05'),by},{id:'m2',obat:'Omeprazole',dosis:'40 mg',rute:'IV',jam:'07:00',given:true,givenAt:T(0,'07:10'),by},{id:'m3',obat:'Nebulisasi Combivent',dosis:'1 vial',rute:'Inhalasi',jam:'10:00',given:false},{id:'m4',obat:'Paracetamol',dosis:'1 g',rute:'IV',jam:'12:00',given:false},{id:'m5',obat:'Ceftriaxone',dosis:'1 g',rute:'IV',jam:'18:00',given:false}],
+   io:[{id:'i1',t:T(0,'06:00'),type:'in',label:'Infus RL',ml:500},{id:'i2',t:T(0,'07:00'),type:'in',label:'Minum',ml:300},{id:'i3',t:T(0,'09:00'),type:'out',label:'Urine',ml:450}]}),
+  E({id:'e4',patientId:'p4',cls:'IMP',poli:'bedah',dokter:'dr. Bima Aditya, Sp.B',tanggal:addDays(-1),jam:'10:00',keluhan:'Post apendektomi hari ke-1, nyeri luka operasi',status:'in-progress',bed:'W-01',admitAt:T(-1,'10:00'),
+   pengkajian:{t:T(-1,'10:30'),by,bb:60,tb:170,alergi:'',nyeri:5,lokasiNyeri:'Perut kanan bawah (luka operasi)',gcs:{e:4,m:6,v:5},morse:{jatuh:0,sekunder:0,alat:0,infus:20,gaya:10,mental:0},catatan:'Luka operasi tertutup verband, tidak ada rembesan.'},
+   ttv:[{t:T(-1,'10:30'),sis:120,dia:80,nadi:88,rr:20,suhu:37.2,spo2:98,by},{t:T(0,'06:00'),sis:118,dia:76,nadi:84,rr:18,suhu:36.9,spo2:99,by}],
+   askep:[{id:'a2',sdki:{k:'D.0077',n:'Nyeri Akut'},risk:false,etiologi:'agen pencedera fisik (prosedur operasi)',gejala:'mengeluh nyeri, skala 5/10, meringis',slki:{k:'L.08066',n:'Tingkat Nyeri'},target:'Setelah dilakukan intervensi keperawatan 3x24 jam, tingkat nyeri menurun (skala ≤3)',siki:[{k:'I.08238',n:'Manajemen Nyeri'},{k:'I.08243',n:'Pemberian Analgesik'}],t:T(-1,'11:00'),by}],
+   cppt:[{id:'c3',t:T(0,'07:00'),by,s:'Pasien mengatakan nyeri luka berkurang setelah obat',o:'Skala nyeri 4/10, luka kering, TTV stabil',a:'Nyeri akut menurun',p:'Lanjutkan manajemen nyeri, mobilisasi bertahap'}],
+   mar:[{id:'m6',obat:'Ketorolac',dosis:'30 mg',rute:'IV',jam:'08:00',given:true,givenAt:T(0,'08:05'),by},{id:'m7',obat:'Ceftriaxone',dosis:'1 g',rute:'IV',jam:'08:00',given:true,givenAt:T(0,'08:10'),by},{id:'m8',obat:'Ketorolac',dosis:'30 mg',rute:'IV',jam:'16:00',given:false},{id:'m9',obat:'Ceftriaxone',dosis:'1 g',rute:'IV',jam:'20:00',given:false}],
+   io:[{id:'i4',t:T(0,'06:00'),type:'in',label:'Infus RL',ml:500},{id:'i5',t:T(0,'08:00'),type:'in',label:'Minum',ml:200},{id:'i6',t:T(0,'09:30'),type:'out',label:'Urine',ml:300}]})
+ ];
+ const mm=id=>encounters.find(x=>x.id===id);
+ mm('e3').mutu={idNama:true,idGelang:true,jatuhPencegahan:true,obat6b:true,dekubitus:'tidak',phlebitis:0,restrainTerpasang:false,jatuh:false,kesalahanObat:0,jmlObat:2,kemandirian:'parsial',pengetahuanPre:50,tatalaksana:{relaksasi:true},nyeriSetelah:1};
+ mm('e4').mutu={idNama:true,idGelang:true,jatuhPencegahan:true,obat6b:true,dekubitus:'tidak',phlebitis:0,restrainTerpasang:false,jatuh:false,kesalahanObat:0,jmlObat:4,kemandirian:'parsial',pengetahuanPre:60,tatalaksana:{farmako:true,relaksasi:true},nyeriSetelah:3};
+ return {patients,encounters};
+}
+
+/* ---------- state (diisi real-time dari Firestore) ---------- */
+let ME={uid:null,nama:'',email:''};
+let S={patients:[],encounters:[]};
+const READY={patients:false,encounters:false};
+const UI={screen:'boot',loginMode:'in',tab:'home',enc:null,encTab:'ttv',q:'',dirty:false,detailPid:null,err:''};
+let FB={},auth=null,db=null,PENDING_NAME=null,PENDING=0,unsubs=[],pendingRender=false,lastNotice=0;
+const LAST={patients:new Map(),encounters:new Map()};
+const M=()=>({t:stamp(),by:ME.nama,byUid:ME.uid,at:Date.now()});   // cap "siapa & kapan" untuk setiap entri
+const nikShow=n=>MASK_NIK_IN_LIST?maskNik(n):n;
+const byMrn=(a,b)=>String(a.mrn).localeCompare(String(b.mrn));
+const fmtMs=ms=>{if(!ms)return '-';const d=new Date(ms);return `${fmtD(isoDate(d))}, ${hhmm(d)}`};
+const GHOST={id:'?',mrn:'—',nik:'0000000000000000',nama:'(memuat…)',jk:'P',lahir:isoDate(),tempat:'',marital:'S',hp:'',alamat:'',rtrw:'',kel:'',kec:'',kota:'',prov:'',pos:'',kerja:'',penjamin:'',kontak:{nama:'',hub:'',hp:''}};
+
+const pat=id=>S.patients.find(p=>p.id===id)||GHOST;
+const enc=id=>S.encounters.find(e=>e.id===id);
+const encsOf=pid=>S.encounters.filter(e=>e.patientId===pid);
+const byNewest=(a,b)=>(b.tanggal+b.jam).localeCompare(a.tanggal+a.jam);
+const activeIMP=pid=>S.encounters.find(e=>e.patientId===pid&&e.cls==='IMP'&&e.status==='in-progress');
+const bedOcc=id=>S.encounters.find(e=>e.cls==='IMP'&&e.status==='in-progress'&&e.bed===id);
+
+/* =========================================================
+   FIREBASE — Auth + Firestore
+   Pola sinkronisasi: kode aplikasi tetap mengubah objek di S lalu
+   memanggil save(). save() membandingkan dengan salinan terakhir dan
+   hanya menulis field yang berubah (setDoc untuk dokumen baru,
+   updateDoc untuk yang sudah ada). onSnapshot mengisi S dari server.
+   ========================================================= */
+const PROTECT=new Set(['id','createdAt','createdBy','createdByUid','updatedAt','updatedBy','updatedByUid']);
+const flatten=o=>{const r={};for(const k of Object.keys(o)){if(PROTECT.has(k))continue;const j=JSON.stringify(o[k]);if(j!==undefined)r[k]=j}return r};
+const clean=o=>JSON.parse(JSON.stringify(Object.fromEntries(Object.entries(o).filter(([k])=>!PROTECT.has(k)))));
+
+function syncHTML(){const off=!navigator.onLine;const tx=off?'Offline':PENDING?'Menyimpan…':'Tersinkron';return `<span id="syncpill" class="sync${off?' off':PENDING?' sav':''}" title="${tx}" aria-label="${tx}">${tx}</span>`}
+function setSync(){const el=document.getElementById('syncpill');if(!el)return;el.outerHTML=syncHTML()}
+function track(p){PENDING++;setSync();const done=()=>{PENDING--;setSync()};p.then(done,done);return p}
+function writeFail(name,id,prev){return err=>{console.error(err);if(prev)LAST[name].set(id,prev);else LAST[name].delete(id);toast('Gagal menyimpan ke server ('+((err&&err.code)||'periksa koneksi')+'). Simpan ulang.')}}
+
+function syncCollection(name){
+ const last=LAST[name];
+ for(const o of S[name]){
+  const cur=flatten(o),prev=last.get(o.id),ref=FB.doc(db,name,o.id);
+  if(!prev){
+   last.set(o.id,cur);
+   o.createdBy=o.createdBy||ME.nama;o.createdByUid=o.createdByUid||ME.uid;o.createdAt=o.createdAt||Date.now();
+   o.updatedBy=ME.nama;o.updatedAt=Date.now();
+   track(FB.setDoc(ref,{...clean(o),createdAt:FB.serverTimestamp(),createdBy:o.createdBy,createdByUid:o.createdByUid,updatedAt:FB.serverTimestamp(),updatedBy:ME.nama,updatedByUid:ME.uid})).catch(writeFail(name,o.id,null));
+  }else{
+   const diff={};
+   for(const k of Object.keys(cur))if(prev[k]!==cur[k])diff[k]=JSON.parse(cur[k]);
+   for(const k of Object.keys(prev))if(!(k in cur))diff[k]=FB.deleteField();
+   if(!Object.keys(diff).length)continue;
+   last.set(o.id,cur);o.updatedBy=ME.nama;o.updatedAt=Date.now();
+   track(FB.updateDoc(ref,{...diff,updatedAt:FB.serverTimestamp(),updatedBy:ME.nama,updatedByUid:ME.uid})).catch(writeFail(name,o.id,prev));
+  }
+ }
+}
+function save(){if(ME.uid&&db){syncCollection('patients');syncCollection('encounters')}}
+
+function fromDoc(d){
+ const x=d.data({serverTimestamps:'estimate'}),o={id:d.id};
+ for(const k in x){const v=x[k];o[k]=(v&&typeof v.toMillis==='function')?v.toMillis():v}
+ return o;
+}
+function applySnap(name,snap){
+ const list=S[name];let changed=false;
+ snap.docChanges().forEach(ch=>{
+  const id=ch.doc.id,i=list.findIndex(x=>x.id===id);
+  if(ch.type==='removed'){if(i>=0){list.splice(i,1);changed=true}LAST[name].delete(id);return}
+  if(ch.doc.metadata.hasPendingWrites&&i>=0)return;      // tulisan kita sendiri, S sudah yang terbaru
+  const raw=fromDoc(ch.doc),o=name==='encounters'?E(raw):Object.assign({kontak:{nama:'',hub:'',hp:''}},raw);
+  if(i>=0)list[i]=o;else list.push(o);
+  LAST[name].set(id,flatten(o));changed=true;
+ });
+ const first=!READY[name];READY[name]=true;
+ if(name==='patients')list.sort(byMrn);
+ if(changed||first)softRender();
+}
+
+/* render ulang yang sopan: jangan hapus ketikan perawat yang belum disimpan */
+const typing=()=>{const a=document.activeElement;return !!a&&!!a.closest&&!!a.closest('#app')&&/^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName)&&!['checkbox','radio','button','submit'].includes(a.type)};
+let ptr=false;
+document.addEventListener('pointerdown',()=>{ptr=true},true);
+document.addEventListener('pointerup',()=>setTimeout(()=>{ptr=false},0),true);
+document.addEventListener('pointercancel',()=>{ptr=false},true);
+function softRender(){
+ refreshDetail();
+ if(UI.screen!=='app'){render();return}
+ if(UI.dirty||typing()){
+  pendingRender=true;
+  if(UI.dirty&&Date.now()-lastNotice>20000){lastNotice=Date.now();toast('Terdapat pembaruan dari pengguna lain. Simpan data terlebih dahulu; halaman akan diperbarui otomatis.')}
+  return;
+ }
+ render();
+}
+function flushRender(){if(!pendingRender||UI.dirty)return;if(typing()||ptr){setTimeout(flushRender,250);return}render()}
+document.addEventListener('focusout',()=>{if(pendingRender)setTimeout(flushRender,150)});
+
+function subscribe(){
+ for(const name of ['patients','encounters']){
+  unsubs.push(FB.onSnapshot(FB.collection(db,name),snap=>applySnap(name,snap),err=>{console.error(err);toast('Gagal sinkron: '+(err.code||err.message))}));
+ }
+}
+async function resolveName(user){
+ if(user.displayName)return user.displayName;
+ if(PENDING_NAME)return PENDING_NAME;
+ try{const s=await FB.getDoc(FB.doc(db,'users',user.uid));if(s.exists()&&s.data().nama)return s.data().nama}catch(e){}
+ return (user.email||'Perawat').split('@')[0];
+}
+async function onUser(user){
+ unsubs.forEach(u=>u());unsubs=[];
+ LAST.patients.clear();LAST.encounters.clear();READY.patients=READY.encounters=false;S={patients:[],encounters:[]};
+ if(!user){ME={uid:null,nama:'',email:''};UI.screen='auth';UI.loginMode='in';UI.enc=null;UI.tab='home';UI.q='';closeModal();render();return}
+ const first=!ME.uid;
+ ME={uid:user.uid,email:user.email||'',nama:await resolveName(user)};
+ UI.screen='app';render();subscribe();
+ if(first)toast(`Masuk sebagai ${ME.nama}`);
+}
+async function bootFirebase(){
+ if(!CONFIGURED){UI.screen='setup';render();return}
+ try{
+  const base=`https://www.gstatic.com/firebasejs/${FIREBASE_VERSION}/`;
+  const [a,au,fs]=await Promise.all([import(base+'firebase-app.js'),import(base+'firebase-auth.js'),import(base+'firebase-firestore.js')]);
+  FB={...au,...fs};
+  const app=a.initializeApp(firebaseConfig);
+  auth=au.getAuth(app);
+  try{db=fs.initializeFirestore(app,{localCache:fs.persistentLocalCache({tabManager:fs.persistentMultipleTabManager()})})}   // cache offline
+  catch(e){db=fs.getFirestore(app)}
+  au.onAuthStateChanged(auth,onUser);
+ }catch(err){console.error(err);UI.screen='error';UI.err=String((err&&err.message)||err);render()}
+}
+const AUTH_MSG={
+ 'auth/email-already-in-use':'Email sudah terdaftar. Gunakan menu Masuk.',
+ 'auth/invalid-email':'Format email tidak valid.',
+ 'auth/weak-password':'Password minimal 6 karakter.',
+ 'auth/invalid-credential':'Email atau password tidak sesuai.',
+ 'auth/user-not-found':'Email atau password belum cocok ',
+ 'auth/wrong-password':'Email atau password belum cocok ',
+ 'auth/too-many-requests':'Terlalu banyak percobaan. Tunggu sebentar lalu coba lagi.',
+ 'auth/network-request-failed':'Tidak ada koneksi internet.',
+ 'auth/operation-not-allowed':'Login Email/Password belum diaktifkan di Firebase Console.'
+};
+const authMsg=e=>AUTH_MSG[e&&e.code]||('Gagal: '+((e&&e.code)||(e&&e.message)||'coba lagi'));
+
+
+const newEnc=o=>E(Object.assign({id:'e'+uid(),createdBy:ME.nama},o));
+const today=()=>isoDate();
+const hasAlergi=e=>{const a=(e.pengkajian&&e.pengkajian.alergi||'').trim();return a&&a!=='-'?a:''};
+const lastTTV=e=>e.ttv.length?e.ttv[e.ttv.length-1]:null;
+const ioToday=e=>e.io.filter(x=>x.t.slice(0,10)===today());
+const ioSum=e=>{const l=ioToday(e);const i=l.filter(x=>x.type==='in').reduce((a,b)=>a+b.ml,0),o=l.filter(x=>x.type==='out').reduce((a,b)=>a+b.ml,0);return{in:i,out:o,bal:i-o}};
+const overdue=m=>!m.given&&m.jam<hhmm();
+const stBadge=e=>{
+ if(/^mati/.test(e.outcome||''))return['Meninggal','red'];
+ if(e.status==='in-progress')return e.cls==='IMP'?['Dirawat','mint']:['Sedang dilayani','mint'];
+ return({planned:['Terdaftar','lav'],arrived:['Sudah check-in','butter'],finished:['Selesai','ok'],cancelled:['Dibatalkan','pink']})[e.status]||[e.status,'lav'];
+};
+const gcsLabel=t=>t>=14?'Compos mentis':t>=12?'Apatis':t>=10?'Delirium':t>=7?'Somnolen':t>=4?'Stupor':'Koma';
+const morseLabel=t=>t>=51?['Risiko tinggi','red']:t>=25?['Risiko rendah','but']:['Tidak berisiko','mint'];
+const barthelLabel=t=>t>=100?['Mandiri','mint']:t>=91?['Ketergantungan ringan','mint']:t>=62?['Ketergantungan sedang','but']:t>=21?['Ketergantungan berat','red']:['Ketergantungan total','red'];
+const bradenLabel=t=>t<=9?['Risiko sangat tinggi','red']:t<=12?['Risiko tinggi','red']:t<=14?['Risiko sedang','but']:t<=18?['Risiko ringan','but']:['Tidak berisiko','mint'];
+const fullSum=(def,o)=>{o=o||{};let t=0;for(const [k] of def){if(o[k]===''||o[k]==null)return null;t+=+o[k]}return t};
+const nyeriLabel=v=>v===0?'Tidak nyeri':v<=3?'Nyeri ringan':v<=6?'Nyeri sedang':'Nyeri berat';
+const bmiInfo=(bb,tb)=>{if(!bb||!tb)return null;const b=bb/Math.pow(tb/100,2);return{v:b.toFixed(1),l:b<18.5?'Kurus':b<25?'Normal':b<30?'Berat badan lebih':'Obesitas'}};
+const morseTotal=m=>m?Object.values(m).reduce((a,b)=>a+(+b||0),0):0;
+const gcsTotal=g=>g?(+g.e||0)+(+g.m||0)+(+g.v||0):0;
+const dixa=c=>c==='sm'?`<svg class="logo-m" viewBox="0 0 32 32" aria-hidden="true"><use href="#dixa"/></svg>`:'';
+
+/* ---------- ikon, inisial, nomor kasus ---------- */
+const ICONS={
+ dash:'<rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/>',
+ pas:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17.5 14c2.5 0 4 1.7 4 4.5"/>',
+ rj:'<rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M9 11h6M9 15h6"/>',
+ ri:'<path d="M3 19V6M3 15h18v4M21 15v-2a3 3 0 0 0-3-3h-7v5"/><circle cx="7" cy="11" r="1.6"/>'
+};
+const ic=n=>`<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${ICONS[n]}</svg>`;
+const ini=s=>String(s||'?').trim().charAt(0).toUpperCase();
+const KASUS_N=Array.from({length:20},(_,i)=>i+1);
+const NYERI_ALAT=[['farmako','Analgesik sesuai instruksi dokter'],['relaksasi','Teknik relaksasi napas dalam'],['kompres','Kompres hangat / dingin'],['distraksi','Distraksi'],['posisi','Pengaturan posisi nyaman']];
+const PHL_SKOR=[[0,'0 \u2013 Tidak ada tanda'],[1,'1 \u2013 Kemerahan di lokasi tusukan'],[2,'2 \u2013 Nyeri dan kemerahan'],[3,'3 \u2013 Nyeri, kemerahan, bengkak'],[4,'4 \u2013 Teraba kord vena, tanda lanjut']];
+const JENIS_OBAT=['Salah pasien','Salah obat','Salah dosis','Salah rute','Salah waktu','Salah dokumentasi','Hampir terjadi (near miss)'];
+const nyeriSel=(name,cur)=>`<select name="${name}"><option value="">Belum dinilai</option>${FACES.map((f,i)=>`<option value="${i}" ${cur!=null&&cur!==''&&+cur===i?'selected':''}>${i} ${f} ${nyeriLabel(i)}</option>`).join('')}</select>`;
+const painScale=(cur)=>`<div class="pain" role="radiogroup" aria-label="Skala nyeri 0 sampai 10">${FACES.map((f,i)=>`<label><input type="radio" name="nyeri" value="${i}" ${+cur===i?'checked':''}><span><i>${f}</i>${i}</span></label>`).join('')}</div>`;
+const kasusField=(cur,locked)=>`<label class="chk"><input type="checkbox" name="ujian" data-act="toggleKasus" ${cur||locked?'checked':''} ${locked?'disabled':''}><span>Pasien Ujian / Simulasi Kasus</span></label>
+ <div class="field" id="kasusBox" ${cur||locked?'':'hidden'}><label>Nomor kasus (markdown)</label><select name="kasus" ${cur||locked?'':'disabled'}>${KASUS_N.map(n=>`<option value="${n}" ${+cur===n?'selected':''}>Kasus ${n}</option>`).join('')}</select><div class="hint">Rekam dengan nomor kasus yang sama dihitung sebagai 1 pasien pada dasbor. Setiap rekam mahasiswa tetap tersimpan terpisah.</div></div>`;
+const readKasus=d=>d.ujian==='on'&&d.kasus?+d.kasus:null;
+const kmdSaran=bt=>bt==null?'':bt>=100?'mandiri':bt>=21?'parsial':'total';
+const kasusBadge=e=>e.kasus?`<span class="badge lav">Kasus ${e.kasus}</span>`:'';
+
+/* ---------- bagian form mutu di Pengkajian ---------- */
+function mutuSections(e,sec,inp){
+ const m=mu(e),k=e.pengkajian||{};
+ const ck=(n,l,v)=>`<label class="chk"><input type="checkbox" name="${n}" ${v?'checked':''}><span>${l}</span></label>`;
+ const sl=(n,opts,cur)=>`<select name="${n}">${opts.map(([v,l])=>`<option value="${esc(v)}" ${String(cur)===String(v)?'selected':''}>${esc(l)}</option>`).join('')}</select>`;
+ return sec('safety','Keselamatan pasien (checklist)',
+  `<div class="kgrp"><b>Identifikasi dan pencegahan</b>${ck('s_idNama','Identitas dikonfirmasi dengan dua identitas (nama dan tanggal lahir)',m.idNama)}${ck('s_idGelang','Gelang identitas terpasang dan terbaca',m.idGelang)}${ck('s_jatuhPencegahan','Pencegahan jatuh: penanda risiko, pagar tempat tidur, bel dalam jangkauan',m.jatuhPencegahan)}${ck('s_dekubPencegahan','Pencegahan dekubitus: alih baring terjadwal, perawatan kulit',m.dekubPencegahan)}${ck('s_phlPencegahan','Lokasi infus diperiksa setiap shift',m.phlPencegahan)}${ck('s_obat6b','Prinsip 6 benar pemberian obat dijalankan',m.obat6b)}</div>
+   <div class="kgrp"><b>Kejadian selama perawatan</b>
+    <div class="row2"><div class="field"><label>Dekubitus</label>${sl('s_dekubitus',[['','Belum dinilai'],['tidak','Tidak ada'],['bawaan','Ada saat masuk (bawaan)'],['rs','Terjadi selama perawatan']],m.dekubitus||'')}</div>
+    <div class="field"><label>Phlebitis (skor VIP)</label>${sl('s_phlebitis',[['','Belum dinilai'],...PHL_SKOR],m.phlebitis==null?'':m.phlebitis)}</div></div>
+    <div class="row2"><div class="field"><label>Restrain</label>${sl('s_restrain',[['tidak','Tidak dipasang'],['ya','Dipasang']],m.restrainTerpasang?'ya':'tidak')}</div>
+    <div class="field"><label>Pasien jatuh</label>${sl('s_jatuh',[['tidak','Tidak ada kejadian'],['ya','Ada kejadian jatuh']],m.jatuh?'ya':'tidak')}</div></div>
+    ${ck('s_cedera','Terjadi cedera akibat restrain',m.cederaRestrain)}
+    <div class="row2"><div class="field"><label>Kesalahan obat <small>jumlah kejadian</small></label><input name="s_obatErr" type="number" min="0" inputmode="numeric" value="${m.kesalahanObat??0}"></div>
+    <div class="field"><label>Jenis kesalahan</label>${sl('s_obatJenis',[['','\u2013'],...JENIS_OBAT.map(x=>[x,x])],m.jenisKesalahan||'')}</div></div></div>`)+
+ sec('tatalaksana','Tatalaksana nyeri dan kenyamanan',
+  `<div class="field"><label>Skala nyeri awal <small>dari penilaian PQRST</small></label><div class="pill but" id="nyeriAwal">${k.nyeri!=null&&k.nyeri!==''?k.nyeri+'/10':'Belum dinilai'}</div></div>
+   <div class="kgrp"><b>Tatalaksana yang diberikan</b>${NYERI_ALAT.map(([x,l])=>ck('tn_'+x,l,(m.tatalaksana||{})[x])).join('')}</div>
+   <div class="field"><label>Skala nyeri setelah tatalaksana</label>${nyeriSel('nyeriSetelah',m.nyeriSetelah)}</div>`)+
+ sec('mandiri','Tingkat ketergantungan (self care)',
+  `<div class="field"><label>Tingkat ketergantungan</label>${sl('kemandirian',[['','Belum dinilai'],['mandiri','Mandiri'],['parsial','Parsial (dibantu sebagian)'],['total','Total (dibantu penuh)']],m.kemandirian||'')}<div class="hint" id="kmdHint"></div></div>`)+
+ sec('pengetahuan','Pengetahuan pasien (sebelum edukasi)',
+  `<div class="row2"><div class="field"><label>Skor pengetahuan awal <small>0\u2013100</small></label><input name="pkPre" type="number" min="0" max="100" inputmode="numeric" value="${m.pengetahuanPre??''}"></div>
+   <div class="field"><label>Topik edukasi</label><input name="edukasiTopik" value="${esc(m.edukasiTopik||'')}" placeholder="Contoh: diet, obat, tanda bahaya"></div></div>
+   <div class="hint">Skor sesudah edukasi diisi pada tab Pulang dan Evaluasi. Tingkat kecemasan awal diisi pada bagian Psikososial.</div>`);
+}
+function readMutu(d,old){
+ const b=n=>d[n]==='on',tx=n=>(d[n]||'').trim(),num=n=>d[n]===''||d[n]==null?null:+d[n];
+ const tl={};NYERI_ALAT.forEach(([x])=>tl[x]=b('tn_'+x));
+ return{...old,idNama:b('s_idNama'),idGelang:b('s_idGelang'),jatuhPencegahan:b('s_jatuhPencegahan'),dekubPencegahan:b('s_dekubPencegahan'),phlPencegahan:b('s_phlPencegahan'),obat6b:b('s_obat6b'),
+  dekubitus:tx('s_dekubitus'),phlebitis:d.s_phlebitis===''||d.s_phlebitis==null?'':+d.s_phlebitis,restrainTerpasang:d.s_restrain==='ya',cederaRestrain:b('s_cedera'),jatuh:d.s_jatuh==='ya',
+  kesalahanObat:+d.s_obatErr||0,jenisKesalahan:tx('s_obatJenis'),tatalaksana:tl,nyeriSetelah:num('nyeriSetelah'),kemandirian:tx('kemandirian'),pengetahuanPre:num('pkPre'),edukasiTopik:tx('edukasiTopik')};
+}
+function mutuDetail(e){
+ const m=mu(e);if(!Object.keys(m).length&&!e.outcome)return none('Belum ada data mutu dan keselamatan.');
+ const yn=v=>v?'Ya':'Tidak',pl=PHL_SKOR.find(x=>x[0]===+m.phlebitis);
+ const tl=NYERI_ALAT.filter(([x])=>(m.tatalaksana||{})[x]).map(x=>x[1]).join('; ');
+ return kvRows([['Identifikasi',m.idNama!=null?`${yn(m.idNama)} (nama, tgl lahir) | ${yn(m.idGelang)} (gelang)`:''],['Pencegahan jatuh',m.jatuhPencegahan!=null?yn(m.jatuhPencegahan):''],['Pencegahan dekubitus',m.dekubPencegahan!=null?yn(m.dekubPencegahan):''],['Pemeriksaan lokasi infus',m.phlPencegahan!=null?yn(m.phlPencegahan):''],['6 benar obat',m.obat6b!=null?yn(m.obat6b):''],
+  ['Dekubitus',{tidak:'Tidak ada',bawaan:'Bawaan saat masuk',rs:'Terjadi selama perawatan'}[m.dekubitus]||''],['Phlebitis',pl?pl[1]:''],['Restrain',m.restrainTerpasang!=null?(m.restrainTerpasang?'Dipasang'+(m.cederaRestrain?', terjadi cedera':', tanpa cedera'):'Tidak dipasang'):''],['Pasien jatuh',m.jatuh!=null?yn(m.jatuh):''],['Kesalahan obat',m.kesalahanObat!=null?`${m.kesalahanObat}${m.jenisKesalahan?' ('+m.jenisKesalahan+')':''}`:''],
+  ['Tatalaksana nyeri',tl],['Nyeri awal / setelah',m.nyeriSetelah!=null&&m.nyeriSetelah!==''?`${(e.pengkajian||{}).nyeri??'-'} / ${m.nyeriSetelah}`:''],['Tingkat ketergantungan',KMD[m.kemandirian]||''],
+  ['Pengetahuan sebelum / sesudah',m.pengetahuanPre!=null&&m.pengetahuanPre!==''?`${m.pengetahuanPre} / ${m.pengetahuanPost??'-'}`:''],['Kecemasan setelah edukasi',m.cemasPost],['Kepuasan',m.kepuasan?`${m.kepuasan}/5${m.umpanBalik?' \u2013 '+m.umpanBalik:''}`:''],['Status keluar',OUT_L[outcomeOf(e)]||'']]);
+}
+
+/* ---------- Askep: pencarian + rekomendasi SDKI/SLKI/SIKI ---------- */
+function askepDyn(d,manual){
+ if(manual)return `<div class="kgrp"><b>Input manual (sesuai buku SDKI, SLKI, SIKI)</b>
+  <div class="row2"><div class="field"><label>Kode SDKI</label><input name="m_sdkiK" placeholder="D.xxxx"></div><div class="field"><label>Nama diagnosis</label><input name="m_sdkiN"></div></div>
+  <div class="row2"><div class="field"><label>Kode SLKI</label><input name="m_slkiK" placeholder="L.xxxxx"></div><div class="field"><label>Nama luaran</label><input name="m_slkiN"></div></div>
+  <div class="field"><label>Intervensi SIKI <small>satu per baris, format: I.xxxxx Nama intervensi</small></label><textarea name="m_siki" rows="3"></textarea></div>
+  <div class="field"><label>Kriteria hasil <small>satu per baris</small></label><textarea name="m_kh" rows="3"></textarea></div></div>`;
+ if(!d)return '<p class="mut sm">Pilih diagnosis untuk menampilkan rekomendasi luaran (SLKI) dan intervensi (SIKI).</p>';
+ return `<div class="rec"><b>Rekomendasi luaran (SLKI)</b><div class="pill lav" style="margin-top:6px">${d.slki[0]} \u00B7 ${d.slki[1]}</div>
+  <div class="field" style="margin-top:8px"><label>Kriteria hasil <small>centang yang dipakai</small></label>${d.kh.map(x=>`<label class="chk"><input type="checkbox" name="kh" value="${esc(x)}" checked><span>${esc(x)}</span></label>`).join('')}</div></div>
+ <div class="rec"><b>Rekomendasi intervensi (SIKI)</b><div class="field" style="margin-top:6px"><label>Centang yang dipakai</label>${d.siki.map(([k,n])=>`<label class="chk"><input type="checkbox" name="siki" value="${k}|${esc(n)}" checked><span>${k} \u00B7 ${esc(n)}</span></label>`).join('')}</div>
+  <div class="field"><label>Intervensi tambahan <small>opsional, satu per baris: kode Nama</small></label><textarea name="siki_x" rows="2"></textarea></div>
+  <a class="tiny" href="${SDKI_REF}${d.k}" target="_blank" rel="noopener">Rujukan: cari ${d.k} di perawat.org</a></div>`;
+}
+function tAskep(e){
+ const rec=recDx(e);
+ return `<div class="card"><h3>Diagnosis keperawatan</h3>${e.askep.length?e.askep.map(a=>`<div class="pes"><b>${esc(a.sdki.n)}</b> <span class="tiny">${esc(a.sdki.k)}</span>
+  <div class="sm">${a.risk?'dibuktikan dengan faktor risiko':'berhubungan dengan'} <b>${esc(a.etiologi)}</b>${!a.risk&&a.gejala?`, dibuktikan dengan <b>${esc(a.gejala)}</b>`:''}</div>
+  <div class="sm mut" style="margin-top:4px">Luaran (SLKI): ${esc(a.slki.k)} ${esc(a.slki.n)}${a.target?' \u2013 '+esc(a.target):''}</div>
+  ${(a.kh||[]).length?`<ul class="sm">${a.kh.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+  <div class="sm" style="margin-top:4px"><b>Intervensi (SIKI)</b></div><ul class="sm">${a.siki.map(s=>`<li>${esc(s.k)} ${esc(s.n)}</li>`).join('')}</ul>
+  <div class="tiny">${fmtDT(a.t)} \u00B7 ${esc(a.by)} <button class="badge red" data-act="delAskep" data-id="${a.id}" style="margin-left:6px">Hapus</button></div>
+  <div class="evals">${(a.evaluasi||[]).map(x=>`<div class="sm evl"><span class="badge ${EVAL_C[x.status]||'lav'}">${esc(x.status)}</span> ${esc(x.catatan)} <span class="tiny">\u00B7 ${fmtDT(x.t)} \u00B7 ${esc(x.by)}</span></div>`).join('')}</div>
+  <form class="evform" data-submit="addEval" data-id="${a.id}"><select name="status" aria-label="Status evaluasi">${EVAL_ST.map(s=>`<option>${s}</option>`).join('')}</select><input name="catatan" placeholder="Evaluasi: respons pasien, capaian luaran" required><button class="btn mint sm">Tambah evaluasi</button></form></div>`).join(''):'<p class="mut">Belum ada diagnosis.</p>'}</div>
+ ${rec.length?`<div class="card"><h3>Rekomendasi diagnosis dari data pengkajian</h3><p class="sm mut">Berdasarkan data yang sudah diinput. Keputusan diagnosis tetap pada perawat.</p>${rec.map(r=>`<div class="rec"><b>${r.d.k} \u00B7 ${r.d.n}</b><div class="sm mut">Dasar: ${esc(r.why)}</div><div class="sm">SLKI: ${r.d.slki[0]} ${r.d.slki[1]}</div><div class="sm">SIKI: ${r.d.siki.map(s=>s[0]+' '+s[1]).join('; ')}</div><button class="btn but sm" data-act="pickDx" data-k="${r.d.k}" style="margin-top:6px">Gunakan diagnosis ini</button></div>`).join('')}</div>`:''}
+ <div class="card" id="askepAdd"><h3>Tambah diagnosis</h3><form class="form" data-submit="addAskep" data-live="askep">
+  <div class="field"><label>Cari diagnosis <small>nama, kode, atau gejala</small></label><input type="search" name="q" placeholder="Contoh: nyeri, D.0077, sesak" autocomplete="off"></div>
+  <div class="field"><label>Diagnosis (SDKI)</label><select name="sdki" required><option value="">Pilih diagnosis</option>${SDKI.map(d=>`<option value="${d.k}">${d.k} \u00B7 ${d.n}</option>`).join('')}<option value="__manual">Diagnosis lain (input manual)</option></select></div>
+  <div class="field"><label>Penyebab / etiologi <small>(berhubungan dengan)</small></label><input name="etiologi" placeholder="Contoh: agen pencedera fisik" required></div>
+  <div class="field"><label id="gejalaL">Tanda dan gejala <small>(dibuktikan dengan)</small></label><input name="gejala" placeholder="Contoh: mengeluh nyeri, skala 5, meringis"></div>
+  <div id="askepDyn">${askepDyn(null)}</div>
+  <div class="field"><label>Target luaran</label><input name="target" placeholder="Terisi otomatis dari rekomendasi SLKI, dapat diubah"></div>
+  <button class="btn mint block">Simpan diagnosis</button></form>
+  <p class="tiny" style="margin-top:8px">Pustaka berisi diagnosis yang umum digunakan beserta rekomendasi SLKI dan SIKI. Verifikasi kode ke buku SDKI, SLKI, SIKI (PPNI) sebelum digunakan untuk dokumentasi resmi.</p></div>`;
+}
+
+/* ---------- CPPT dengan evaluasi mutu shift ---------- */
+function tCPPT(e){
+ return `<div class="card"><h3>Catatan baru (SOAP)</h3><form class="form" data-submit="addCppt">
+  <div class="field"><label>S \u00B7 Subjektif</label><textarea name="s" rows="2" placeholder="Keluhan pasien"></textarea></div>
+  <div class="field"><label>O \u00B7 Objektif</label><textarea name="o" rows="2" id="cpptO" placeholder="TTV, hasil observasi"></textarea><button type="button" class="btn ghost sm" data-act="fillO" style="margin-top:6px;align-self:flex-start">Isi dari TTV terakhir</button></div>
+  <div class="field"><label>A \u00B7 Analisis</label><textarea name="a" rows="2" placeholder="Masalah keperawatan"></textarea></div>
+  <div class="field"><label>P \u00B7 Perencanaan</label><textarea name="p" rows="2" placeholder="Rencana tindakan"></textarea></div>
+  <div class="kgrp"><b>Evaluasi mutu shift ini <small style="font-weight:500;color:var(--mut)">opsional, memperbarui data dasbor</small></b>
+   <div class="field"><label>Skala nyeri setelah tatalaksana</label>${nyeriSel('nyeriSetelah',mu(e).nyeriSetelah)}</div>
+   <label class="chk"><input type="checkbox" name="cp_jatuh"><span>Terjadi pasien jatuh</span></label>
+   <label class="chk"><input type="checkbox" name="cp_phl"><span>Terdapat tanda phlebitis</span></label>
+   <label class="chk"><input type="checkbox" name="cp_dekub"><span>Terjadi dekubitus baru</span></label>
+   <label class="chk"><input type="checkbox" name="cp_obat"><span>Terjadi kesalahan pemberian obat</span></label>
+   <label class="chk"><input type="checkbox" name="cp_restrain"><span>Terjadi cedera akibat restrain</span></label></div>
+  <button class="btn mint block">Simpan CPPT</button></form></div>
+ <h3 class="sec">Catatan sebelumnya</h3>
+ ${e.cppt.length?[...e.cppt].reverse().map(c=>`<div class="card soap"><div class="tiny" style="margin-bottom:6px">${fmtDT(c.t)} \u00B7 ${esc(c.by)}</div><p><b>S</b>${esc(c.s)||'-'}</p><p><b>O</b>${esc(c.o)||'-'}</p><p><b>A</b>${esc(c.a)||'-'}</p><p><b>P</b>${esc(c.p)||'-'}</p>${(c.kejadian||[]).length?`<p class="sm"><span class="badge red">Kejadian</span> ${esc(c.kejadian.join(', '))}</p>`:''}</div>`).join(''):empty('Belum ada CPPT','Catatan perkembangan pasien terintegrasi akan tampil di sini.')}`;
+}
+
+/* ---------- Pulang dan evaluasi ---------- */
+function tPulang(e,p){
+ const d=sbarData(e,p),ck=e.discharge||{},all=DISCH.every((_,i)=>ck[i]),m=mu(e),oc=outcomeOf(e);
+ const jam=e.admitAt?(Date.now()-new Date(e.admitAt).getTime())/36e5:0;
+ const defOut=oc!=='inpatient'?oc:'inpatient';
+ LAST_SBAR=`S: ${d.S}\nB: ${d.B}\nA: ${d.A}\nR: ${d.R}`;
+ const opt=(v,l,cur)=>`<option value="${v}" ${cur===v?'selected':''}>${l}</option>`;
+ return `<div class="card sbar"><h3>Handover SBAR</h3>${['S','B','A','R'].map(k=>`<p><b>${k}</b>${esc(d[k])}</p>`).join('')}
+  <button class="btn pink sm" data-act="copySbar">Salin teks SBAR</button></div>
+ <div class="card"><h3>Checklist discharge planning</h3><p class="sm mut">${dpDone(e)} dari ${DISCH.length} item terpenuhi</p>${DISCH.map((x,i)=>`<label class="chk"><input type="checkbox" data-act="toggleDis" data-i="${i}" ${ck[i]?'checked':''}><span>${x}</span></label>`).join('')}</div>
+ <div class="card"><h3>Form discharge planning, evaluasi, dan status keluar</h3>
+  <form class="form" data-submit="saveOutcome">
+   <div class="row2"><div class="field"><label>Rencana pulang</label><input type="date" name="rencanaPulang" value="${esc(m.rencanaPulang||'')}"></div><div class="field"><label>Jadwal kontrol</label><input type="date" name="kontrol" value="${esc(m.kontrol||'')}"></div></div>
+   <div class="row2"><div class="field"><label>Penerima edukasi</label><input name="penerimaEdukasi" value="${esc(m.penerimaEdukasi||'')}" placeholder="Pasien / keluarga"></div><div class="field"><label>Kondisi saat keluar</label><select name="kondisiKeluar">${['','Membaik','Tidak berubah','Memburuk'].map(x=>`<option value="${x}" ${m.kondisiKeluar===x?'selected':''}>${x||'\u2013'}</option>`).join('')}</select></div></div>
+   <div class="kgrp"><b>Evaluasi edukasi</b>
+    <div class="row2"><div class="field"><label>Skor pengetahuan sesudah edukasi <small>0\u2013100</small></label><input name="pkPost" type="number" min="0" max="100" inputmode="numeric" value="${m.pengetahuanPost??''}"></div>
+    <div class="field"><label>Tingkat kecemasan sesudah edukasi</label><select name="cemasPost"><option value="">Belum dinilai</option>${PSIKO_SEL[1][2].map(x=>`<option ${m.cemasPost===x?'selected':''}>${x}</option>`).join('')}</select></div></div></div>
+   <div class="kgrp"><b>Kepuasan pasien</b>
+    <div class="field"><label>Skor kepuasan</label><select name="kepuasan"><option value="">Belum diisi</option>${[[5,'5 \u2013 Sangat puas'],[4,'4 \u2013 Puas'],[3,'3 \u2013 Cukup'],[2,'2 \u2013 Kurang puas'],[1,'1 \u2013 Tidak puas']].map(([v,l])=>`<option value="${v}" ${+m.kepuasan===v?'selected':''}>${l}</option>`).join('')}</select></div>
+    <div class="field"><label>Umpan balik pasien</label><textarea name="umpanBalik" rows="2">${esc(m.umpanBalik||'')}</textarea></div></div>
+   <div class="field"><label>Status pasien</label><select name="outcome">${opt('inpatient','Rawat inap',defOut)}${opt('discharge','Pulang (discharge)',defOut)}${opt('mati48a','Meninggal <48 jam',defOut)}${opt('mati48b','Meninggal >48 jam',defOut)}</select>
+    <div class="hint">Lama rawat saat ini ${fx(jam,0)} jam. Status meninggal dikelompokkan menurut ambang 48 jam sejak masuk.</div></div>
+   <button class="btn mint block">Simpan evaluasi dan status</button>
+   ${all?'':'<p class="tiny center" style="margin-top:6px">Status Pulang memerlukan seluruh checklist discharge planning terpenuhi.</p>'}</form></div>`;
+}
+
+/* ---------- Rawat inap & daftar pasien (dengan tampilan kasus simulasi) ---------- */
+function nRI(){
+ const occ=BEDS.filter(b=>bedOcc(b.id)).length,simA=S.encounters.filter(e=>e.cls==='IMP'&&outcomeOf(e)==='inpatient'&&e.bed==='Simulasi');
+ return `<h2 class="ttl">Rawat Inap</h2><p class="mut">${occ} dari ${BEDS.length} tempat tidur terisi. Pilih tempat tidur untuk membuka rekam atau menerima pasien.</p>`+
+ ROOMS.map(([r,k])=>`<h3 class="sec">Ruang ${r} \u00B7 ${k}</h3><div class="beds">${BEDS.filter(b=>b.room===r).map(bedCard).join('')}</div>`).join('')+
+ `<h3 class="sec">Pasien ujian / simulasi</h3><p class="sm mut">Tidak menempati tempat tidur tertentu. Nomor kasus yang sama dihitung sebagai 1 pasien pada dasbor.</p>
+  ${simA.length?`<div class="card plist" style="padding:6px 14px">${simA.map(e=>encRow(e,`Dicatat oleh ${e.createdBy||'-'}`)).join('')}</div>`:''}
+  <button class="btn but block" data-act="admitSim">Terima pasien simulasi</button>`;
+}
+function patList(q){
+ q=(q||'').toLowerCase().trim();
+ if(!S.patients.length)return `<div class="card empty"><h3>Belum ada pasien</h3><p class="mut">Registrasikan pasien baru atau muat data contoh.</p><button class="btn but sm" data-act="loadSample" style="margin-top:10px">Muat data contoh</button></div>`;
+ const l=S.patients.filter(p=>!q||p.nama.toLowerCase().includes(q)||String(p.nik).includes(q)||String(p.mrn).includes(q));
+ if(!l.length)return empty('Pasien tidak ditemukan','Gunakan kata kunci lain atau registrasikan pasien baru.');
+ const shown=l.slice(0,120);
+ return `<div class="card plist" style="padding:6px 14px">${shown.map(p=>{const ks=[...new Set(encsOf(p.id).filter(x=>x.kasus).map(x=>x.kasus))];return `<button class="row" data-act="patDetail" data-id="${p.id}"><div class="av" style="width:42px;height:42px;font-size:19px">${esc(ini(p.nama))}</div><div class="rmain"><div><b>${esc(p.nama)}</b> ${ks.map(k=>`<span class="badge lav">Kasus ${k}</span>`).join(' ')} <span class="by">(Oleh: ${esc(p.createdBy||'-')})</span></div><div class="sm mut">RM ${esc(p.mrn)} \u00B7 ${age(p.lahir)} th \u00B7 NIK ${esc(nikShow(p.nik))}</div></div><span class="chev">\u203A</span></button>`}).join('')}</div>${l.length>shown.length?`<p class="tiny center">Menampilkan ${shown.length} dari ${l.length}. Persempit pencarian untuk melihat lainnya.</p>`:''}`;
+}
+function simList(){
+ const sim=S.encounters.filter(e=>e.kasus);
+ if(!sim.length)return empty('Belum ada rekam simulasi','Centang "Pasien Ujian / Simulasi Kasus" saat menerima pasien atau membuat kunjungan.');
+ const g={};sim.forEach(e=>(g[e.kasus]=g[e.kasus]||[]).push(e));
+ return Object.keys(g).sort((a,b)=>a-b).map(k=>`<div class="casegrp"><header><span>Kasus ${k}</span><span class="badge lav">${g[k].length} rekam, dihitung 1 pasien</span></header><div class="plist" style="padding:2px 14px">${g[k].sort((a,b)=>(a.createdAt||0)-(b.createdAt||0)).map(e=>{const p=pat(e.patientId),[lbl,c]=stBadge(e);return `<button class="row" data-act="patDetail" data-id="${p.id}"><div class="rmain"><div><b>${esc(e.createdBy||'-')}</b> <span class="sm mut">pasien ${esc(p.nama)}</span></div><div class="sm mut">Pengkajian ${e.pengkajian?'terisi':'belum'} \u00B7 Askep ${e.askep.length} \u00B7 CPPT ${e.cppt.length} \u00B7 ${e.cls==='IMP'?'Rawat inap':'Rawat jalan'}</div></div><span class="badge ${c}">${lbl}</span><span class="chev">\u203A</span></button>`}).join('')}</div></div>`).join('');
+}
+function nPas(){
+ const v=UI.pasView||'all';
+ return `<h2 class="ttl">Pasien</h2><p class="mut">${S.patients.length} pasien terdaftar</p>
+ <button class="btn pink block" data-act="newPatient">Registrasi pasien baru</button>
+ <div class="period"><button class="chip ${v==='all'?'on':''}" data-act="pasView" data-v="all">Semua pasien</button><button class="chip ${v==='sim'?'on':''}" data-act="pasView" data-v="sim">Rekam simulasi per kasus</button></div>
+ ${v==='sim'?`<div id="plist">${simList()}</div>`:`<div class="search"><input type="search" placeholder="Cari nama, NIK, atau no. RM" data-live="search" value="${esc(UI.q)}"></div><div id="plist">${patList(UI.q)}</div>`}`;
+}
+
+/* =========================================================
+   DASBOR — agregasi, deduplikasi kasus ujian, metrik
+   ========================================================= */
+const N=s=>{const [y,m,d]=s.slice(0,10).split('-').map(Number);return Math.round(Date.UTC(y,m-1,d)/864e5)};
+const mu=e=>e.mutu||{};
+const sum=(l,f)=>l.reduce((a,x)=>a+f(x),0);
+const fx=(v,d)=>v==null||isNaN(v)?'\u2013':v.toFixed(d).replace('.',',');
+const per1000=(n,h)=>h?n/h*1000:null;
+const OUT_L={inpatient:'Rawat inap',discharge:'Pulang (discharge)',mati48a:'Meninggal <48 jam',mati48b:'Meninggal >48 jam'};
+const KMD={mandiri:'Mandiri',parsial:'Parsial',total:'Total'};
+const outcomeOf=e=>e.cls!=='IMP'?null:(e.outcome||(e.status==='finished'?'discharge':'inpatient'));
+const dpDone=e=>DISCH.filter((_,i)=>e.discharge&&e.discharge[i]).length;
+const dpComplete=e=>dpDone(e)===DISCH.length;
+const obatN=e=>mu(e).jmlObat!=null?mu(e).jmlObat:e.mar.filter(m=>m.given).length;
+const los=e=>Math.max(1,N(e.dischargeAt)-N(e.admitAt));
+const completeness=e=>(e.pengkajian?3:0)+e.askep.length+e.cppt.length+e.ttv.length+Object.keys(mu(e)).length;
+/* Rekam dengan nomor kasus yang sama dihitung sebagai 1 pasien/bed. Rekam acuan = yang paling lengkap, bila sama maka yang paling awal masuk. */
+function uniqueEnc(list){
+ const best=new Map(),out=[];
+ for(const e of list){
+  if(!e.kasus){out.push(e);continue}
+  const k=String(e.kasus),b=best.get(k);
+  if(!b){best.set(k,e);continue}
+  const ce=completeness(e),cb=completeness(b);
+  if(ce>cb||(ce===cb&&(e.admitAt||e.tanggal)<(b.admitAt||b.tanggal)))best.set(k,e);
+ }
+ return out.concat([...best.values()]);
+}
+function ctx(a,b){
+ const U=uniqueEnc(S.encounters).filter(e=>e.cls==='IMP'&&e.admitAt);
+ const aN=N(a),bN=N(b),T=N(today()),P=[],D=[],hrOf=new Map();let hr=0;
+ for(const e of U){
+  const s=N(e.admitAt),oc=outcomeOf(e),done=oc!=='inpatient'&&e.dischargeAt;
+  const o=done?Math.max(N(e.dischargeAt),s+1):T+1;
+  const d=Math.max(0,Math.min(o,bN+1)-Math.max(s,aN));
+  if(d>0){P.push(e);hrOf.set(e.id,d);hr+=d}
+  if(done){const n=N(e.dischargeAt);if(n>=aN&&n<=bN)D.push(e)}
+ }
+ return{a,b,days:bN-aN+1,beds:BEDS.length,P,D,hr,hrOf};
+}
+const pctOf=(n,d)=>d?n/d*100:null;
+const lvlBad=v=>v!=null&&v>0?'bad':'';
+const bedOf=e=>e.kasus?`Kasus ${e.kasus}`:(e.bed?`Bed ${e.bed}`:'');
+const MET=[
+ {id:'bor',g:'B',label:'BOR (Bed Occupancy Rate)',unit:'%',d:1,f:'Hari perawatan \u00F7 (jumlah tempat tidur \u00D7 jumlah hari periode) \u00D7 100. Rentang acuan 60\u201385%.',
+  v:R=>R.hr/(R.beds*R.days)*100,sub:R=>`${R.hr} hari rawat, ${R.beds} tempat tidur`,lvl:v=>v<60||v>85?'warn':'',rows:R=>R.P.map(e=>[e,`${R.hrOf.get(e.id)} hari rawat`])},
+ {id:'alos',g:'B',label:'ALOS / AvLOS (Average Length of Stay)',unit:'hari',d:1,f:'Total lama rawat pasien keluar \u00F7 jumlah pasien keluar. Rentang acuan 6\u20139 hari.',
+  v:R=>R.D.length?sum(R.D,los)/R.D.length:null,sub:R=>`${R.D.length} pasien keluar`,lvl:v=>v!=null&&(v<6||v>9)?'warn':'',rows:R=>R.D.map(e=>[e,`${los(e)} hari`])},
+ {id:'bto',g:'B',label:'BTO (Bed Turn Over)',unit:'kali',d:1,f:'Jumlah pasien keluar \u00F7 jumlah tempat tidur pada periode terpilih. Acuan tahunan 40\u201350 kali.',
+  v:R=>R.D.length/R.beds,sub:R=>`setara ${fx(R.D.length/R.beds*365/R.days,1)} kali/tahun`,lvl:()=>'',rows:R=>R.D.map(e=>[e,fmtD(e.dischargeAt)])},
+ {id:'toi',g:'B',label:'TOI (Turn Over Interval)',unit:'hari',d:1,f:'(Jumlah tempat tidur \u00D7 hari periode \u2212 hari perawatan) \u00F7 jumlah pasien keluar. Rentang acuan 1\u20133 hari.',
+  v:R=>R.D.length?(R.beds*R.days-R.hr)/R.D.length:null,sub:R=>`${R.D.length} pasien keluar`,lvl:v=>v!=null&&(v<1||v>3)?'warn':'',rows:R=>R.D.map(e=>[e,fmtD(e.dischargeAt)])},
+ {id:'gdr',g:'C',label:'GDR (Gross Death Rate)',unit:'\u2030',d:1,f:'Seluruh pasien meninggal \u00F7 pasien keluar (hidup dan mati) \u00D7 1000.',
+  v:R=>R.D.length?R.D.filter(e=>/^mati/.test(outcomeOf(e))).length/R.D.length*1000:null,sub:R=>`${R.D.filter(e=>/^mati/.test(outcomeOf(e))).length} meninggal dari ${R.D.length} keluar`,lvl:()=>'',
+  rows:R=>R.D.filter(e=>/^mati/.test(outcomeOf(e))).map(e=>[e,OUT_L[outcomeOf(e)]])},
+ {id:'ndr',g:'C',label:'NDR (Net Death Rate, meninggal >48 jam)',unit:'\u2030',d:1,f:'Pasien meninggal setelah 48 jam perawatan \u00F7 pasien keluar \u00D7 1000.',
+  v:R=>R.D.length?R.D.filter(e=>outcomeOf(e)==='mati48b').length/R.D.length*1000:null,sub:R=>`${R.D.filter(e=>outcomeOf(e)==='mati48b').length} meninggal >48 jam`,lvl:()=>'',
+  rows:R=>R.D.filter(e=>outcomeOf(e)==='mati48b').map(e=>[e,OUT_L.mati48b])},
+ {id:'dek',g:'C',label:'Angka Kejadian Dekubitus',unit:'\u2030',d:2,f:'Pasien dengan dekubitus yang terjadi selama perawatan \u00F7 hari perawatan \u00D7 1000. Target 0\u2030.',
+  v:R=>per1000(R.P.filter(e=>mu(e).dekubitus==='rs').length,R.hr),sub:R=>`${R.P.filter(e=>mu(e).dekubitus==='rs').length} kejadian`,lvl:lvlBad,
+  rows:R=>R.P.filter(e=>mu(e).dekubitus==='rs').map(e=>[e,'Dekubitus didapat di RS'])},
+ {id:'phl',g:'C',label:'Angka Kejadian Phlebitis',unit:'\u2030',d:2,f:'Pasien dengan skor phlebitis \u22651 \u00F7 hari perawatan \u00D7 1000. Acuan \u22641,5\u2030.',
+  v:R=>per1000(R.P.filter(e=>+mu(e).phlebitis>=1).length,R.hr),sub:R=>`${R.P.filter(e=>+mu(e).phlebitis>=1).length} kejadian`,lvl:v=>v!=null&&v>1.5?'bad':'',
+  rows:R=>R.P.filter(e=>+mu(e).phlebitis>=1).map(e=>[e,`Skor phlebitis ${mu(e).phlebitis}`])},
+ {id:'restr',g:'C',label:'Angka Cedera Akibat Restrain',unit:'%',d:1,f:'Pasien cedera akibat restrain \u00F7 pasien yang direstrain \u00D7 100. Target 0%.',
+  v:R=>{const dn=R.P.filter(e=>mu(e).restrainTerpasang).length;return dn?R.P.filter(e=>mu(e).cederaRestrain).length/dn*100:null},sub:R=>`${R.P.filter(e=>mu(e).restrainTerpasang).length} pasien direstrain`,lvl:lvlBad,
+  rows:R=>R.P.filter(e=>mu(e).restrainTerpasang).map(e=>[e,mu(e).cederaRestrain?'Terjadi cedera':'Tanpa cedera'])},
+ {id:'obat',g:'C',label:'Angka Kesalahan Obat (Medication Error)',unit:'%',d:2,f:'Jumlah kesalahan pemberian obat \u00F7 jumlah pemberian obat \u00D7 100. Target 0%.',
+  v:R=>{const dn=sum(R.P,obatN);return dn?sum(R.P,e=>+mu(e).kesalahanObat||0)/dn*100:null},sub:R=>`${sum(R.P,e=>+mu(e).kesalahanObat||0)} kesalahan dari ${sum(R.P,obatN)} pemberian`,lvl:lvlBad,
+  rows:R=>R.P.filter(e=>+mu(e).kesalahanObat>0).map(e=>[e,`${mu(e).kesalahanObat} kejadian${mu(e).jenisKesalahan?' ('+mu(e).jenisKesalahan+')':''}`])},
+ {id:'jatuh',g:'C',label:'Angka Pasien Terjatuh',unit:'\u2030',d:2,f:'Pasien jatuh selama perawatan \u00F7 hari perawatan \u00D7 1000. Target 0\u2030.',
+  v:R=>per1000(R.P.filter(e=>mu(e).jatuh).length,R.hr),sub:R=>`${R.P.filter(e=>mu(e).jatuh).length} kejadian`,lvl:lvlBad,
+  rows:R=>R.P.filter(e=>mu(e).jatuh).map(e=>[e,'Pasien jatuh'])},
+ {id:'mandiri',g:'C',label:'Angka Kemandirian Pasien (Self Care)',unit:'%',d:1,f:'Pasien dengan tingkat ketergantungan mandiri \u00F7 pasien yang dinilai \u00D7 100.',
+  v:R=>{const l=R.P.filter(e=>mu(e).kemandirian);return pctOf(l.filter(e=>mu(e).kemandirian==='mandiri').length,l.length)},
+  sub:R=>{const l=R.P.filter(e=>mu(e).kemandirian),c=k=>l.filter(e=>mu(e).kemandirian===k).length;return `Mandiri ${c('mandiri')}, parsial ${c('parsial')}, total ${c('total')}`},lvl:()=>'',
+  rows:R=>R.P.filter(e=>mu(e).kemandirian).map(e=>[e,KMD[mu(e).kemandirian]])},
+ {id:'puas',g:'C',label:'Angka Kepuasan Pasien',unit:'%',d:1,f:'Rata-rata skor kepuasan (1\u20135) \u00F7 5 \u00D7 100. Acuan SPM rumah sakit \u226570%.',
+  v:R=>{const l=R.D.filter(e=>mu(e).kepuasan>0);return l.length?sum(l,e=>+mu(e).kepuasan)/l.length/5*100:null},sub:R=>`${R.D.filter(e=>mu(e).kepuasan>0).length} responden`,lvl:v=>v!=null&&v<70?'warn':'',
+  rows:R=>R.D.filter(e=>mu(e).kepuasan>0).map(e=>[e,`Skor ${mu(e).kepuasan}/5`])},
+ {id:'cemas',g:'C',label:'Angka Kecemasan Pasien',unit:'%',d:1,f:'Pasien dengan ansietas sedang, berat, atau panik saat pengkajian awal \u00F7 pasien yang dinilai \u00D7 100.',
+  v:R=>{const l=R.P.filter(e=>(e.pengkajian||{}).psiko&&e.pengkajian.psiko.cemas);return pctOf(l.filter(e=>['Sedang','Berat','Panik'].includes(e.pengkajian.psiko.cemas)).length,l.length)},
+  sub:R=>`${R.P.filter(e=>(e.pengkajian||{}).psiko&&e.pengkajian.psiko.cemas).length} pasien dinilai`,lvl:()=>'',
+  rows:R=>R.P.filter(e=>(e.pengkajian||{}).psiko&&e.pengkajian.psiko.cemas).map(e=>[e,`Awal: ${e.pengkajian.psiko.cemas}${mu(e).cemasPost?' | Setelah edukasi: '+mu(e).cemasPost:''}`])},
+ {id:'nyaman',g:'C',label:'Angka Kenyamanan Pasien (Tatalaksana Nyeri)',unit:'%',d:1,f:'Pasien nyeri (skala \u22651) dengan skala nyeri \u22643 setelah tatalaksana \u00F7 pasien nyeri yang dievaluasi \u00D7 100.',
+  v:R=>{const l=R.P.filter(e=>+(e.pengkajian||{}).nyeri>=1&&mu(e).nyeriSetelah!=null&&mu(e).nyeriSetelah!=='');return pctOf(l.filter(e=>+mu(e).nyeriSetelah<=3).length,l.length)},
+  sub:R=>{const l=R.P.filter(e=>+(e.pengkajian||{}).nyeri>=1&&mu(e).nyeriSetelah!=null&&mu(e).nyeriSetelah!=='');return l.length?`rata-rata penurunan ${fx(sum(l,e=>+e.pengkajian.nyeri-+mu(e).nyeriSetelah)/l.length,1)} poin`:'belum ada evaluasi'},lvl:()=>'',
+  rows:R=>R.P.filter(e=>+(e.pengkajian||{}).nyeri>=1&&mu(e).nyeriSetelah!=null&&mu(e).nyeriSetelah!=='').map(e=>[e,`Nyeri ${e.pengkajian.nyeri} \u2192 ${mu(e).nyeriSetelah}`])},
+ {id:'tahu',g:'C',label:'Angka Pengetahuan Pasien (Sebelum vs Sesudah Edukasi)',unit:'skor',d:0,f:'Rata-rata skor pengetahuan (0\u2013100) pada pasien yang memiliki skor sebelum dan sesudah edukasi. Nilai utama = sesudah edukasi.',
+  pair:R=>R.P.filter(e=>mu(e).pengetahuanPre!=null&&mu(e).pengetahuanPre!==''&&mu(e).pengetahuanPost!=null&&mu(e).pengetahuanPost!==''),
+  v(R){const l=this.pair(R);return l.length?sum(l,e=>+mu(e).pengetahuanPost)/l.length:null},
+  disp(R){const l=this.pair(R);return l.length?`${fx(sum(l,e=>+mu(e).pengetahuanPre)/l.length,0)} \u2192 ${fx(sum(l,e=>+mu(e).pengetahuanPost)/l.length,0)}`:'\u2013'},
+  sub(R){return `${this.pair(R).length} pasien, sebelum \u2192 sesudah`},lvl:()=>'',
+  rows(R){return this.pair(R).map(e=>[e,`${mu(e).pengetahuanPre} \u2192 ${mu(e).pengetahuanPost}`])}},
+ {id:'dp',g:'C',label:'Angka Kepatuhan Discharge Planning',unit:'%',d:1,f:'Pasien pulang dengan seluruh checklist discharge planning terpenuhi \u00F7 pasien pulang \u00D7 100.',
+  v:R=>{const l=R.D.filter(e=>outcomeOf(e)==='discharge');return pctOf(l.filter(dpComplete).length,l.length)},
+  sub:R=>{const l=R.D.filter(e=>outcomeOf(e)==='discharge');return `${l.filter(dpComplete).length} dari ${l.length} pasien pulang`},lvl:v=>v!=null&&v<100?'warn':'',
+  rows:R=>R.D.filter(e=>outcomeOf(e)==='discharge').map(e=>[e,`${dpDone(e)}/${DISCH.length} item`])}
+];
+const metOf=id=>MET.find(m=>m.id===id);
+const mVal=(m,R)=>m.v.call(m,R);
+const mDisp=(m,R,v)=>m.disp?m.disp(R):(v==null?'\u2013':fx(v,m.d));
+const RANGES=[[1,'Bulan ini'],[3,'3 bulan'],[6,'6 bulan'],[12,'12 bulan']];
+const rangeOf=n=>{const d=new Date();return[isoDate(new Date(d.getFullYear(),d.getMonth()-(n-1),1)),today()]};
+function monthsBack(n){
+ const out=[],now=new Date();
+ for(let i=n-1;i>=0;i--){const s=new Date(now.getFullYear(),now.getMonth()-i,1),en=i===0?now:new Date(now.getFullYear(),now.getMonth()-i+1,0);out.push([s.toLocaleDateString('id-ID',{month:'short'}),isoDate(s),isoDate(en)])}
+ return out;
+}
+function trendSvg(vals,labs,d){
+ const nums=vals.filter(v=>v!=null);
+ if(!nums.length)return '<p class="mut sm">Belum ada data historis untuk metrik ini.</p>';
+ const w=360,h=140,pl=8,pr=8,pt=18,pb=22,n=vals.length,mx=Math.max(...nums),mn=Math.min(0,...nums),rg=(mx-mn)||1;
+ const X=i=>pl+(n>1?i*(w-pl-pr)/(n-1):(w-pl-pr)/2),Y=v=>pt+(1-(v-mn)/rg)*(h-pt-pb);
+ const pts=vals.map((v,i)=>v==null?null:[X(i),Y(v)]).filter(Boolean);
+ return `<svg class="trend" viewBox="0 0 ${w} ${h}" role="img" aria-label="Tren 12 bulan"><line x1="${pl}" y1="${Y(mn)}" x2="${w-pr}" y2="${Y(mn)}" stroke="#DDD9CB"/>`+
+  `<polyline points="${pts.map(p=>p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ')}" fill="none" stroke="#008080" stroke-width="2"/>`+
+  vals.map((v,i)=>v==null?'':`<circle cx="${X(i).toFixed(1)}" cy="${Y(v).toFixed(1)}" r="3" fill="#005B5C"/><text x="${X(i).toFixed(1)}" y="${(Y(v)-6).toFixed(1)}" text-anchor="middle">${fx(v,d)}</text>`).join('')+
+  labs.map((l,i)=>`<text x="${X(i).toFixed(1)}" y="${h-6}" text-anchor="middle">${l}</text>`).join('')+`</svg>`;
+}
+function dashA(){
+ const U=uniqueEnc(S.encounters),t=today();
+ const amb=U.filter(e=>e.cls==='AMB'&&e.tanggal===t&&e.status!=='cancelled'),imp=U.filter(e=>e.cls==='IMP');
+ const poliN=e=>(POLI.find(x=>x.id===e.poli)||{nama:''}).nama;
+ return[
+  {id:'a1',label:'Rawat Jalan Menunggu',sub:'Terdaftar atau sudah check-in, belum dilayani',list:amb.filter(e=>['planned','arrived'].includes(e.status)),info:e=>`${poliN(e)} \u00B7 ${e.antrean||''} \u00B7 ${e.jam}`},
+  {id:'a2',label:'Rawat Jalan Diproses',sub:'Sedang dalam pelayanan',list:amb.filter(e=>e.status==='in-progress'),info:e=>`${poliN(e)} \u00B7 ${e.antrean||''} \u00B7 ${e.jam}`},
+  {id:'a3',label:'Pasien Rawat Inap Aktif',sub:'Status dirawat saat ini',list:imp.filter(e=>outcomeOf(e)==='inpatient'),info:e=>`${bedOf(e)} \u00B7 hari ke-${daysBetween(e.admitAt,t)+1} \u00B7 ${e.dokter}`},
+  {id:'a4',label:'Berhasil Discharge Planning Hari Ini',sub:'Pulang hari ini dengan checklist lengkap',list:imp.filter(e=>outcomeOf(e)==='discharge'&&e.dischargeAt&&e.dischargeAt.slice(0,10)===t&&dpComplete(e)),info:e=>`${bedOf(e)} \u00B7 pulang ${e.dischargeAt.slice(11,16)}`}
+ ];
+}
+function encRow(e,txt){
+ const p=pat(e.patientId),[lbl,c]=stBadge(e);
+ return `<button class="row" data-act="openEncM" data-id="${e.id}"><div class="av" style="width:38px;height:38px;font-size:17px">${esc(ini(p.nama))}</div><div class="rmain"><div><b>${esc(p.nama)}</b> ${e.kasus?`<span class="badge lav">Kasus ${e.kasus}</span>`:''}</div><div class="sm mut">${esc(txt||'')}</div></div><span class="badge ${c}">${lbl}</span></button>`;
+}
+function mCard(m,R){
+ const v=mVal(m,R),l=v==null?'':m.lvl(v);
+ return `<button class="mcard ${l}" data-act="dashM" data-id="${m.id}"><span class="ml">${m.label}</span><span class="mv">${mDisp(m,R,v)}${m.disp?'':(v==null?'':`<small>${m.unit}</small>`)}</span><span class="ms">${m.sub(R)}</span></button>`;
+}
+function nHome(){
+ const t=today(),n=UI.range||3,[a,b]=rangeOf(n),R=ctx(a,b);
+ const rj=dashA();
+ const ris=S.encounters.filter(e=>e.cls==='IMP'&&outcomeOf(e)==='inpatient');
+ const late=ris.reduce((x,e)=>x+e.mar.filter(overdue).length,0);
+ const attn=ris.filter(e=>ttvWarn(lastTTV(e)));
+ const arrived=S.encounters.filter(e=>e.cls==='AMB'&&e.tanggal===t&&e.status==='arrived');
+ const sim=S.encounters.filter(e=>e.kasus),simU=new Set(sim.map(e=>e.kasus)).size;
+ const shift=new Date().getHours()<14?'Shift pagi':new Date().getHours()<21?'Shift sore':'Shift malam';
+ const hist=S.encounters.filter(e=>e.dummy).length;
+ return `<section class="hello"><h2>Dasbor Otten Hospital</h2><p class="mut">${shift} \u00B7 ${fmtD(t)} \u00B7 ${esc(ME.nama)}</p></section>
+ ${UI.demo?'<div class="note">Mode demo: data tersimpan di memori peramban dan hilang saat halaman dimuat ulang. Hubungkan Firebase untuk penyimpanan permanen.</div>':''}
+ ${sim.length?`<div class="note">${sim.length} rekam ujian/simulasi dihitung sebagai ${simU} pasien unik pada seluruh statistik dasbor. Semua rekam tetap tampil terpisah pada daftar pasien.</div>`:''}
+ <div class="dgroup"><h3>A. Ringkasan pasien hari ini</h3><p class="tiny">Ketuk kartu untuk melihat daftar pasien.</p>
+  <div class="mgrid">${rj.map(c=>`<button class="mcard" data-act="dashA" data-id="${c.id}"><span class="ml">${c.label}</span><span class="mv">${c.list.length}<small>pasien</small></span><span class="ms">${c.sub}</span></button>`).join('')}</div></div>
+ <div class="dgroup"><h3>B. Indikator kapasitas dan manajerial</h3><p class="tiny">Periode ${fmtD(a)} \u2013 ${fmtD(b)} (${R.days} hari)</p>
+  <div class="period">${RANGES.map(([k,l])=>`<button class="chip ${k===n?'on':''}" data-act="range" data-n="${k}">${l}</button>`).join('')}</div>
+  <div class="mgrid" style="margin-top:8px">${MET.filter(m=>m.g==='B').map(m=>mCard(m,R)).join('')}</div></div>
+ <div class="dgroup"><h3>C. Mutu asuhan keperawatan dan keselamatan pasien</h3><p class="tiny">Periode yang sama dengan bagian B. Ketuk kartu untuk rumus, tren 12 bulan, dan daftar data sumber.</p>
+  <div class="mgrid">${MET.filter(m=>m.g==='C').map(m=>mCard(m,R)).join('')}</div></div>
+ <div class="dgroup"><h3>Perlu tindak lanjut</h3>
+ ${(attn.length||late||arrived.length)?'':'<div class="card empty"><p class="mut">Tidak ada item yang memerlukan tindak lanjut.</p></div>'}
+ ${attn.map(e=>{const p=pat(e.patientId),x=lastTTV(e);return `<div class="card red clickable" data-act="openEnc" data-id="${e.id}"><b>${esc(p.nama)}</b> \u00B7 ${bedOf(e)}<div class="sm">TTV terakhir di luar batas normal: TD ${x.sis}/${x.dia}, N ${x.nadi}, RR ${x.rr}, S ${x.suhu}\u00B0C, SpO\u2082 ${x.spo2}%</div></div>`}).join('')}
+ ${late?`<div class="card but clickable" data-act="nav" data-tab="ri"><b>${late} jadwal obat terlambat</b><div class="sm">Periksa jadwal obat pasien rawat inap.</div></div>`:''}
+ ${arrived.map(e=>`<div class="card lav clickable" data-act="nav" data-tab="rj"><b>${esc(e.antrean||'')} ${esc(pat(e.patientId).nama)}</b><div class="sm">Sudah check-in, menunggu pengkajian awal.</div></div>`).join('')}</div>
+ <div class="card"><h3>Data historis (dummy)</h3><p class="sm mut">${hist?`${hist} rekam rawat inap dummy tersimpan sebagai dasar tren bulanan.`:'Belum ada data historis. Muat data dummy untuk mengisi tren BOR, ALOS, GDR/NDR, dan indikator mutu selama beberapa bulan terakhir.'}</p>
+  <div class="acts">${hist?'<button class="btn ghost sm" data-act="removeHistory">Hapus data dummy</button>':'<button class="btn but sm" data-act="loadHistory">Muat data historis</button>'}</div></div>`;
+}
+function metricModal(m){
+ const n=UI.range||3,[a,b]=rangeOf(n),R=ctx(a,b),v=mVal(m,R);
+ const ms=monthsBack(12),vals=ms.map(([,x,y])=>{const r=ctx(x,y);return mVal(m,r)});
+ const rows=m.rows(R);
+ return `<h3>${m.label}</h3>
+ <p class="tiny">Periode ${fmtD(a)} \u2013 ${fmtD(b)}</p>
+ <div class="mcard ${v==null?'':m.lvl(v)}" style="min-height:0;margin:8px 0"><span class="mv">${mDisp(m,R,v)}${m.disp?'':(v==null?'':`<small>${m.unit}</small>`)}</span><span class="ms" style="margin-top:2px">${m.sub(R)}</span></div>
+ <p class="frm"><b>Rumus.</b> ${m.f}</p>
+ <div class="dh">Tren 12 bulan terakhir${m.unit&&!m.disp?' ('+m.unit+')':''}</div>
+ ${m.disp?'<p class="tiny">Grafik menampilkan skor sesudah edukasi.</p>':''}${trendSvg(vals,ms.map(x=>x[0]),m.d)}
+ <div class="dh">Data sumber (${rows.length})</div>
+ ${rows.length?`<div class="plist">${rows.map(([e,t])=>encRow(e,`${bedOf(e)} \u00B7 ${t}`)).join('')}</div>`:'<p class="mut sm">Tidak ada data pada periode ini.</p>'}`;
+}
+
+/* =========================================================
+   Data historis (dummy), mode demo, helper form
+   ========================================================= */
+const parseSiki=t=>(t||'').split('\n').map(x=>x.trim()).filter(Boolean).map(x=>{const m=x.match(/^(I\.\d+)\s+(.+)$/);return m?{k:m[1],n:m[2]}:{k:'-',n:x}});
+function admitHTML(bed){
+ const sim=bed==='SIM',free=sim?S.patients:S.patients.filter(p=>!activeIMP(p.id));
+ return `<h3>${sim?'Terima pasien simulasi':'Terima pasien di tempat tidur '+bed}</h3><form class="form" data-submit="admit" data-bed="${bed}">
+  <div class="field"><label>Pasien</label><select name="pid" required>${free.map(p=>`<option value="${p.id}">${esc(p.nama)} \u00B7 RM ${p.mrn}</option>`).join('')}</select></div>
+  <div class="field"><label>DPJP</label><select name="dokter">${ALLDOC.map(d=>`<option>${esc(d)}</option>`).join('')}</select></div>
+  <div class="field"><label>Diagnosis / keluhan masuk</label><textarea name="keluhan" rows="2" required></textarea></div>
+  ${kasusField(null,sim)}
+  <button class="btn mint block">Terima pasien</button></form>`;
+}
+function rng(seed){return()=>{seed|=0;seed=seed+0x6D2B79F5|0;let t=Math.imul(seed^seed>>>15,1|seed);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296}}
+const KON=[
+ {k:'Pneumonia dengan sesak dan demam',dx:'D.0001',ny:[0,3]},{k:'Gagal jantung kongestif, edema tungkai',dx:'D.0008',ny:[0,2]},
+ {k:'Diabetes melitus dengan hiperglikemia',dx:'D.0027',ny:[0,2]},{k:'Post apendektomi',dx:'D.0077',ny:[3,7]},
+ {k:'Demam berdarah dengue',dx:'D.0130',ny:[1,4]},{k:'Stroke non-hemoragik',dx:'D.0054',ny:[0,3]},
+ {k:'Gastroenteritis akut dengan dehidrasi',dx:'D.0023',ny:[2,5]},{k:'Fraktur femur post ORIF',dx:'D.0077',ny:[4,8]},
+ {k:'Hipertensi urgensi',dx:'D.0009',ny:[0,3]},{k:'Infeksi saluran kemih',dx:'D.0142',ny:[1,4]},
+ {k:'PPOK eksaserbasi akut',dx:'D.0005',ny:[0,2]},{k:'Ulkus diabetikum',dx:'D.0129',ny:[2,6]}
+];
+function genHistory(){
+ const r=rng(20260712),pick=a=>a[Math.floor(r()*a.length)],rb=p=>r()<p,ri=(a,b)=>a+Math.floor(r()*(b-a+1));
+ const NL=['Ahmad','Budi','Cecep','Dadang','Eko','Fajar','Gunawan','Hendra','Irfan','Joko','Kurniawan','Lukman','Maman','Nanda','Oki','Pandu','Rizal','Slamet','Taufik','Wahyu'];
+ const NP=['Ani','Bunga','Citra','Dewi','Eni','Fitri','Gita','Hesti','Indah','Juwita','Kartika','Lilis','Mega','Novi','Putri','Rina','Sari','Tuti','Umi','Yuni'];
+ const NB=['Hidayat','Suryana','Permana','Kusumah','Wijaya','Saputra','Rahayu','Nugraha','Firmansyah','Lestari','Maulana','Setiawan'];
+ const KEC=[['Coblong','Dago','40135'],['Sukajadi','Pasteur','40162'],['Bandung Wetan','Cihapit','40114'],['Cimahi Utara','Citeureup','40512'],['Lengkong','Burangrang','40262'],['Antapani','Antapani Tengah','40291']];
+ const BY='Data historis (dummy)',mkT=(off,h,m)=>`${addDays(off)}T${pad(h)}:${pad(m)}`;
+ const patients=[],encounters=[];
+ for(let i=0;i<70;i++){
+  const jk=rb(.5)?'L':'P',kc=pick(KEC),y=ri(1945,2004),mo=ri(1,12),dd=ri(1,28);
+  patients.push({id:'dp'+(i+1),mrn:'DM'+String(i+1).padStart(4,'0'),nik:'3273'+pad(dd+(jk==='P'?40:0))+pad(mo)+String(y).slice(2)+String(1000+i).slice(-4)+String(ri(10,99)),nama:`${pick(jk==='L'?NL:NP)} ${pick(NB)}`,jk,tempat:'Bandung',lahir:`${y}-${pad(mo)}-${pad(dd)}`,marital:pick(['M','M','S','W']),hp:'0812'+String(ri(10000000,99999999)),alamat:`Jl. Contoh No. ${ri(1,99)}`,rtrw:`0${ri(1,9)}/0${ri(1,9)}`,kel:kc[1],kec:kc[0],kota:'Kota Bandung',prov:'Jawa Barat',pos:kc[2],kerja:pick(['Wiraswasta','Karyawan swasta','Ibu rumah tangga','Pensiunan','Guru']),penjamin:pick(['BPJS','BPJS','BPJS','Umum','Asuransi swasta']),kontak:{nama:'Keluarga',hub:'Keluarga',hp:'0813'+String(ri(10000000,99999999))},dummy:true,createdBy:BY});
+ }
+ const TOT=240;let idx=0;
+ for(let off=-TOT;off<=-1;off++){
+  const prog=(off+TOT)/TOT,mon=Math.floor((off+TOT)/30);
+  const occ=Math.min(.86,.64+.12*Math.sin(mon*.9)+.05*prog),rate=BEDS.length*occ/5.6,n=Math.floor(rate)+(r()<rate%1?1:0);
+  for(let j=0;j<n;j++){
+   const dead=rb(.022);let oc='discharge',L=Math.max(2,Math.min(16,Math.round(2-Math.log(1-r())*3.6)));
+   if(dead){if(rb(.4)){oc='mati48a';L=1}else{oc='mati48b';L=Math.max(3,L)}}
+   if(off+L>-1)continue;
+   const p=pick(patients),kon=pick(KON),dx=sdkiBy(kon.dx),hh=ri(6,20),mm=pick([0,15,30,45]),h2=ri(9,16);
+   const ad=addDays(off),admitAt=`${ad}T${pad(hh)}:${pad(mm)}`,dischargeAt=mkT(off+L,h2,pick([0,30]));
+   const lv=r();const prof=lv<.55?'mandiri':lv<.88?'mix':'total';
+   const bt={};BARTHEL.forEach(([k,,o])=>{bt[k]=prof==='mandiri'?o[o.length-1][0]:prof==='total'?0:pick(o)[0]});
+   const bts=fullSum(BARTHEL,bt),kmd=kmdSaran(bts),ny=ri(kon.ny[0],kon.ny[1]);
+   const cem=pick(['Tidak cemas','Ringan','Ringan','Sedang','Sedang','Berat']);
+   const cemPost=PSIKO_SEL[1][2][Math.max(0,PSIKO_SEL[1][2].indexOf(cem)-ri(0,2))];
+   const dpOk=rb(.62+.3*prog),disch={};DISCH.forEach((_,i)=>disch[i]=dpOk?true:rb(.75));
+   const pre=ri(35,65),post=Math.min(100,pre+ri(18,38)+Math.round(8*prog));
+   const kp=lv=>Math.min(5,Math.max(1,lv)),kep=kp(pick([3,4,4,4,5,5])+(rb(.15*prog)?1:0));
+   const restr=rb(.07),morse={jatuh:rb(.15)?25:0,sekunder:rb(.4)?15:0,alat:pick([0,0,15,30]),infus:rb(.8)?20:0,gaya:pick([0,0,10,20]),mental:rb(.2)?15:0};
+   const braden={};BRADEN.forEach(([k,,o])=>braden[k]=prof==='total'?o[0][0]:o[o.length-1][0]);
+   const mutu={idNama:rb(.96),idGelang:rb(.97),jatuhPencegahan:rb(.9),dekubPencegahan:rb(.88),phlPencegahan:rb(.9),obat6b:rb(.95),
+    dekubitus:rb(.025-.015*prog)?'rs':'tidak',phlebitis:rb(.06-.035*prog)?ri(1,2):0,restrainTerpasang:restr,cederaRestrain:restr&&rb(.12),jatuh:rb(.03-.017*prog),
+    kesalahanObat:rb(.045-.03*prog)?1:0,jmlObat:L*ri(4,9),tatalaksana:{farmako:ny>0,relaksasi:ny>0&&rb(.6)},nyeriSetelah:ny>0?Math.max(0,ny-ri(2,5)):null,kemandirian:kmd,
+    pengetahuanPre:pre,edukasiTopik:'Edukasi penyakit dan obat'};
+   if(mutu.kesalahanObat)mutu.jenisKesalahan=pick(JENIS_OBAT);
+   if(oc==='discharge'){Object.assign(mutu,{pengetahuanPost:post,cemasPost:cemPost,kepuasan:rb(.88)?kep:0,kondisiKeluar:'Membaik'})}
+   else{mutu.pengetahuanPre=null}
+   encounters.push(E({id:'h'+(++idx),patientId:p.id,cls:'IMP',poli:'dalam',dokter:pick(ALLDOC),tanggal:ad,jam:`${pad(hh)}:${pad(mm)}`,keluhan:kon.k,status:'finished',bed:pick(BEDS).id,admitAt,dischargeAt,outcome:oc,dummy:true,createdBy:BY,
+    pengkajian:{t:admitAt,by:BY,bb:ri(45,85),tb:ri(150,175),alergi:'',nyeri:ny,lokasiNyeri:'',gcs:{e:4,m:6,v:5},morse,keluhanUtama:kon.k,barthel:bt,braden,psiko:{cemas:cem},catatan:''},
+    askep:[{id:'ha'+idx,sdki:{k:dx.k,n:dx.n},risk:!!dx.risk,etiologi:'proses penyakit',gejala:'',slki:{k:dx.slki[0],n:dx.slki[1]},kh:dx.kh.slice(0,3),target:'',siki:dx.siki.map(([k,n])=>({k,n})),evaluasi:[{status:oc==='discharge'?pick(['Teratasi','Teratasi sebagian']):'Belum teratasi',catatan:'Evaluasi akhir perawatan',t:dischargeAt,by:BY}],t:admitAt,by:BY}],
+    cppt:[{id:'hc'+idx,t:dischargeAt,by:BY,s:'Pasien mengatakan keluhan berkurang',o:'TTV dalam batas normal',a:'Masalah teratasi sebagian',p:'Lanjutkan intervensi sesuai rencana'}],
+    discharge:oc==='discharge'?disch:{},mutu}));
+  }
+ }
+ return{patients,encounters};
+}
+function demoBoot(){
+ UI.demo=true;ME={uid:'demo',nama:'Perawat Demo',email:'demo@otten.local'};
+ const sd=seedData(),h=genHistory();
+ S={patients:[...sd.patients,...h.patients],encounters:[...sd.encounters,...h.encounters]};S.patients.sort(byMrn);
+ READY.patients=READY.encounters=true;UI.screen='app';UI.tab='home';render();toast('Mode demo aktif');
+}
+async function removeDummy(){
+ try{
+  for(const name of ['encounters','patients']){
+   const ids=S[name].filter(x=>x.dummy).map(x=>x.id);
+   if(db&&!UI.demo)await Promise.all(ids.map(id=>FB.deleteDoc(FB.doc(db,name,id))));
+   S[name]=S[name].filter(x=>!x.dummy);ids.forEach(id=>LAST[name].delete(id));
+  }
+  render();toast('Data dummy dihapus');
+ }catch(err){console.error(err);render();toast('Sebagian data gagal dihapus ('+((err&&err.code)||'periksa aturan Firestore')+')')}
+}
+
+/* =========================================================
+   VIEWS — umum
+   ========================================================= */
+function empty(title,sub,tab,btn){
+ return `<div class="card empty">${dixa('md')}<h3>${title}</h3><p class="mut">${sub||''}</p>${tab?`<button class="btn pink sm" data-act="nav" data-tab="${tab}" style="margin-top:10px">${btn}</button>`:''}</div>`;
+}
+function greet(){const h=new Date().getHours();return h<11?'pagi':h<15?'siang':h<18?'sore':'malam'}
+
+function viewBoot(){return `<div class="loginw"><div class="center" style="padding-top:90px">${dixa('md')}<p class="mut" style="margin-top:10px">Memuat sistem…</p></div></div>`}
+
+function viewSetup(){
+ return `<div class="loginw"><h1 class="logo">Otten Hospital<em>MEDIXA v.2 · Sistem Informasi Asuhan Keperawatan</em></h1><div class="rule"></div>
+ <div class="card"><h3>Firebase belum dikonfigurasi</h3>
+  <ol class="sm" style="margin:8px 0 0 18px;display:grid;gap:6px">
+   <li>Buat project di <b>console.firebase.google.com</b>, aktifkan <b>Authentication → Email/Password</b> dan <b>Firestore Database</b>.</li>
+   <li>Salin <code>firebaseConfig</code> dari Project settings → Your apps → Web.</li>
+   <li>Tempel ke bagian paling atas <code>&lt;script&gt;</code> di <code>index.html</code> (cari <code>ISI_API_KEY</code>).</li>
+   <li>Tempel isi <code>firestore.rules</code> ke tab Rules di Firestore, lalu Publish.</li>
+  </ol><p class="tiny" style="margin-top:10px">Langkah lengkap ada di README.md.</p><button class="btn but block" data-act="demoStart">Buka mode demo (tanpa Firebase)</button></div></div>`;
+}
+function viewError(){
+ return `<div class="loginw"><h1 class="logo">Otten Hospital<em>MEDIXA v.2 · Sistem Informasi Asuhan Keperawatan</em></h1><div class="rule"></div>
+ <div class="card"><h3>Firebase tidak dapat dimuat</h3><p class="sm">Pastikan perangkat online, lalu muat ulang halaman. SDK Firebase dimuat dari <code>gstatic.com</code>.</p><p class="tiny" style="margin-top:8px;word-break:break-word">${esc(UI.err)}</p>
+ <button class="btn mint block" onclick="location.reload()">Muat ulang</button></div></div>`;
+}
+
+function viewAuth(){
+ const reg=UI.loginMode==='reg';
+ return `<div class="loginw">
+  <h1 class="logo">Otten Hospital<em>MEDIXA v.2 · Sistem Informasi Asuhan Keperawatan</em></h1>
+  <div class="rule"></div>
+  <h2>${reg?'Daftar akun perawat':'Masuk sebagai perawat'} </h2>
+  <div class="tabsw" style="margin-top:14px"><button class="${reg?'':'on'}" data-act="loginMode" data-m="in">Masuk</button><button class="${reg?'on':''}" data-act="loginMode" data-m="reg">Daftar baru</button></div>
+  <div class="card" style="margin-top:14px">
+   <form class="form" data-submit="${reg?'authRegister':'authLogin'}">
+    ${reg?`<div class="field"><label>Nama lengkap perawat <small>tampil di header & tiap catatan</small></label><input name="nama" placeholder="Contoh: Ns. Sari" required maxlength="60" autocomplete="name"></div>`:''}
+    <div class="field"><label>Email</label><input name="email" type="email" autocomplete="email" required></div>
+    <div class="field"><label>Password${reg?' <small>minimal 6 karakter</small>':''}</label><input name="pass" type="password" minlength="${reg?6:1}" required autocomplete="${reg?'new-password':'current-password'}"></div>
+    <button class="btn mint block">${reg?'Daftar & masuk':'Masuk'}</button>
+   </form>
+  </div>
+  <p class="tiny" style="margin-top:18px">Data tersimpan di cloud dan tersinkron antar perangkat.<br>Gunakan data pasien fiktif untuk keperluan pembelajaran.</p>
+ </div>`;
+}
+
+function regForm(){
+ return `<form class="form" data-submit="register" data-live="reg" autocomplete="off">
+  <fieldset><legend>Identitas</legend>
+   <div class="field"><label>NIK <small id="nikc">0/16</small></label><input name="nik" inputmode="numeric" maxlength="16" placeholder="16 digit (data fiktif untuk simulasi)" required></div>
+   <div class="hint" id="nikhint"></div>
+   <div class="field"><label>Nama lengkap</label><input name="nama" required></div>
+   <div class="field"><label>Jenis kelamin</label><div class="seg"><label><input type="radio" name="jk" value="P" checked><span>Perempuan</span></label><label><input type="radio" name="jk" value="L"><span>Laki-laki</span></label></div></div>
+   <div class="row2"><div class="field"><label>Tempat lahir</label><input name="tempat" required></div><div class="field"><label>Tanggal lahir</label><input name="lahir" type="date" max="${isoDate()}" required></div></div>
+   <div class="row2"><div class="field"><label>Status pernikahan</label><select name="marital">${Object.entries(MARITAL).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></div><div class="field"><label>Pekerjaan</label><input name="kerja"></div></div>
+   <div class="field"><label>No. HP</label><input name="hp" type="tel" inputmode="tel" placeholder="08xxxxxxxxxx" required></div>
+  </fieldset>
+  <fieldset><legend>Alamat</legend>
+   <div class="field"><label>Alamat lengkap</label><input name="alamat" placeholder="Jalan, nomor rumah" required></div>
+   <div class="row2"><div class="field"><label>RT/RW</label><input name="rtrw" placeholder="03/05"></div><div class="field"><label>Kode pos</label><input name="pos" inputmode="numeric" maxlength="5"></div></div>
+   <div class="row2"><div class="field"><label>Kelurahan</label><input name="kel" required></div><div class="field"><label>Kecamatan</label><input name="kec" required></div></div>
+   <div class="row2"><div class="field"><label>Kota/Kabupaten</label><input name="kota" required></div><div class="field"><label>Provinsi</label><input name="prov" value="Jawa Barat" required></div></div>
+  </fieldset>
+  <fieldset><legend>Penjamin & kontak darurat</legend>
+   <div class="field"><label>Penjamin</label><select name="penjamin"><option>BPJS</option><option>Umum</option><option>Asuransi swasta</option></select></div>
+   <div class="row2"><div class="field"><label>Nama kontak darurat</label><input name="k_nama" required></div><div class="field"><label>Hubungan</label><input name="k_hub" placeholder="Suami, Ibu, ..." required></div></div>
+   <div class="field"><label>HP kontak darurat</label><input name="k_hp" type="tel" inputmode="tel" required></div>
+  </fieldset>
+  <p class="hint">Tercatat atas nama <b>${esc(ME.nama)}</b> beserta waktu input.</p>
+  <button class="btn pink block">Simpan registrasi</button>
+ </form>`;
+}
+
+const NAV=[['home',ic('dash'),'Dasbor'],['pas',ic('pas'),'Pasien'],['rj',ic('rj'),'Antrean RJ'],['ri',ic('ri'),'Rawat Inap']];
+function shell(){
+ const on=k=>UI.tab===k&&!UI.enc?'on':'';
+ return `<div class="shell">
+  <aside class="side"><div class="logo-s">${dixa('sm')}Otten Hospital</div><div class="tiny">MEDIXA v.2</div>
+   <div class="sidenav">${NAV.map(([k,ic,l])=>`<button class="navb ${on(k)}" data-act="nav" data-tab="${k}"><span>${ic}</span>${l}</button>`).join('')}</div>
+   <div class="who"><small class="mut">Perawat</small><b>${esc(ME.nama)}</b><span class="tiny" style="word-break:break-all">${esc(ME.email)}</span><button class="btn ghost sm" data-act="logout">Keluar</button></div>
+  </aside>
+  <main class="main">
+   <header class="top"><div class="brand-mini">${dixa('sm')}<span class="bn">Otten Hospital <b>MEDIXA v.2</b></span></div><div class="topr">${syncHTML()}<button class="btn ghost sm" data-act="logout">Keluar</button></div></header>
+   <div class="content">${viewBody()}${FOOT}</div>
+  </main>
+  <nav class="tabbar">${NAV.map(([k,ic,l])=>`<button class="${on(k)}" data-act="nav" data-tab="${k}"><span class="ic">${ic}</span><span>${l}</span></button>`).join('')}</nav>
+ </div>`;
+}
+function viewBody(){
+ if(!(READY.patients&&READY.encounters))return `<div class="card empty">${dixa('md')}<h3>Menyinkronkan data…</h3><p class="mut">Mengambil data terbaru dari server.</p></div>`;
+ if(UI.enc&&enc(UI.enc))return nEnc();
+ return({home:nHome,rj:nRJ,ri:nRI,pas:nPas}[UI.tab]||nHome)();
+}
+
+function visitCard(e){
+ const p=pat(e.patientId),po=POLI.find(x=>x.id===e.poli)||{icon:'',nama:'Poli'};
+ const [lbl,c]=stBadge(e);
+ let acts='';
+ if(e.status==='planned')acts=`<button class="btn mint sm" data-act="checkin" data-id="${e.id}">Check-in </button>`;
+ else if(e.status==='arrived')acts=`<button class="btn pink sm" data-act="startKaji" data-id="${e.id}">Mulai pengkajian </button>`;
+ else if(e.status!=='cancelled')acts=`<button class="btn ghost sm" data-act="openEnc" data-id="${e.id}">Buka</button>`;
+ return `<div class="card visit"><div class="vic">${po.icon}</div><div class="vbody">
+  <div class="vtop"><b>${esc(p.nama)}</b><span class="badge ${c}">${lbl}</span></div>
+  <div class="mut sm">${esc(po.nama)} · ${esc(e.dokter)}</div>
+  <div class="mut sm">${fmtD(e.tanggal)}, ${e.jam}${e.antrean?` · <b>${e.antrean}</b>`:''}</div>
+  <div class="sm" style="margin-top:4px">“${esc(e.keluhan)}”</div>
+  ${acts?`<div class="acts">${acts}</div>`:''}
+ </div></div>`;
+}
+
+function visitForm(pid){
+ return `<form class="form" data-submit="rjSubmit" data-pid="${pid}">
+  <div class="field"><label>Pilih poli</label><div class="poli-grid">${POLI.map(x=>`<button type="button" class="poli" data-act="rjPoli" data-id="${x.id}"><span>${x.icon}</span>${esc(x.nama.replace('Poli ',''))}</button>`).join('')}</div><input type="hidden" name="poli"></div>
+  <div class="field"><label>Dokter</label><select name="dokter" required disabled><option value="">Pilih poli terlebih dahulu</option></select></div>
+  <div class="row2"><div class="field"><label>Tanggal</label><input type="date" name="tanggal" min="${today()}" value="${today()}" required></div><div class="field"><label>Jam</label><select name="jam">${SLOTS.map(s=>`<option>${s}</option>`).join('')}</select></div></div>
+  <div class="field"><label>Keluhan</label><textarea name="keluhan" rows="3" placeholder="Ceritakan keluhan utamanya" required></textarea></div>
+  ${kasusField(null)}<button class="btn pink block">Daftar kunjungan</button></form>`;
+}
+/* =========================================================
+   VIEWS — perawat
+   ========================================================= */
+function nRJ(){
+ const t=today(),order={arrived:0,'in-progress':1,planned:2,finished:3};
+ const list=S.encounters.filter(e=>e.cls==='AMB'&&e.tanggal===t&&e.status!=='cancelled').sort((a,b)=>order[a.status]-order[b.status]||a.jam.localeCompare(b.jam));
+ return `<h2 class="ttl">Antrean Rawat Jalan</h2><p class="mut">Hari ini, ${fmtD(t)}</p>
+ ${list.length?list.map(e=>visitCard(e,'nurse')).join(''):empty('Tidak ada antrean hari ini','Pasien yang terdaftar akan tampil di sini.')}
+ <button class="btn pink block" data-act="newVisit">Kunjungan baru untuk pasien</button>`;
+}
+function bedCard(b){
+ const e=bedOcc(b.id);
+ if(!e)return `<button class="bed" data-act="admitForm" data-bed="${b.id}"><span class="bn">Bed ${b.id}</span><span class="pn mut">Kosong</span><span class="sm mut">Ketuk untuk menerima pasien</span></button>`;
+ const p=pat(e.patientId),w=ttvWarn(lastTTV(e));
+ return `<button class="bed occ ${w?'alert':''}" data-act="openEnc" data-id="${e.id}"><span class="bn">Bed ${b.id} ${w?'':''}</span><span class="pn">${esc(p.nama)}</span><span class="sm mut">${age(p.lahir)} th · hari ke-${daysBetween(e.admitAt,today())+1}</span><span class="sm">${esc(e.keluhan.slice(0,42))}${e.keluhan.length>42?'…':''}</span></button>`;
+}
+/* ---------- detail pasien: seluruh RME yang diinput perawat ---------- */
+const optText=(opts,v,swap)=>{const f=opts.find(o=>String(swap?o[1]:o[0])===String(v));return f?(swap?f[0]:f[1]):''};
+const kvRows=rows=>{const r=rows.filter(([,v])=>v!==''&&v!=null&&v!==false);return r.length?`<dl class="kv">${r.map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join('')}</dl>`:''};
+const byLine=(t,by)=>`<div class="tiny by-line">${esc(by||'—')}${t?' · '+fmtDT(t):''}</div>`;
+const dsec=(title,body,open)=>`<details class="dsec"${open?' open':''}><summary>${title}</summary><div class="dbody">${body}</div></details>`;
+const dh=t=>`<div class="dh">${t}</div>`;
+const none=t=>`<p class="mut sm">${t}</p>`;
+
+function kajiDetail(k){
+ const g=k.gcs||{},pq=k.pqrst||{},rw=k.riwayat||{},fs=k.fisik||{},ad=k.adl||{},bt=k.barthel||{},br=k.braden||{},ps=k.psiko||{},m=k.morse||{};
+ const gt=gcsTotal(g),bmi=bmiInfo(k.bb,k.tb),bts=fullSum(BARTHEL,bt),brs=fullSum(BRADEN,br),ms=morseTotal(m);
+ let h=byLine(k.t,k.by);
+ h+=dh('Keluhan utama & PQRST')+kvRows([['Keluhan utama',k.keluhanUtama],['Riwayat sekarang',k.rps],['P · Provokatif',pq.p],['Q · Quality',pq.q],['R · Region',k.lokasiNyeri],['S · Severity',k.nyeri!=null&&k.nyeri!==''?`${k.nyeri}/10 · ${nyeriLabel(+k.nyeri)}`:''],['T · Time',pq.t]]);
+ h+=dh('Riwayat kesehatan')+kvRows(KAJI_RIWAYAT.map(([key,lab])=>[lab,rw[key]]));
+ h+=dh('Kesadaran & antropometri')+kvRows([['Keadaan umum',k.keadaanUmum],['Kesadaran',k.kesadaran],['GCS',g.e?`E${g.e} M${g.m} V${g.v} = ${gt} · ${gcsLabel(gt)}`:''],['BB / TB',(k.bb||k.tb)?`${k.bb||'-'} kg / ${k.tb||'-'} cm`:''],['IMT',bmi?`${bmi.v} · ${bmi.l}`:''],['Alergi',k.alergi]]);
+ h+=dh('Pemeriksaan fisik head to toe')+(KAJI_FISIK.some(([key])=>fs[key])?kvRows(KAJI_FISIK.map(([key,lab])=>[lab,fs[key]])):none('Belum diisi.'));
+ h+=dh('Pola aktivitas sehari-hari')+(KAJI_ADL.some(([key])=>(ad[key]||{}).b||(ad[key]||{}).s)?kvRows(KAJI_ADL.map(([key,lab])=>{const x=ad[key]||{};return[lab,(x.b||x.s)?`Sebelum sakit: ${x.b||'-'} | Saat sakit: ${x.s||'-'}`:'']})):none('Belum diisi.'));
+ h+=dh('Kemandirian ADL (Barthel)')+kvRows([['Skor',bts!=null?`${bts}/100 · ${barthelLabel(bts)[0]}`:''],...BARTHEL.map(([key,lab,o])=>[lab,optText(o,bt[key])])]);
+ h+=dh('Psikososial & spiritual')+kvRows([...PSIKO_SEL.map(([key,lab])=>[lab,ps[key]]),...PSIKO_TXT.map(([key,lab])=>[lab,ps[key]])]);
+ if(k.morse)h+=dh('Risiko jatuh (Morse)')+kvRows([['Skor',`${ms} · ${morseLabel(ms)[0]}`],...MORSE.map(([key,lab,o])=>[lab,optText(o,m[key],true)])]);
+ h+=dh('Risiko dekubitus (Braden)')+kvRows([['Skor',brs!=null?`${brs}/23 · ${bradenLabel(brs)[0]}`:''],...BRADEN.map(([key,lab,o])=>[lab,optText(o,br[key])])]);
+ if(k.catatan)h+=dh('Catatan')+kvRows([['Catatan',k.catatan]]);
+ return h;
+}
+function askepDetail(e){
+ if(!e.askep.length)return none('Belum ada diagnosis keperawatan.');
+ return e.askep.map(a=>`<div class="pes"><b>${esc(a.sdki.n)}</b> <span class="tiny">${esc(a.sdki.k)}</span>
+  <div class="sm">${a.risk?'dibuktikan dengan faktor risiko':'berhubungan dengan'} <b>${esc(a.etiologi)}</b>${!a.risk&&a.gejala?`, dibuktikan dengan <b>${esc(a.gejala)}</b>`:''}</div>
+  <div class="sm mut" style="margin-top:4px">Luaran (SLKI): ${esc(a.slki.k)} ${esc(a.slki.n)}${a.target?' — '+esc(a.target):''}</div>${(a.kh||[]).length?`<ul class="sm">${a.kh.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>`:''}
+  <div class="sm" style="margin-top:4px"><b>Intervensi (SIKI)</b></div><ul class="sm">${a.siki.map(s=>`<li>${esc(s.k)} ${esc(s.n)}</li>`).join('')}</ul>
+  ${byLine(a.t,a.by)}</div>`).join('');
+}
+function evalDetail(e){
+ const ev=e.askep.filter(a=>(a.evaluasi||[]).length);
+ let h='';
+ if(ev.length)h+=dh('Evaluasi per diagnosis')+ev.map(a=>`<div class="pes"><b>${esc(a.sdki.n)}</b>${a.evaluasi.map(x=>`<div class="sm" style="margin-top:6px"><span class="badge ${EVAL_C[x.status]||'lav'}">${esc(x.status)}</span> ${esc(x.catatan)}${byLine(x.t,x.by)}</div>`).join('')}</div>`).join('');
+ h+=dh('CPPT (SOAP)')+(e.cppt.length?[...e.cppt].reverse().map(c=>`<div class="soap" style="margin-bottom:10px"><p><b>S</b>${esc(c.s)||'-'}</p><p><b>O</b>${esc(c.o)||'-'}</p><p><b>A</b>${esc(c.a)||'-'}</p><p><b>P</b>${esc(c.p)||'-'}</p>${byLine(c.t,c.by)}</div>`).join(''):none('Belum ada CPPT.'));
+ return h;
+}
+function ttvDetail(e){
+ if(!e.ttv.length)return none('Belum ada TTV.');
+ return `<div class="scroll-x"><table class="tbl"><thead><tr><th>Waktu</th><th>TD</th><th>N</th><th>RR</th><th>S</th><th>SpO₂</th><th>Oleh</th></tr></thead><tbody>${[...e.ttv].reverse().map(x=>`<tr><td>${fmtDT(x.t)}</td><td class="${isWarn('sis',x.sis)||isWarn('dia',x.dia)?'w':''}">${x.sis}/${x.dia}</td><td class="${isWarn('nadi',x.nadi)?'w':''}">${x.nadi}</td><td class="${isWarn('rr',x.rr)?'w':''}">${x.rr}</td><td class="${isWarn('suhu',x.suhu)?'w':''}">${x.suhu}</td><td class="${isWarn('spo2',x.spo2)?'w':''}">${x.spo2}</td><td style="text-align:left;font-size:12px">${esc(x.by||'-')}</td></tr>`).join('')}</tbody></table></div>`;
+}
+function inpatientDetail(e){
+ const io=[...e.io].reverse(),ck=e.discharge||{};
+ let h=dsec(`Obat (${e.mar.length})`,e.mar.length?[...e.mar].sort((a,b)=>a.jam.localeCompare(b.jam)).map(m=>`<div class="mar"><div><b>${esc(m.obat)}</b> <span class="sm">${esc(m.dosis)} · ${esc(m.rute)}</span><div class="sm mut">${m.jam}${m.given?` · diberikan ${fmtDT(m.givenAt)} oleh ${esc(m.by)}`:' · belum diberikan'}${m.addedBy?` · dijadwalkan oleh ${esc(m.addedBy)}`:''}</div></div>${m.given?'<span class="badge ok">Sudah</span>':''}</div>`).join(''):none('Belum ada jadwal obat.'));
+ h+=dsec(`Intake / output (${io.length})`,io.length?io.map(x=>`<div class="mar"><div><b>${x.type==='in'?'Masuk':'Keluar'} ${esc(x.label)}</b><div class="sm mut">${fmtDT(x.t)}${x.by?' · '+esc(x.by):''}</div></div><b>${x.ml} ml</b></div>`).join(''):none('Belum ada catatan.'));
+ h+=dsec('Discharge planning',DISCH.map((x,i)=>`<div class="sm">${ck[i]?'Selesai':'Belum'} \u2013 ${esc(x)}</div>`).join('')+(e.dischargeAt?`<div class="sm" style="margin-top:6px"><b>Pulang:</b> ${fmtDT(e.dischargeAt)}</div>`:''));
+ return h;
+}
+function encDetail(e,first){
+ const po=POLI.find(x=>x.id===e.poli)||{nama:''},isI=e.cls==='IMP',[lbl,c]=stBadge(e);
+ const head=isI?`Rawat inap · Bed ${esc(e.bed||'-')}`:`Rawat jalan · ${esc(po.nama)}`;
+ return `<details class="enc"${first?' open':''}><summary><span>${head}<span class="sm mut" style="display:block;font-weight:600">${fmtD(e.tanggal)} · ${esc(e.dokter)}</span></span><span class="badge ${c}">${lbl}</span></summary><div class="ebody">
+  ${kvRows([['Keluhan',e.keluhan],['Kasus simulasi',e.kasus?'Kasus '+e.kasus:''],['No. antrean',e.antrean],['Masuk',e.admitAt?fmtDT(e.admitAt):''],['Dicatat oleh',e.createdBy?`${e.createdBy} · ${fmtMs(e.createdAt)}`:''],['Terakhir diubah',e.updatedBy?`${e.updatedBy} · ${fmtMs(e.updatedAt)}`:'']])}
+  ${dsec('Pengkajian',e.pengkajian?kajiDetail(e.pengkajian):none('Belum dikaji.'),true)}
+  ${dsec(`TTV (${e.ttv.length})`,ttvDetail(e))}
+  ${dsec(`Diagnosa & intervensi (${e.askep.length})`,askepDetail(e),true)}
+  ${dsec('Evaluasi & CPPT',evalDetail(e),true)}
+  ${dsec('Mutu & keselamatan pasien',mutuDetail(e))}
+  ${isI?inpatientDetail(e):''}
+ </div></details>`;
+}
+function patDetailBody(p){
+ const es=encsOf(p.id).sort(byNewest);
+ return `<div class="pat-head"><div class="av">${esc(ini(p.nama))}</div><div><h3 style="margin:0;padding:0">${esc(p.nama)}</h3><div class="mut sm">RM ${esc(p.mrn)} · ${age(p.lahir)} th · ${esc(p.penjamin)}</div><div class="tiny" style="margin-top:2px">Didaftarkan oleh <b>${esc(p.createdBy||'-')}</b> · ${fmtMs(p.createdAt)}</div></div></div>
+ <div class="dh">Identitas</div>
+ ${kvRows([['NIK',p.nik],['Tempat, tgl lahir',`${p.tempat}, ${fmtD(p.lahir)}`],['Jenis kelamin',p.jk==='L'?'Laki-laki':'Perempuan'],['Status nikah',MARITAL[p.marital]],['Pekerjaan',p.kerja],['No. HP',p.hp],['Alamat',`${p.alamat}${p.rtrw?', RT/RW '+p.rtrw:''}, ${p.kel}, ${p.kec}, ${p.kota}, ${p.prov} ${p.pos}`],['Penjamin',p.penjamin],['Kontak darurat',p.kontak&&p.kontak.nama?`${p.kontak.nama} (${p.kontak.hub}) · ${p.kontak.hp}`:'']])}
+ <div class="dh" style="margin-top:16px">Rekam medis & asuhan keperawatan (${es.length} kunjungan)</div>
+ ${es.length?es.map((e,i)=>encDetail(e,i===0)).join(''):none('Belum ada kunjungan.')}
+ <div class="acts"><button class="btn pink sm" data-act="visitFor" data-id="${p.id}">Buat kunjungan RJ</button><button class="btn but sm" data-act="fhirP" data-id="${p.id}">Format FHIR</button></div>`;
+}
+function refreshDetail(){
+ if(!UI.detailPid||!$('#modal').classList.contains('on'))return;
+ const box=$('#detailBody'),p=S.patients.find(x=>x.id===UI.detailPid);if(!box||!p)return;
+ const sheet=box.closest('.sheet'),st=$$('details',box).map(d=>d.open),sc=sheet.scrollTop;
+ box.innerHTML=patDetailBody(p);
+ $$('details',box).forEach((d,i)=>{if(st[i]!==undefined)d.open=st[i]});
+ sheet.scrollTop=sc;
+}
+
+/* ---------- detail kunjungan (perawat) ---------- */
+function alergiBanner(e){const a=hasAlergi(e);return a?`<div class="alergi">Alergi: ${esc(a)}</div>`:''}
+function nEnc(){
+ const e=enc(UI.enc),p=pat(e.patientId),isI=e.cls==='IMP';
+ const tabs=[['ttv','TTV'],['kaji','Pengkajian'],['askep','Askep'],['cppt','CPPT']].concat(isI?[['obat','Obat'],['cairan','Cairan'],['pulang','Pulang dan Evaluasi']]:[]);
+ if(!tabs.some(t=>t[0]===UI.encTab))UI.encTab='ttv';
+ const fn={ttv:tTTV,kaji:tKaji,askep:tAskep,cppt:tCPPT,obat:tObat,cairan:tCairan,pulang:tPulang}[UI.encTab];
+ const [lbl,c]=stBadge(e),po=POLI.find(x=>x.id===e.poli);
+ return `<button class="btn ghost sm" data-act="closeEnc" style="margin-top:8px">← Kembali</button>
+ <div class="card"><div class="pat-head"><div class="av">${esc(ini(p.nama))}</div><div style="flex:1;min-width:0">
+  <div class="vtop"><h3 style="margin:0">${esc(p.nama)}</h3><span class="badge ${c}">${lbl}</span> ${kasusBadge(e)}</div>
+  <div class="mut sm">${p.jk==='L'?'Tn.':'Ny./Nn.'} · ${age(p.lahir)} th · RM ${p.mrn} · ${esc(p.penjamin)}</div>
+  <div class="sm">${isI?(e.bed==='Simulasi'?'Rawat inap simulasi':'Bed '+e.bed):e.antrean+' · '+esc(po?po.nama:'')} · ${esc(e.dokter)}</div>
+  <div class="sm" style="margin-top:4px">“${esc(e.keluhan)}”</div></div></div>
+  ${alergiBanner(e)}
+  <div class="acts"><button class="btn but sm" data-act="fhirE" data-id="${e.id}">Format FHIR</button><button class="btn ghost sm" data-act="kasusEdit" data-id="${e.id}">${e.kasus?'Kasus '+e.kasus+' (ubah)':'Tandai kasus simulasi'}</button>${!isI&&e.status==='in-progress'?`<button class="btn mint sm" data-act="finishAmb" data-id="${e.id}">Selesaikan kunjungan </button>`:''}</div></div>
+ <div class="tabs">${tabs.map(([k,l])=>`<button class="${UI.encTab===k?'on':''}" data-act="encTab" data-tab="${k}">${l}</button>`).join('')}</div>
+ ${fn(e,p)}`;
+}
+
+function tTTV(e){
+ const l=[...e.ttv].reverse(),v=k=>e.ttv.map(x=>+x[k]);
+ return `<div class="card"><h3>Catat TTV baru</h3><form class="form" data-submit="saveTTV">
+  <div class="row3"><div class="field"><label>Sistolik</label><input name="sis" type="number" inputmode="numeric" min="30" max="300" required></div><div class="field"><label>Diastolik</label><input name="dia" type="number" inputmode="numeric" min="20" max="200" required></div><div class="field"><label>Nadi /mnt</label><input name="nadi" type="number" inputmode="numeric" min="20" max="240" required></div></div>
+  <div class="row3"><div class="field"><label>RR /mnt</label><input name="rr" type="number" inputmode="numeric" min="4" max="80" required></div><div class="field"><label>Suhu °C</label><input name="suhu" type="number" step="0.1" inputmode="decimal" min="30" max="43" required></div><div class="field"><label>SpO₂ %</label><input name="spo2" type="number" inputmode="numeric" min="40" max="100" required></div></div>
+  <button class="btn mint block">Simpan TTV </button></form></div>
+ ${e.ttv.length>1?`<div class="sparks"><div class="stat"><span>Tren suhu</span>${spark(v('suhu'),'#A8534A')}</div><div class="stat"><span>Tren nadi</span>${spark(v('nadi'),'#5E7391')}</div></div>`:''}
+ <div class="card"><h3>Riwayat TTV</h3>${l.length?`<div class="scroll-x"><table class="tbl"><thead><tr><th>Waktu</th><th>TD</th><th>N</th><th>RR</th><th>S</th><th>SpO₂</th></tr></thead><tbody>${l.map(x=>`<tr><td>${fmtDT(x.t)}</td><td class="${isWarn('sis',x.sis)||isWarn('dia',x.dia)?'w':''}">${x.sis}/${x.dia}</td><td class="${isWarn('nadi',x.nadi)?'w':''}">${x.nadi}</td><td class="${isWarn('rr',x.rr)?'w':''}">${x.rr}</td><td class="${isWarn('suhu',x.suhu)?'w':''}">${x.suhu}</td><td class="${isWarn('spo2',x.spo2)?'w':''}">${x.spo2}</td></tr>`).join('')}</tbody></table></div><p class="tiny" style="margin-top:8px">Sel merah = di luar batas normal dewasa (TD 90–140/60–90, N 60–100, RR 12–20, S 36–37,5, SpO₂ ≥95).</p>`:'<p class="mut">Belum ada TTV.</p>'}</div>`;
+}
+function spark(vals,color){
+ if(vals.length<2)return '';
+ const w=220,h=56,p=7,mn=Math.min(...vals),mx=Math.max(...vals),r=(mx-mn)||1;
+ const pts=vals.map((v,i)=>[p+i*(w-2*p)/(vals.length-1),h-p-(v-mn)/r*(h-2*p)]);
+ return `<svg viewBox="0 0 ${w} ${h}" class="spark"><polyline points="${pts.map(q=>q.map(n=>n.toFixed(1)).join(',')).join(' ')}" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>${pts.map(q=>`<circle cx="${q[0].toFixed(1)}" cy="${q[1].toFixed(1)}" r="3.5" fill="#fff" stroke="${color}" stroke-width="2.5"/>`).join('')}</svg><b style="font-family:var(--f1)">${vals[vals.length-1]}</b>`;
+}
+
+function tKaji(e){
+ const k=e.pengkajian||{},g=k.gcs||{e:4,m:6,v:5},m=k.morse||{},pq=k.pqrst||{},rw=k.riwayat||{},fs=k.fisik||{},ad=k.adl||{},bt=k.barthel||{},br=k.braden||{},ps=k.psiko||{};
+ const sel=(name,opts,cur,blank)=>`<select name="${name}">${blank?'<option value="">— pilih —</option>':''}${opts.map(([v,l])=>`<option value="${esc(v)}" ${String(cur)===String(v)?'selected':''}>${esc(l)}</option>`).join('')}</select>`;
+ const opt=a=>a.map(x=>[x,x]);
+ const isOpen=(key,def)=>(UI.kOpen&&key in UI.kOpen)?UI.kOpen[key]:def;
+ const sec=(key,title,body,def)=>`<details class="card ksec" data-k="${key}"${isOpen(key,def)?' open':''}><summary>${title}</summary><div class="kb">${body}</div></details>`;
+ const inp=(name,label,val,ph)=>`<div class="field"><label>${label}</label><input name="${name}" value="${esc(val||'')}" placeholder="${esc(ph||'')}"></div>`;
+ const area=(name,label,val,ph,rows)=>`<div class="field"><label>${label}</label><textarea name="${name}" rows="${rows||2}" placeholder="${esc(ph||'')}">${esc(val||'')}</textarea></div>`;
+ const scoreRows=(def,pre,cur)=>def.map(([key,lab,opts])=>`<div class="field"><label>${lab}</label>${sel(pre+key,opts,cur[key]??'',true)}</div>`).join('');
+ return `<form class="form" id="kaji-form" data-submit="saveKaji" data-live="kaji">
+ <div class="kbar"><button type="button" class="btn ghost sm" data-act="kajiAll" data-v="1">Buka semua</button><button type="button" class="btn ghost sm" data-act="kajiAll" data-v="0">Tutup semua</button></div>
+ ${sec('keluhan','Keluhan utama & PQRST',
+  area('keluhanUtama','Keluhan utama',k.keluhanUtama,'Keluhan yang paling dirasakan, pakai kata-kata pasien',2)+
+  area('rps','Riwayat penyakit sekarang',k.rps,'Kronologi sejak keluhan pertama muncul sampai masuk RS',3)+
+  `<div class="kgrp"><b>Pengkajian nyeri (PQRST)</b>
+   <div class="pq"><i>P</i>${inp('pq_p','Provokatif / paliatif',pq.p,KAJI_PQ[0][2])}</div>
+   <div class="pq"><i>Q</i>${inp('pq_q','Quality (sifat nyeri)',pq.q,KAJI_PQ[1][2])}</div>
+   <div class="pq"><i>R</i>${inp('lokasiNyeri','Region / radiasi',k.lokasiNyeri,'Lokasi dan penjalaran')}</div>
+   <div class="pq"><i>S</i><div class="field"><label>Severity (NRS 0–10)</label>${painScale(k.nyeri??0)}<div class="calc"><span class="pill but" id="nyeriL">-</span></div></div></div>
+   <div class="pq"><i>T</i>${inp('pq_t','Time',pq.t,KAJI_PQ[2][2])}</div></div>`,true)}
+ ${sec('riwayat','Riwayat kesehatan',KAJI_RIWAYAT.map(([key,lab,ph])=>inp('r_'+key,lab,rw[key],ph)).join(''))}
+ ${sec('umum','Kesadaran, GCS & antropometri',
+  `<div class="row2"><div class="field"><label>Keadaan umum</label>${sel('keadaanUmum',opt(KEADAAN_UMUM),k.keadaanUmum||'',true)}</div><div class="field"><label>Tingkat kesadaran</label>${sel('kesadaran',opt(KESADARAN),k.kesadaran||'',true)}</div></div>`+
+  Object.entries(GCS).map(([key,[lab,opts]])=>`<div class="field"><label>${lab}</label>${sel('g_'+key,opts,g[key])}</div>`).join('')+
+  `<div class="calc"><span class="pill mint" id="gcsL">-</span></div>
+   <div class="row2" style="margin-top:12px"><div class="field"><label>BB (kg)</label><input name="bb" type="number" step="0.1" inputmode="decimal" value="${k.bb??''}"></div><div class="field"><label>TB (cm)</label><input name="tb" type="number" step="0.1" inputmode="decimal" value="${k.tb??''}"></div></div>
+   <div class="calc"><span class="pill lav" id="bmi">IMT: -</span></div>
+   <div class="field" style="margin-top:12px"><label>Alergi <small>kosongkan jika tidak ada</small></label><input name="alergi" value="${esc(k.alergi||'')}" placeholder="Obat / makanan / lainnya"></div>`)}
+ ${sec('fisik','Pemeriksaan fisik head to toe',
+  `<div class="kbar"><button type="button" class="btn ghost sm" data-act="fillNormal">Isi kolom kosong dengan temuan normal</button></div>`+
+  KAJI_FISIK.map(([key,lab,normal])=>`<div class="field"><label>${lab}</label><textarea name="f_${key}" rows="2" placeholder="${esc(normal)}" data-normal="${esc(normal)}">${esc(fs[key]||'')}</textarea></div>`).join(''))}
+ ${sec('adl','Pola aktivitas sehari-hari',
+  KAJI_ADL.map(([key,lab,ph])=>{const x=ad[key]||{};return `<div class="kgrp"><b>${lab}<small style="display:block;font-weight:600;color:var(--mut);margin-top:2px">${esc(ph)}</small></b><div class="row2"><div class="field"><label>Sebelum sakit</label><textarea name="adlb_${key}" rows="2">${esc(x.b||'')}</textarea></div><div class="field"><label>Saat sakit</label><textarea name="adls_${key}" rows="2">${esc(x.s||'')}</textarea></div></div></div>`}).join(''))}
+ ${sec('barthel','Kemandirian ADL (Barthel Index)',scoreRows(BARTHEL,'b_',bt)+`<div class="calc"><span class="pill mint" id="barthelL">-</span></div>`)}
+ ${sec('psiko','Psikososial & spiritual',
+  `<div class="row2">${PSIKO_SEL.slice(0,2).map(([key,lab,o])=>`<div class="field"><label>${lab}</label>${sel('ps_'+key,opt(o),ps[key]||'',true)}</div>`).join('')}</div>`+
+  `<div class="row2">${PSIKO_SEL.slice(2).map(([key,lab,o])=>`<div class="field"><label>${lab}</label>${sel('ps_'+key,opt(o),ps[key]||'',true)}</div>`).join('')}</div>`+
+  PSIKO_TXT.map(([key,lab,ph])=>inp('ps_'+key,lab,ps[key],ph)).join(''))}
+ ${sec('morse','Risiko jatuh (Morse)',MORSE.map(([key,lab,opts])=>`<div class="field"><label>${lab}</label>${sel('m_'+key,opts.map(([l,v])=>[v,l]),m[key]??0)}</div>`).join('')+`<div class="calc"><span class="pill mint" id="morseL">-</span></div>`)}
+ ${sec('braden','Risiko dekubitus (Braden)',scoreRows(BRADEN,'br_',br)+`<div class="calc"><span class="pill mint" id="bradenL">-</span></div>`)}
+ ${mutuSections(e,sec,inp)}
+ <div class="card"><h3>Catatan pengkajian</h3><div class="field"><textarea name="catatan" rows="3" placeholder="Kondisi umum, data penunjang, catatan lain.">${esc(k.catatan||'')}</textarea></div>
+  <button class="btn mint block">Simpan pengkajian </button>
+  ${k.t?`<p class="tiny center" style="margin-top:8px">Terakhir disimpan ${fmtDT(k.t)} oleh ${esc(k.by)}</p>`:''}</div>
+ </form>`;
+}
+
+const EVAL_ST=['Teratasi','Teratasi sebagian','Belum teratasi'];
+const EVAL_C={'Teratasi':'ok','Teratasi sebagian':'butter','Belum teratasi':'pink'};
+function tObat(e){
+ const l=[...e.mar].sort((a,b)=>a.jam.localeCompare(b.jam));
+ return `${alergiBanner(e)}
+ <div class="card"><h3>Jadwal obat hari ini</h3>${l.length?l.map(m=>`<div class="mar"><div><b>${esc(m.obat)}</b> <span class="sm">${esc(m.dosis)} · ${esc(m.rute)}</span><div class="sm mut">${m.jam}${m.given?` · diberikan ${m.givenAt.slice(11,16)} oleh ${esc(m.by)}`:''}</div></div>
+  ${m.given?'<span class="badge ok">Sudah </span>':`<div style="text-align:right">${overdue(m)?'<span class="badge red">Terlambat</span><br>':''}<button class="btn pink sm" data-act="giveMed" data-id="${m.id}" style="margin-top:4px">Beri obat</button></div>`}</div>`).join(''):'<p class="mut">Belum ada jadwal obat.</p>'}</div>
+ <div class="card"><h3>Tambah jadwal obat</h3><form class="form" data-submit="addObat">
+  <div class="field"><label>Nama obat</label><input name="obat" required></div>
+  <div class="row3"><div class="field"><label>Dosis</label><input name="dosis" placeholder="500 mg" required></div><div class="field"><label>Rute</label><select name="rute"><option>PO</option><option>IV</option><option>IM</option><option>SC</option><option>Inhalasi</option><option>Topikal</option></select></div><div class="field"><label>Jam</label><input name="jam" type="time" required></div></div>
+  <button class="btn mint block">Simpan jadwal</button></form></div>`;
+}
+
+function tCairan(e){
+ const s=ioSum(e),l=[...ioToday(e)].reverse();
+ return `<div class="stats" style="grid-template-columns:repeat(3,1fr)"><div class="stat" style="background:var(--mint2)"><b>${s.in}</b><span>Masuk (ml)</span></div><div class="stat" style="background:var(--but2)"><b>${s.out}</b><span>Keluar (ml)</span></div><div class="stat" style="background:${s.bal<0?'var(--red2)':'var(--lav2)'}"><b>${s.bal>0?'+':''}${s.bal}</b><span>Balance (ml)</span></div></div>
+ <div class="card"><h3>Catat intake / output</h3><form class="form" data-submit="addIO">
+  <div class="field"><div class="seg"><label><input type="radio" name="type" value="in" checked><span>Masuk</span></label><label><input type="radio" name="type" value="out"><span>Keluar</span></label></div></div>
+  <div class="row2"><div class="field"><label>Jenis</label><input name="label" list="iolist" placeholder="Minum, Infus, Urine..." required><datalist id="iolist"><option>Minum</option><option>Makan</option><option>Infus RL</option><option>Infus NaCl</option><option>Urine</option><option>Muntah</option><option>Drain</option><option>Feses cair</option></datalist></div><div class="field"><label>Jumlah (ml)</label><input name="ml" type="number" inputmode="numeric" min="1" required></div></div>
+  <button class="btn mint block">Simpan </button></form></div>
+ <div class="card"><h3>Catatan hari ini</h3>${l.length?l.map(x=>`<div class="mar"><div><b>${x.type==='in'?'Masuk':'Keluar'} ${esc(x.label)}</b><div class="sm mut">${x.t.slice(11,16)}</div></div><b>${x.ml} ml</b></div>`).join(''):'<p class="mut">Belum ada catatan hari ini.</p>'}</div>`;
+}
+
+let LAST_SBAR='';
+function sbarData(e,p){
+ const t=lastTTV(e),k=e.pengkajian||{},io=ioSum(e),hari=daysBetween(e.admitAt,today())+1;
+ const dx=e.askep.map(a=>a.sdki.n).join(', ')||'belum ada diagnosis keperawatan';
+ const pend=e.mar.filter(m=>!m.given).length,siki=[...new Set(e.askep.flatMap(a=>a.siki.map(s=>s.n)))].slice(0,3).join(', ')||'sesuai rencana';
+ const ms=k.morse?morseTotal(k.morse):null,bts=fullSum(BARTHEL,k.barthel),brs=fullSum(BRADEN,k.braden);
+ return{
+  S:`${p.jk==='L'?'Tn.':'Ny./Nn.'} ${p.nama}, ${age(p.lahir)} th, RM ${p.mrn}, di bed ${e.bed}. Hari rawat ke-${hari} dengan keluhan ${e.keluhan}.`,
+  B:`DPJP ${e.dokter}. Alergi: ${hasAlergi(e)||'tidak ada / belum dikaji'}. Diagnosis keperawatan: ${dx}.`,
+  A:`${t?`TTV terakhir (${t.t.slice(11,16)}): TD ${t.sis}/${t.dia}, N ${t.nadi}, RR ${t.rr}, S ${t.suhu}°C, SpO₂ ${t.spo2}%${ttvWarn(t)?' (ada yang di luar batas normal)':''}.`:'TTV belum tercatat.'} ${k.nyeri!=null?`Nyeri ${k.nyeri}/10. `:''}${ms!=null?`Morse ${ms} (${morseLabel(ms)[0].toLowerCase()}). `:''}${bts!=null?`Barthel ${bts} (${barthelLabel(bts)[0].toLowerCase()}). `:''}${brs!=null?`Braden ${brs} (${bradenLabel(brs)[0].toLowerCase()}). `:''}Balance cairan hari ini ${io.bal>0?'+':''}${io.bal} ml.`,
+  R:`Lanjutkan pemantauan TTV dan intervensi (${siki}). ${pend} obat belum diberikan hari ini.`
+ };
+}
+/* =========================================================
+   UI plumbing: render, modal, toast
+   ========================================================= */
+function render(){
+ pendingRender=false;UI.dirty=false;
+ const s=UI.screen;
+ $('#app').innerHTML=s==='app'?shell():(s==='auth'?viewAuth():s==='setup'?viewSetup():s==='error'?viewError():viewBoot())+FOOT;
+ const kf=$('#kaji-form');if(kf)calcKaji(kf);
+}
+function toTop(){window.scrollTo({top:0})}
+function openModal(html,cls){
+ UI.detailPid=null;
+ $('#modal').innerHTML=`<div class="ov" data-act="closeModal"></div><div class="sheet${cls?' '+cls:''}" role="dialog" aria-modal="true"><button class="btn ghost sm x" data-act="closeModal">Tutup</button>${html}</div>`;
+ $('#modal').classList.add('on');document.body.classList.add('noscroll');
+}
+function closeModal(){UI.detailPid=null;$('#modal').classList.remove('on');$('#modal').innerHTML='';document.body.classList.remove('noscroll')}
+let CONFIRM_FN=null;
+function askConfirm(msg,fn){CONFIRM_FN=fn;openModal(`<h3>Yakin?</h3><p>${esc(msg)}</p><div class="acts" style="margin-top:14px"><button class="btn red sm" data-act="confirmYes">Ya</button><button class="btn ghost sm" data-act="closeModal">Batal</button></div>`)}
+let toastT;
+function toast(m){const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(toastT);toastT=setTimeout(()=>t.classList.remove('on'),2600)}
+function showJSON(title,obj){
+ const txt=JSON.stringify(obj,null,2);
+ openModal(`<h3>${title}</h3><p class="sm mut">Contoh struktur data sesuai SATUSEHAT (HL7 FHIR R4). MEDIXA belum terhubung ke SATUSEHAT; nilai dalam kurung kurawal adalah placeholder.</p><pre class="json">${esc(txt)}</pre><button class="btn but sm" data-act="copyTxt" data-txt="${esc(txt)}">Salin JSON</button>`);
+}
+function copyText(t,msg){
+ const done=()=>toast(msg||'Tersalin ');
+ try{navigator.clipboard.writeText(t).then(done,()=>fallbackCopy(t,done))}catch(e){fallbackCopy(t,done)}
+}
+function fallbackCopy(t,done){const a=document.createElement('textarea');a.value=t;document.body.appendChild(a);a.select();try{document.execCommand('copy');done()}catch(e){toast('Gagal menyalin. Salin secara manual.')}a.remove()}
+
+/* ---------- FHIR builders (contoh struktur SATUSEHAT) ---------- */
+function fhirPatient(p){
+ const mar={S:'Never Married',M:'Married',D:'Divorced',W:'Widowed'};
+ return{resourceType:'Patient',
+  identifier:[{use:'official',system:'https://fhir.kemkes.go.id/id/nik',value:p.nik},{use:'usual',system:'http://sys-ids.kemkes.go.id/patient/{Org_id}',value:p.mrn}],
+  active:true,name:[{use:'official',text:p.nama}],
+  telecom:[{system:'phone',value:p.hp,use:'mobile'}],
+  gender:p.jk==='L'?'male':'female',birthDate:p.lahir,
+  address:[{use:'home',line:[p.alamat],city:p.kota,district:p.kec,state:p.prov,postalCode:p.pos,country:'ID'}],
+  maritalStatus:{coding:[{system:'http://terminology.hl7.org/CodeSystem/v3-MaritalStatus',code:p.marital,display:mar[p.marital]}]}};
+}
+function fhirEnc(e){
+ const p=pat(e.patientId),c=e.cls==='IMP'?['IMP','inpatient encounter']:['AMB','ambulatory'];
+ return{resourceType:'Encounter',
+  identifier:[{system:'http://sys-ids.kemkes.go.id/encounter/{Org_id}',value:e.id.toUpperCase()}],
+  status:e.status,class:{system:'http://terminology.hl7.org/CodeSystem/v3-ActCode',code:c[0],display:c[1]},
+  subject:{reference:'Patient/{IHS_number}',display:p.nama},
+  participant:[{type:[{coding:[{system:'http://terminology.hl7.org/CodeSystem/v3-ParticipationType',code:'ATND',display:'attender'}]}],individual:{reference:'Practitioner/{Practitioner_id}',display:e.dokter}}],
+  period:{start:`${e.tanggal}T${e.jam||'00:00'}:00+07:00`},
+  serviceProvider:{reference:'Organization/{Org_id}'}};
+}
+
+/* ---------- live calculators ---------- */
+function calcKaji(f){
+ const g=n=>f.elements[n];
+ const b=bmiInfo(+g('bb').value,+g('tb').value);
+ $('#bmi').textContent=b?`IMT ${b.v} · ${b.l}`:'IMT: isi BB dan TB';
+ const n=+g('nyeri').value;$('#nyeriL').textContent=`${n}/10 · ${nyeriLabel(n)}`;const na=$('#nyeriAwal');if(na)na.textContent=`${n}/10`;const kh=$('#kmdHint');if(kh){const bt=fullSum(BARTHEL,Object.fromEntries(BARTHEL.map(([k])=>[k,g('b_'+k).value])));kh.textContent=bt==null?'Lengkapi Barthel untuk saran tingkat ketergantungan.':`Saran dari skor Barthel ${bt}: ${KMD[kmdSaran(bt)]}.`}
+ const gt=(+g('g_e').value)+(+g('g_m').value)+(+g('g_v').value);$('#gcsL').textContent=`GCS ${gt} · ${gcsLabel(gt)}`;
+ const tot=(def,pre)=>{let t=0,miss=0;def.forEach(([k])=>{const v=g(pre+k).value;if(v==='')miss++;else t+=+v});return[t,miss]};
+ const pill=(id,txt,c)=>{const el=$(id);if(!el)return;el.textContent=txt;el.className='pill '+c};
+ const [bt,bm]=tot(BARTHEL,'b_');
+ pill('#barthelL',bm?`Skor ${bt}/100 · ${bm} item belum diisi`:`Skor ${bt}/100 · ${barthelLabel(bt)[0]}`,bm?'lav':barthelLabel(bt)[1]);
+ const [bd,bdm]=tot(BRADEN,'br_');
+ pill('#bradenL',bdm?`Skor ${bd} · ${bdm} item belum diisi`:`Skor ${bd}/23 · ${bradenLabel(bd)[0]}`,bdm?'lav':bradenLabel(bd)[1]);
+ const mt=MORSE.reduce((a,[k])=>a+(+g('m_'+k).value),0),ml=morseLabel(mt);
+ const el=$('#morseL');el.textContent=`Skor ${mt} · ${ml[0]}`;el.className='pill '+(ml[1]==='red'?'red':ml[1]==='but'?'but':'mint');
+}
+const L={
+ reg(el,f){
+  if(el.name==='nik'){el.value=el.value.replace(/\D/g,'').slice(0,16)}
+  const nik=f.elements.nik.value;$('#nikc').textContent=nik.length+'/16';
+  const lahir=f.elements.lahir.value,h=$('#nikhint');
+  if(nik.length===16&&lahir){
+   const [y,m,d]=lahir.split('-'),dd=String(+d+(f.elements.jk.value==='P'?40:0)).padStart(2,'0'),exp=dd+m+y.slice(2);
+   h.textContent=nik.slice(6,12)===exp?'NIK sesuai dengan tanggal lahir dan jenis kelamin':`Digit ke-7 sampai 12 NIK umumnya ${exp} (tanggal lahir; +40 pada tanggal lahir untuk perempuan). Periksa kembali; data tetap dapat disimpan.`;
+  }else h.textContent='';
+ },
+ kaji(el,f){calcKaji(f)},
+ askep(el,f){
+  if(el.name==='q'){
+   const q=el.value.toLowerCase().trim(),sl=f.elements.sdki,cur=sl.value,list=SDKI.filter(d=>!q||(d.k+' '+d.n+' '+d.kw).toLowerCase().includes(q));
+   sl.innerHTML='<option value="">Pilih diagnosis'+(q?` (${list.length} hasil)`:'')+'</option>'+list.map(d=>`<option value="${d.k}" ${d.k===cur?'selected':''}>${d.k} \u00B7 ${d.n}</option>`).join('')+'<option value="__manual">Diagnosis lain (input manual)</option>';
+   return;
+  }
+  if(el.name==='target'){el.dataset.auto='0';return}
+  if(el.name!=='sdki')return;
+  const manual=el.value==='__manual',d=manual?null:sdkiBy(el.value);
+  $('#askepDyn').innerHTML=askepDyn(d,manual);
+  $('#gejalaL').innerHTML=d&&d.risk?'Faktor risiko <small>(dibuktikan dengan)</small>':'Tanda dan gejala <small>(dibuktikan dengan)</small>';
+  f.elements.gejala.required=!!d&&!d.risk;
+  const tg=f.elements.target;
+  if(!tg.value||tg.dataset.auto==='1'){tg.value=d?`Setelah dilakukan intervensi keperawatan selama 3x24 jam, ${d.slki[1].toLowerCase()} membaik dengan kriteria hasil: ${d.kh.slice(0,3).join('; ').toLowerCase()}`:'';tg.dataset.auto='1'}
+ },
+ search(el){UI.q=el.value;$('#plist').innerHTML=patList(el.value)}
+};
+
+/* =========================================================
+   CLICK actions
+   ========================================================= */
+const A={
+ loginMode(t){UI.loginMode=t.dataset.m;render()},
+ confirmYes(){const f=CONFIRM_FN;CONFIRM_FN=null;closeModal();if(f)f()},
+ nav(t){UI.tab=t.dataset.tab;UI.enc=null;render();toTop()},
+ closeModal,
+/* ---------- aksi baru (disisipkan ke objek A) ---------- */
+ toggleKasus(t){const b=$('#kasusBox');if(!b)return;b.hidden=!t.checked;const s=b.querySelector('select');if(s)s.disabled=!t.checked},
+ kasusEdit(t){const e=enc(t.dataset.id);if(!e)return;openModal(`<h3>Kasus simulasi</h3><form class="form" data-submit="setKasus" data-id="${e.id}">${kasusField(e.kasus)}<button class="btn mint block">Simpan</button></form>`)},
+ pasView(t){UI.pasView=t.dataset.v;render()},
+ range(t){UI.range=+t.dataset.n;render()},
+ dashA(t){const c=dashA().find(x=>x.id===t.dataset.id);if(!c)return;openModal(`<h3>${c.label}</h3><p class="tiny">${c.sub}. ${c.list.length} pasien.</p>${c.list.length?`<div class="plist">${c.list.map(e=>encRow(e,c.info(e))).join('')}</div>`:'<p class="mut sm">Tidak ada data.</p>'}`,'wide')},
+ dashM(t){const m=metOf(t.dataset.id);if(m)openModal(metricModal(m),'wide')},
+ openEncM(t){closeModal();UI.enc=t.dataset.id;UI.encTab='ttv';render();toTop()},
+ pickDx(t){const f=$('#askepAdd form');if(!f)return;f.elements.sdki.value=t.dataset.k;L.askep(f.elements.sdki,f);f.scrollIntoView({behavior:'smooth',block:'center'})},
+ admitSim(){openModal(admitHTML('SIM'))},
+ demoStart(){demoBoot()},
+ loadHistory(){
+  if(S.encounters.some(e=>e.dummy))return toast('Data dummy sudah dimuat');
+  const h=genHistory();h.patients.forEach(p=>S.patients.push(p));h.encounters.forEach(e=>S.encounters.push(e));
+  S.patients.sort(byMrn);save();render();toast(`${h.encounters.length} rekam historis dimuat`);
+ },
+ removeHistory(){askConfirm('Hapus seluruh data dummy (pasien dan rekam historis)? Data yang diinput manual tidak terpengaruh.',removeDummy)},
+/* ---------- akhir aksi baru ---------- */
+ copyTxt(t){copyText(t.dataset.txt,'JSON tersalin ')},
+ fhirP(t){showJSON('Patient (FHIR)',fhirPatient(pat(t.dataset.id)))},
+ fhirE(t){showJSON('Encounter (FHIR)',fhirEnc(enc(t.dataset.id)))},
+
+ /* pasien */
+ rjPoli(t){
+  const f=t.closest('form');$$('.poli',f).forEach(b=>b.classList.toggle('on',b===t));
+  f.elements.poli.value=t.dataset.id;const po=POLI.find(x=>x.id===t.dataset.id),s=f.elements.dokter;
+  s.disabled=false;s.innerHTML=po.dokter.map(d=>`<option>${esc(d)}</option>`).join('');
+ },
+
+ /* perawat: antrean */
+ checkin(t){enc(t.dataset.id).status='arrived';save();render();toast('Check-in berhasil')},
+ kajiAll(t){const o=t.dataset.v==='1';$$('#kaji-form details.ksec').forEach(x=>x.open=o)},
+ fillNormal(t){let n=0;$$('#kaji-form [data-normal]').forEach(i=>{if(!i.value.trim()){i.value=i.dataset.normal;n++}});toast(n?`${n} kolom diisi dengan temuan normal. Sesuaikan jika berbeda.`:'Semua kolom sudah terisi')},
+ startKaji(t){const e=enc(t.dataset.id);e.status='in-progress';UI.enc=e.id;UI.encTab='ttv';save();render();toTop();toast('Pengkajian dimulai')},
+ openEnc(t){UI.enc=t.dataset.id;UI.encTab='ttv';render();toTop()},
+ closeEnc(){UI.enc=null;render();toTop()},
+ encTab(t){UI.encTab=t.dataset.tab;render()},
+ finishAmb(t){enc(t.dataset.id).status='finished';UI.enc=null;save();render();toTop();toast('Kunjungan selesai')},
+ newVisit(){
+  if(!S.patients.length)return toast('Registrasikan pasien terlebih dahulu');
+  openModal(`<h3>Kunjungan baru</h3><div class="field"><label>Pasien</label><select id="nvPat">${S.patients.map(p=>`<option value="${p.id}">${esc(p.nama)} · RM ${p.mrn}</option>`).join('')}</select></div><div id="nvForm">${visitForm(S.patients[0].id)}</div>`);
+  $('#nvPat').addEventListener('change',ev=>{$('#nvForm').innerHTML=visitForm(ev.target.value)});
+ },
+
+ /* perawat: rawat inap */
+ admitForm(t){openModal(admitHTML(t.dataset.bed))},
+
+ /* perawat: pasien */
+ newPatient(){openModal(`<h3>Registrasi pasien baru </h3>${regForm()}`)},
+ patDetail(t){
+  const p=S.patients.find(x=>x.id===t.dataset.id);if(!p)return;
+  openModal(`<div id="detailBody">${patDetailBody(p)}</div>`,'wide');
+  UI.detailPid=p.id;
+ },
+ loadSample(){
+  const d=seedData();let n=0;
+  d.patients.forEach(p=>{if(!S.patients.some(x=>x.id===p.id)){S.patients.push(p);n++}});
+  d.encounters.forEach(e=>{if(!S.encounters.some(x=>x.id===e.id))S.encounters.push(e)});
+  S.patients.sort(byMrn);save();render();toast(`${n} pasien contoh dimuat`);
+ },
+ async logout(){if(UI.demo){location.reload();return}UI.enc=null;UI.tab='home';try{await FB.signOut(auth)}catch(e){toast('Gagal keluar, coba lagi')}},
+ visitFor(t){openModal(`<h3>Kunjungan rawat jalan</h3><p class="mut sm">${esc(pat(t.dataset.id).nama)}</p>${visitForm(t.dataset.id)}`)},
+
+ /* detail: askep, obat, dll */
+ delAskep(t){const e=enc(UI.enc);e.askep=e.askep.filter(a=>a.id!==t.dataset.id);save();render()},
+ fillO(){
+  const e=enc(UI.enc),x=lastTTV(e);if(!x)return toast('Belum ada TTV untuk diambil');
+  $('#cpptO').value=`TD ${x.sis}/${x.dia} mmHg, N ${x.nadi}x/menit, RR ${x.rr}x/menit, S ${x.suhu}°C, SpO₂ ${x.spo2}%`;
+ },
+ giveMed(t){
+  const e=enc(UI.enc),m=e.mar.find(x=>x.id===t.dataset.id);
+  openModal(`<h3>Verifikasi 6 benar</h3><p><b>${esc(m.obat)}</b> ${esc(m.dosis)} · ${esc(m.rute)} · jam ${m.jam}</p>${alergiBanner(e)}
+   <form class="form" data-submit="giveConfirm" data-id="${m.id}" style="margin-top:10px">
+   ${['Benar pasien','Benar obat','Benar dosis','Benar rute','Benar waktu','Benar dokumentasi'].map(x=>`<label class="chk"><input type="checkbox" required><span>${x}</span></label>`).join('')}
+   <button class="btn mint block">Sudah diberikan </button></form>`);
+ },
+ toggleDis(t){const e=enc(UI.enc);e.discharge=e.discharge||{};e.discharge[t.dataset.i]=t.checked;save();render()},
+ copySbar(){copyText(LAST_SBAR,'SBAR tersalin ')},
+ pulangkan(){
+  askConfirm('Pulangkan pasien ini?',()=>{const e=enc(UI.enc);e.status='finished';e.dischargeAt=stamp();UI.enc=null;save();render();toTop();toast('Pasien pulang, bed kosong lagi ')});
+ }
+};
+
+/* =========================================================
+   SUBMIT handlers
+   ========================================================= */
+const F={
+ setKasus(f){const e=enc(f.dataset.id),d=Object.fromEntries(new FormData(f));if(!e)return;e.kasus=readKasus(d);save();closeModal();render();toast(e.kasus?`Rekam ditandai sebagai kasus ${e.kasus}`:'Tanda kasus simulasi dihapus')},
+ saveOutcome(f){
+  const e=enc(UI.enc),d=Object.fromEntries(new FormData(f)),num=n=>d[n]===''||d[n]==null?null:+d[n],tx=n=>(d[n]||'').trim();
+  if(d.outcome==='discharge'&&!DISCH.every((_,i)=>(e.discharge||{})[i]))return toast('Lengkapi seluruh checklist discharge planning sebelum menetapkan status Pulang');
+  const apply=()=>{
+   e.mutu={...mu(e),rencanaPulang:tx('rencanaPulang'),kontrol:tx('kontrol'),penerimaEdukasi:tx('penerimaEdukasi'),kondisiKeluar:tx('kondisiKeluar'),pengetahuanPost:num('pkPost'),cemasPost:tx('cemasPost'),kepuasan:num('kepuasan')||0,umpanBalik:tx('umpanBalik')};
+   if(d.outcome==='inpatient'){e.outcome='inpatient';if(e.status==='finished'){e.status='in-progress';e.dischargeAt=null}}
+   else{e.outcome=d.outcome;e.status='finished';e.dischargeAt=e.dischargeAt||stamp()}
+   save();render();toast('Evaluasi dan status pasien tersimpan');
+  };
+  if(d.outcome!=='inpatient'&&outcomeOf(e)==='inpatient')askConfirm(`Ubah status pasien menjadi "${OUT_L[d.outcome]}"? Tempat tidur akan dikosongkan.`,apply);else apply();
+ },
+/* ---------- akhir handler baru ---------- */
+ async authLogin(f){
+  const d=Object.fromEntries(new FormData(f)),b=f.querySelector('button.btn');b.disabled=true;
+  try{await FB.signInWithEmailAndPassword(auth,d.email.trim(),d.pass)}
+  catch(e){b.disabled=false;toast(authMsg(e))}
+ },
+ async authRegister(f){
+  const d=Object.fromEntries(new FormData(f)),nama=d.nama.trim().replace(/\s+/g,' '),b=f.querySelector('button.btn');
+  if(nama.length<3)return toast('Isi nama lengkap perawat (contoh: Ns. Sari)');
+  b.disabled=true;PENDING_NAME=nama;
+  try{
+   const cred=await FB.createUserWithEmailAndPassword(auth,d.email.trim(),d.pass);
+   try{
+    await FB.updateProfile(cred.user,{displayName:nama});
+    await FB.setDoc(FB.doc(db,'users',cred.user.uid),{nama,email:d.email.trim(),createdAt:FB.serverTimestamp()});
+   }catch(e){console.warn('profil belum tersimpan',e)}
+  }catch(e){b.disabled=false;toast(authMsg(e))}
+  PENDING_NAME=null;
+ },
+ async register(f){
+  const d=Object.fromEntries(new FormData(f));
+  if(!/^\d{16}$/.test(d.nik))return toast('NIK harus 16 digit angka');
+  if(S.patients.some(p=>p.nik===d.nik))return toast('NIK sudah terdaftar');
+  const b=f.querySelector('button.btn');b.disabled=true;
+  let n;
+  if(UI.demo)n=Math.max(0,...S.patients.map(p=>+p.mrn||0))+1;
+  else try{   /* No. RM dari penghitung bersama di Firestore, supaya dua perawat tidak dapat nomor kembar */
+   n=await FB.runTransaction(db,async tx=>{
+    const r=FB.doc(db,'meta','counters'),s=await tx.get(r);
+    const nx=Math.max(s.exists()?(+s.data().patientSeq||0):0,...S.patients.map(p=>+p.mrn||0))+1;
+    tx.set(r,{patientSeq:nx},{merge:true});
+    return nx;
+   });
+  }catch(e){console.error(e);b.disabled=false;return toast('Koneksi internet diperlukan untuk membuat No. RM baru')}
+  const mrn=String(n).padStart(6,'0');
+  const p={id:'p'+uid(),mrn,nik:d.nik,nama:d.nama.trim(),jk:d.jk,tempat:d.tempat.trim(),lahir:d.lahir,marital:d.marital,hp:d.hp,alamat:d.alamat.trim(),rtrw:d.rtrw||'',kel:d.kel,kec:d.kec,kota:d.kota,prov:d.prov,pos:d.pos||'',kerja:(d.kerja||'').trim(),penjamin:d.penjamin,kontak:{nama:d.k_nama,hub:d.k_hub,hp:d.k_hp}};
+  S.patients.push(p);S.patients.sort(byMrn);
+  save();render();
+  openModal(`<div class="center">${dixa('md')}<h3 style="padding:0">Registrasi berhasil</h3><div class="ticket"><div class="tiny">NOMOR REKAM MEDIS</div><div class="no">${p.mrn}</div><div class="sm">${esc(p.nama)}</div></div><p class="sm mut">Dicatat oleh ${esc(ME.nama)}. Nomor SATUSEHAT (IHS) akan diisi setelah MEDIXA terhubung ke SATUSEHAT.</p><button class="btn pink block" data-act="closeModal">Tutup</button></div>`);
+ },
+ addEval(f){
+  const e=enc(UI.enc),d=Object.fromEntries(new FormData(f)),a=e.askep.find(x=>x.id===f.dataset.id);
+  if(!a)return;
+  a.evaluasi=a.evaluasi||[];a.evaluasi.push({...M(),status:d.status,catatan:d.catatan.trim()});
+  save();render();toast('Evaluasi tersimpan');
+ },
+ rjSubmit(f){
+  const d=Object.fromEntries(new FormData(f));
+  if(!d.poli)return toast('Pilih poli terlebih dahulu');
+  const po=POLI.find(x=>x.id===d.poli),n=S.encounters.filter(e=>e.cls==='AMB'&&e.poli===po.id&&e.tanggal===d.tanggal).length+1;
+  const e=newEnc({patientId:f.dataset.pid,cls:'AMB',poli:po.id,dokter:d.dokter,tanggal:d.tanggal,jam:d.jam,keluhan:d.keluhan.trim(),status:'planned',kasus:readKasus(d),antrean:`${po.kode}-${String(n).padStart(3,'0')}`});
+  S.encounters.push(e);save();render();
+  openModal(`<div class="center"><h3 style="padding:0">Kunjungan terdaftar</h3><div class="ticket"><div class="tiny">NOMOR ANTREAN</div><div class="no">${e.antrean}</div><div class="sm">${po.icon} ${esc(po.nama)} · ${esc(e.dokter)}</div><div class="sm">${fmtD(e.tanggal)}, ${e.jam}</div></div><p class="sm mut">Pasien diminta hadir 15 menit sebelum jadwal dan melakukan check-in.</p><button class="btn pink block" data-act="closeModal">Tutup</button></div>`);
+ },
+ saveTTV(f){
+  const e=enc(UI.enc),d=Object.fromEntries(new FormData(f)),x={...M()};
+  ['sis','dia','nadi','rr','suhu','spo2'].forEach(k=>x[k]=+d[k]);
+  if(x.sis<=x.dia)return toast('Sistolik harus lebih besar dari diastolik');
+  e.ttv.push(x);save();render();
+  toast(ttvWarn(x)?'TTV di luar batas normal. Laporkan kepada DPJP.':'TTV tersimpan, dalam batas normal');
+ },
+ saveKaji(f){
+  const e=enc(UI.enc),d=Object.fromEntries(new FormData(f));
+  const morse={};MORSE.forEach(([k])=>morse[k]=+d['m_'+k]);
+  const tx=n=>(d[n]||'').trim(),pick=(def,pre)=>Object.fromEntries(def.map(([k])=>[k,tx(pre+k)])),nm=(def,pre)=>Object.fromEntries(def.map(([k])=>[k,d[pre+k]===''||d[pre+k]==null?'':+d[pre+k]]));
+  const adl={};KAJI_ADL.forEach(([k])=>adl[k]={b:tx('adlb_'+k),s:tx('adls_'+k)});
+  const psiko={};PSIKO_SEL.forEach(([k])=>psiko[k]=tx('ps_'+k));PSIKO_TXT.forEach(([k])=>psiko[k]=tx('ps_'+k));
+  e.pengkajian={...M(),bb:d.bb?+d.bb:'',tb:d.tb?+d.tb:'',alergi:tx('alergi'),nyeri:+d.nyeri,lokasiNyeri:tx('lokasiNyeri'),gcs:{e:+d.g_e,m:+d.g_m,v:+d.g_v},morse,catatan:tx('catatan'),
+   keluhanUtama:tx('keluhanUtama'),rps:tx('rps'),pqrst:{p:tx('pq_p'),q:tx('pq_q'),t:tx('pq_t')},riwayat:pick(KAJI_RIWAYAT,'r_'),keadaanUmum:tx('keadaanUmum'),kesadaran:tx('kesadaran'),
+   fisik:pick(KAJI_FISIK,'f_'),adl,barthel:nm(BARTHEL,'b_'),braden:nm(BRADEN,'br_'),psiko};
+  e.mutu=readMutu(d,mu(e));
+  save();render();toast('Pengkajian tersimpan');
+ },
+ addAskep(f){
+  const e=enc(UI.enc),d=Object.fromEntries(new FormData(f));
+  let sdki,risk=false,slki,siki,kh;
+  if(d.sdki==='__manual'){
+   if(!(d.m_sdkiN||'').trim())return toast('Isi nama diagnosis');
+   sdki={k:(d.m_sdkiK||'').trim()||'-',n:d.m_sdkiN.trim()};slki={k:(d.m_slkiK||'').trim()||'-',n:(d.m_slkiN||'').trim()||'-'};
+   siki=parseSiki(d.m_siki);kh=(d.m_kh||'').split('\n').map(x=>x.trim()).filter(Boolean);
+  }else{
+   const dx=sdkiBy(d.sdki);if(!dx)return toast('Pilih diagnosis terlebih dahulu');
+   sdki={k:dx.k,n:dx.n};risk=!!dx.risk;slki={k:dx.slki[0],n:dx.slki[1]};
+   siki=$$('input[name=siki]:checked',f).map(i=>{const [k,n]=i.value.split('|');return{k,n}}).concat(parseSiki(d.siki_x));
+   kh=$$('input[name=kh]:checked',f).map(i=>i.value);
+  }
+  if(!siki.length)return toast('Pilih atau isi minimal satu intervensi');
+  e.askep.push({id:'a'+uid(),sdki,risk,etiologi:d.etiologi.trim(),gejala:(d.gejala||'').trim(),slki,kh,target:(d.target||'').trim(),siki,evaluasi:[],...M()});
+  save();render();toast('Diagnosis tersimpan');
+ },
+ addCppt(f){
+  const e=enc(UI.enc),d=Object.fromEntries(new FormData(f));
+  if(!(d.s||d.o||d.a||d.p).trim())return toast('Isi minimal satu komponen SOAP');
+  const m={...mu(e)},ev=[];
+  if(d.cp_jatuh==='on'){m.jatuh=true;ev.push('Pasien jatuh')}
+  if(d.cp_phl==='on'){m.phlebitis=Math.max(1,+m.phlebitis||0);ev.push('Phlebitis')}
+  if(d.cp_dekub==='on'){m.dekubitus='rs';ev.push('Dekubitus baru')}
+  if(d.cp_obat==='on'){m.kesalahanObat=(+m.kesalahanObat||0)+1;ev.push('Kesalahan obat')}
+  if(d.cp_restrain==='on'){m.restrainTerpasang=true;m.cederaRestrain=true;ev.push('Cedera akibat restrain')}
+  if(d.nyeriSetelah!==''&&d.nyeriSetelah!=null)m.nyeriSetelah=+d.nyeriSetelah;
+  e.mutu=m;
+  e.cppt.push({id:'c'+uid(),...M(),s:d.s.trim(),o:d.o.trim(),a:d.a.trim(),p:d.p.trim(),kejadian:ev});
+  save();render();toast('CPPT tersimpan');
+ },
+ addObat(f){
+  const e=enc(UI.enc),d=Object.fromEntries(new FormData(f));
+  e.mar.push({id:'m'+uid(),obat:d.obat.trim(),dosis:d.dosis.trim(),rute:d.rute,jam:d.jam,given:false,addedBy:ME.nama,addedAt:stamp()});
+  save();render();toast('Jadwal obat ditambahkan');
+ },
+ giveConfirm(f){
+  const e=enc(UI.enc),m=e.mar.find(x=>x.id===f.dataset.id);
+  m.given=true;m.givenAt=stamp();m.by=ME.nama;m.byUid=ME.uid;save();closeModal();render();toast('Pemberian obat tercatat');
+ },
+ addIO(f){
+  const e=enc(UI.enc),d=Object.fromEntries(new FormData(f));
+  e.io.push({id:'i'+uid(),...M(),type:d.type,label:d.label.trim(),ml:+d.ml});
+  save();render();toast('Tercatat');
+ },
+ admit(f){
+  const d=Object.fromEntries(new FormData(f)),sim=f.dataset.bed==='SIM';
+  if(!d.pid)return toast('Pilih pasien terlebih dahulu');
+  if(!sim&&bedOcc(f.dataset.bed))return toast('Tempat tidur sudah terisi');
+  const kasus=sim?(d.kasus?+d.kasus:null):readKasus(d);
+  if(sim&&!kasus)return toast('Pilih nomor kasus');
+  const e=newEnc({patientId:d.pid,cls:'IMP',poli:'dalam',dokter:d.dokter,tanggal:today(),jam:hhmm(),keluhan:d.keluhan.trim(),status:'in-progress',antrean:'',bed:sim?'Simulasi':f.dataset.bed,admitAt:stamp(),kasus,outcome:'inpatient'});
+  S.encounters.push(e);UI.enc=e.id;UI.encTab='kaji';save();closeModal();render();toTop();toast('Pasien diterima. Lanjutkan dengan pengkajian awal.');
+ }
+};
+
+/* =========================================================
+   event wiring
+   ========================================================= */
+document.addEventListener('click',ev=>{
+ const t=ev.target.closest('[data-act]');if(!t)return;
+ const fn=A[t.dataset.act];if(!fn)return;
+ if(t.tagName==='BUTTON'||t.tagName==='DIV'||t.tagName==='INPUT'||t.tagName==='A')fn(t,ev);
+});
+const liveH=ev=>{const f=ev.target.closest('[data-live]');if(!f)return;const h=L[f.dataset.live];if(h)h(ev.target,f)};
+document.addEventListener('input',ev=>{if(ev.target.closest&&ev.target.closest('#app form[data-submit]'))UI.dirty=true});
+document.addEventListener('input',liveH);
+document.addEventListener('change',liveH);
+document.addEventListener('submit',ev=>{
+ const f=ev.target.closest('form[data-submit]');if(!f)return;
+ ev.preventDefault();const h=F[f.dataset.submit];if(h)h(f);
+});
+document.addEventListener('keydown',ev=>{if(ev.key==='Escape')closeModal()});
+document.addEventListener('toggle',ev=>{const d=ev.target;if(d&&d.matches&&d.matches('details.ksec[data-k]')){UI.kOpen=UI.kOpen||{};UI.kOpen[d.dataset.k]=d.open}},true);
+
+/* mulai */
+document.title='MEDIXA v.2 · Otten Hospital';
+render();
+bootFirebase();
+window.addEventListener('online',setSync);
+window.addEventListener('offline',setSync);
+</script>
+</body>
+</html>
